@@ -305,17 +305,23 @@ REMEMBER_CHOICE = (
 
 
 PLAY_LINK = 'https://play.google.com/store/apps/details?id=com.app.cheescoach'
+APP_STORE_LINK = 'https://apps.apple.com/app/id6790447113'
+APP_STORE_PROVIDER = '129140502'   # pt, from App Store Connect's campaign link generator
 
 
 def tag_play_links(text, page, lang):
-    """Adds the install referrer Play Console reads as a UTM campaign: web_<page>_<lang>.
+    """Tags the store buttons so each console can tell the website's installs apart.
 
-    Apple links stay bare until there is a provider token (pt): without it App Store Connect
-    ignores the campaign (ct), so a half-built link would only look tracked."""
+    Play reads an install referrer as UTM (utm_campaign web_<page>_<lang>); App Store Connect
+    reads pt + ct (ct web_<page>_<lang>_hero, max 40 characters) in the format its generator uses."""
     name = 'home' if page == 'index' else page.replace('-', '_')
+    campaign = f'web_{name}_{lang}'
     referrer = ('utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite'
-                f'%26utm_campaign%3Dweb_{name}_{lang}%26utm_content%3Dhero')
-    return text.replace(f'href="{PLAY_LINK}"', f'href="{PLAY_LINK}&amp;referrer={referrer}"')
+                f'%26utm_campaign%3D{campaign}%26utm_content%3Dhero')
+    text = text.replace(f'href="{PLAY_LINK}"', f'href="{PLAY_LINK}&amp;referrer={referrer}"')
+    apple = (f'https://apps.apple.com/app/apple-store/id6790447113?pt={APP_STORE_PROVIDER}'
+             f'&amp;ct={campaign}_hero&amp;mt=8')
+    return text.replace(f'href="{APP_STORE_LINK}"', f'href="{apple}"')
 
 
 def build_page(page, lang):
