@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Woodpecker method: how to do it, and an app for it</title>
+    <meta name="description" content="The Woodpecker method explained: the set, the seven cycles from 28 days to one, and an app that runs them for you with two sets of 150 positions.">
+    <link rel="canonical" href="https://chesscoach-app.com/woodpecker-method.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/woodpecker-method.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/woodpecker-method.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Woodpecker method: how to do it, and an app for it">
+    <meta property="og:description" content="The Woodpecker method explained: the set, the seven cycles from 28 days to one, and an app that runs them for you with two sets of 150 positions.">
+    <meta property="og:url" content="https://chesscoach-app.com/woodpecker-method.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Woodpecker method: how to do it, and an app for it">
+    <meta name="twitter:description" content="The Woodpecker method explained: the set, the seven cycles from 28 days to one, and an app that runs them for you with two sets of 150 positions.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var es="es/metodo-pajaro-carpintero.html",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;if(s==="es"||(s===null&&!back&&/^es\b/i.test(navigator.language||""))){location.replace(es+location.search+location.hash)}})();</script>
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="images/app/icon.webp">
+    <link rel="apple-touch-icon" href="app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/guide.css">
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the Woodpecker method work?", "acceptedAnswer": {"@type": "Answer", "text": "Its authors used it to prepare for tournaments, and it rests on a well-known idea: repeating the same material at shorter and shorter intervals turns calculation into recognition. It only works if you finish the cycles, which is why keeping the schedule matters more than the choice of positions."}}, {"@type": "Question", "name": "How many positions should a Woodpecker set have?", "acceptedAnswer": {"@type": "Answer", "text": "Enough to take real effort in the first cycle and still fit into a single day by the last one. Chess Coach uses sets of 150."}}, {"@type": "Question", "name": "The Woodpecker method is too hard. What can I do?", "acceptedAnswer": {"@type": "Answer", "text": "Most people who give up do so in the first cycle, when every position is new. Use the hint or the solution when you are stuck: the position will simply come back for review, and the second time it will be easier."}}, {"@type": "Question", "name": "Can I do it on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Chess Coach is on iPhone, iPad and Android, and your cycles are kept in sync across devices when you sign in."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+            <img src="images/app/icon.webp" alt="" width="36" height="36">
+            <span>Chess Coach</span>
+        </a>
+
+        <ul class="navbar-links" id="nav-links">
+            <li><a href="ai-chess-coach.html">AI coach</a></li>
+            <li><a href="chess-opening-trainer.html">Openings</a></li>
+            <li><a href="essential-chess-endgames.html">Endgames</a></li>
+            <li><a href="woodpecker-method.html">Woodpecker</a></li>
+            <li><a href="index.html#download">Download</a></li>
+            <li>
+                <div class="lang-toggle" role="group" aria-label="Language"><a href="woodpecker-method.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/metodo-pajaro-carpintero.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+            </li>
+        </ul>
+
+        <button class="navbar-hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Navigation menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<main id="content">
+
+<header class="guide-hero">
+    <div class="container">
+        <div class="guide-hero-grid">
+            <div>
+                <h1>The Woodpecker method: what it is, how to do it, and an app that does the counting</h1>
+                <p class="lede">Solve the same set of positions again and again, faster each time, until you see the answers at a glance. That is the whole method. The hard part is sticking to the schedule, and that is the part Chess Coach does for you.</p>
+<div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_woodpecker_method_en%26utm_content%3Dhero" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Get it on</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_woodpecker_method_en_hero&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Download on the</small>App Store</span>
+            </a>
+        </div>
+
+            </div>
+            <div class="guide-hero-shot">
+                <div class="phone"><img src="images/screens/woodpecker-session.webp" alt="A Practice position in Chess Coach: four numbered arrows on the board and the question Which is the best move?" width="840" height="1708"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2>What the Woodpecker method is</h2>
+            <p>The method comes from the book <em>The Woodpecker Method</em> by Axel Smith and Hans Tikkanen. Its idea is simple: you do not get better at spotting tactics by solving thousands of new puzzles once, but by solving the same set many times, until the patterns stop needing calculation.</p>
+            <p>The book is built around a <strong>set</strong> of positions and a series of <strong>cycles</strong>. In each cycle you solve the whole set, and each cycle has to be done in less time than the one before.</p>
+
+            <h2>The seven cycles</h2>
+            <p>This is the schedule Chess Coach follows. The time you have for each cycle halves, roughly, until the last ones fit into a single day.</p>
+            <div class="table-wrap">
+                <table class="guide-table">
+                    <thead><tr><th>Cycle</th><th>Time to solve the whole set</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>28 days</td></tr>
+                        <tr><td>2</td><td>14 days</td></tr>
+                        <tr><td>3</td><td>7 days</td></tr>
+                        <tr><td>4</td><td>4 days</td></tr>
+                        <tr><td>5</td><td>2 days</td></tr>
+                        <tr><td>6</td><td>1 day</td></tr>
+                        <tr><td>7</td><td>1 day</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>How to do it</h2>
+            <ol class="steps">
+                <li><strong>Pick one set and stay with it.</strong> Changing positions halfway defeats the method: the point is to see the same ones again.</li>
+                <li><strong>Solve every position in the cycle.</strong> Decide the move, then check. Do not skip the ones you find easy; the speed comes from them.</li>
+                <li><strong>Take a day off between cycles.</strong> The rest is part of the method, not a reward.</li>
+                <li><strong>Go again, in half the time.</strong> The positions you missed are the ones worth the most attention.</li>
+            </ol>
+
+            <h2>How Chess Coach runs it for you</h2>
+            <p>In the Calculation Lab, <strong>Practice</strong> is the Woodpecker method with the bookkeeping done:</p>
+            <ul>
+                <li><strong>Two sets of 150 positions</strong>, one from the opening and one from the middlegame, chosen and checked with an engine.</li>
+                <li><strong>Four arrows, one best move.</strong> Each position shows four candidate moves: the best one, two believable ones that lose ground and one clear mistake. You pick one, then play the line that follows, five moves deep.</li>
+                <li><strong>The cycles are kept for you</strong>: which day of which cycle you are on, your time and how many you solved.</li>
+                <li><strong>Misses come back.</strong> A position you got wrong, or solved with a hint, comes back the next day, then at growing intervals until you get it right.</li>
+            </ul>
+            <figure class="inline-shot">
+                <div class="phone"><img src="images/screens/woodpecker.webp" alt="The Practice screen with the Openings and Middlegame sets, each with its current cycle and a track of seven cycles from 28 days to one" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Both sets, the cycle you are on and the seven-cycle track, from 28 days down to one.</figcaption>
+            </figure>
+
+            <h2>What is free</h2>
+            <p>The first ten positions of each set are free, so you can try the method before deciding. The full sets and their cycles are part of Premium.</p>
+
+            <h2>Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>Does the Woodpecker method work?</summary>
+                    <div>Its authors used it to prepare for tournaments, and it rests on a well-known idea: repeating the same material at shorter and shorter intervals turns calculation into recognition. It only works if you finish the cycles, which is why keeping the schedule matters more than the choice of positions.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How many positions should a Woodpecker set have?</summary>
+                    <div>Enough to take real effort in the first cycle and still fit into a single day by the last one. Chess Coach uses sets of 150.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>The Woodpecker method is too hard. What can I do?</summary>
+                    <div>Most people who give up do so in the first cycle, when every position is new. Use the hint or the solution when you are stuck: the position will simply come back for review, and the second time it will be easier.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I do it on my phone?</summary>
+                    <div>Yes. Chess Coach is on iPhone, iPad and Android, and your cycles are kept in sync across devices when you sign in.</div>
+                </details>
+            </div>
+
+            <h2>Keep training</h2>
+            <div class="related">
+                <a href="essential-chess-endgames.html"><span>Essential endgames</span><span>The 100 to know, and a way to practise them.</span></a>
+                <a href="chess-opening-trainer.html"><span>Opening trainer</span><span>Your repertoire with spaced repetition, then played for real.</span></a>
+                <a href="ai-chess-coach.html"><span>AI chess coach</span><span>Find out what went wrong in your own games.</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="band download" id="download">
+    <div class="container">
+      <div class="download-grid">
+        <div class="download-copy">
+        <span class="eyebrow">Your next game</span>
+        <h2>Take the coach with you</h2>
+        <p class="lede">Start free on iPhone, iPad or Android. No ads, and no subscription needed to play, analyse or take the first course.</p>
+
+        <div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_woodpecker_method_en%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Get it on</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_woodpecker_method_en_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Download on the</small>App Store</span>
+            </a>
+        </div>
+
+        <p class="download-note">Sign in and your games, ratings and progress follow you to the other device.</p>
+        </div>
+
+        <div class="download-shot">
+            <div class="phone"><img src="images/screens/home.webp" alt="The Chess Coach home screen on an iPhone: puzzle, streak and storm ratings, and the cards for playing, learning and the Practice Lab" width="840" height="1708" loading="lazy"></div>
+            <p class="phone-caption">The home screen, on an iPhone. Same app on Android and iPad.</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <p>A chess coach on your phone: an engine for the truth, AI for the reason.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">The app</h3>
+            <ul class="footer-links">
+                <li><a href="ai-chess-coach.html">AI coach</a></li>
+                <li><a href="chess-opening-trainer.html">Opening trainer</a></li>
+                <li><a href="essential-chess-endgames.html">Essential endgames</a></li>
+                <li><a href="woodpecker-method.html">Woodpecker method</a></li>
+                <li><a href="index.html#labs">Practice Lab</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#play">Play</a></li>
+                <li><a href="index.html#engines">Engines</a></li>
+                <li><a href="index.html#download">Download</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">AI setup</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Which provider</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Project</h3>
+            <ul class="footer-links">
+                <li><a href="open-source.html">Open source</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Built by</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<script src="js/landing.js"></script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
+</body>
+</html>

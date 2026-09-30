@@ -12,9 +12,10 @@ from urllib.parse import urlparse
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'docs')
 SITE = 'https://chesscoach-app.com'
-BILINGUAL = ['index', 'api-setup', 'openai-setup', 'deepseek-setup', 'gemini-setup',
-             'claude-setup', 'qwen-setup', 'privacy-policy']
-ENGLISH_ONLY = ['open-source']
+import build  # the page list and URL scheme live in one place
+
+BILINGUAL = build.BILINGUAL
+ENGLISH_ONLY = build.ENGLISH_ONLY
 # The App Store listing is the one place the old spelling is still the real name. The structured
 # data also names it, as an alias, so search engines tie both spellings together.
 ALLOWED_OLD_BRAND = ('CheesCoach: AI Chess Coach', 'CheesCoach: Ajedrez con IA')
@@ -27,8 +28,7 @@ def fail(msg):
 
 
 def url_of(page, lang):
-    path = '' if page == 'index' else page + '.html'
-    return f'{SITE}/{"es/" if lang == "es" else ""}{path}'
+    return build.abs_url(page, lang)
 
 
 class Links(HTMLParser):
@@ -55,7 +55,7 @@ def check_page(path, page, lang):
         fail(f'{rel}: missing')
         return
     html = open(path, encoding='utf-8').read()
-    for bad in ('data-en=', 'data-es=', 'data-en-alt', 'data-es-alt', 'data-en-label', 'data-es-label',
+    for bad in ('data-en=', 'data-es=', '{{PLAY', '{{APPSTORE', '<!--INCLUDE', 'data-en-alt', 'data-es-alt', 'data-en-label', 'data-es-label',
                 'setLang(', 'applyLang',
                 'juanfranj.github.io/cheescoach', '<!--LANG-'):
         if bad in html:
@@ -92,10 +92,10 @@ def main():
         print('FAIL: docs/ does not exist; run build.py first')
         return 1
     for page in BILINGUAL:
-        check_page(os.path.join(OUT, page + '.html'), page, 'en')
-        check_page(os.path.join(OUT, 'es', page + '.html'), page, 'es')
+        check_page(os.path.join(OUT, build.page_file(page)), page, 'en')
+        check_page(os.path.join(OUT, 'es', build.page_file(page, 'es')), page, 'es')
     for page in ENGLISH_ONLY:
-        check_page(os.path.join(OUT, page + '.html'), page, 'en')
+        check_page(os.path.join(OUT, build.page_file(page)), page, 'en')
     for extra in ('CNAME', 'robots.txt', 'sitemap.xml', '404.html', '.nojekyll'):
         if not os.path.exists(os.path.join(OUT, extra)):
             fail(f'{extra}: missing')

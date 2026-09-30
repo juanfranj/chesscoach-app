@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método del pájaro carpintero en ajedrez: qué es y cómo hacerlo</title>
+    <meta name="description" content="El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app que los lleva por ti con dos sets de 150 posiciones.">
+    <link rel="canonical" href="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/woodpecker-method.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/woodpecker-method.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Método del pájaro carpintero en ajedrez: qué es y cómo hacerlo">
+    <meta property="og:description" content="El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app que los lleva por ti con dos sets de 150 posiciones.">
+    <meta property="og:url" content="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Método del pájaro carpintero en ajedrez: qué es y cómo hacerlo">
+    <meta name="twitter:description" content="El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app que los lleva por ti con dos sets de 150 posiciones.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="../images/app/icon.webp">
+    <link rel="apple-touch-icon" href="../app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/guide.css">
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Funciona el método del pájaro carpintero?", "acceptedAnswer": {"@type": "Answer", "text": "Sus autores lo usaron para prepararse torneos, y se apoya en una idea muy conocida: repetir el mismo material a intervalos cada vez más cortos convierte el cálculo en reconocimiento. Solo funciona si terminas los ciclos, y por eso cumplir el calendario importa más que elegir las posiciones."}}, {"@type": "Question", "name": "¿Cuántas posiciones debe tener un set?", "acceptedAnswer": {"@type": "Answer", "text": "Las suficientes para que el primer ciclo cueste de verdad y que el último aún quepa en un solo día. Chess Coach usa sets de 150."}}, {"@type": "Question", "name": "El método me resulta demasiado difícil. ¿Qué hago?", "acceptedAnswer": {"@type": "Answer", "text": "Casi todo el que lo deja lo hace en el primer ciclo, cuando todas las posiciones son nuevas. Usa la pista o la solución cuando te atasques: la posición volverá a repaso sin más, y la segunda vez será más fácil."}}, {"@type": "Question", "name": "¿Puedo hacerlo en el móvil?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Chess Coach está en iPhone, iPad y Android, y tus ciclos se sincronizan entre dispositivos si inicias sesión."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Saltar al contenido</a>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+            <img src="../images/app/icon.webp" alt="" width="36" height="36">
+            <span>Chess Coach</span>
+        </a>
+
+        <ul class="navbar-links" id="nav-links">
+            <li><a href="analizar-partidas-de-ajedrez.html">Coach con IA</a></li>
+            <li><a href="entrenador-de-aperturas.html">Aperturas</a></li>
+            <li><a href="finales-de-ajedrez.html">Finales</a></li>
+            <li><a href="metodo-pajaro-carpintero.html">Pájaro carpintero</a></li>
+            <li><a href="index.html#download">Descargar</a></li>
+            <li>
+                <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../woodpecker-method.html" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="metodo-pajaro-carpintero.html" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
+            </li>
+        </ul>
+
+        <button class="navbar-hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Menú de navegación">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<main id="content">
+
+<header class="guide-hero">
+    <div class="container">
+        <div class="guide-hero-grid">
+            <div>
+                <h1>El método del pájaro carpintero en ajedrez: qué es, cómo hacerlo y una app que lleva la cuenta</h1>
+                <p class="lede">Resolver el mismo set de posiciones una y otra vez, cada vez más rápido, hasta ver las respuestas de un vistazo. Ese es todo el método. Lo difícil es cumplir el calendario, y eso es justo lo que Chess Coach hace por ti.</p>
+<div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_woodpecker_method_es%26utm_content%3Dhero" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Disponible en</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_woodpecker_method_es_hero&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Descárgala en el</small>App Store</span>
+            </a>
+        </div>
+
+            </div>
+            <div class="guide-hero-shot">
+                <div class="phone"><img src="../images/screens/woodpecker-session.webp" alt="Una posición de Practicar en Chess Coach: cuatro flechas numeradas sobre el tablero y la pregunta ¿Cuál es la mejor jugada?" width="840" height="1708"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2>Qué es el método del pájaro carpintero</h2>
+            <p>El método viene del libro <em>The Woodpecker Method</em>, de Axel Smith y Hans Tikkanen. La idea es sencilla: no mejoras viendo táctica resolviendo miles de problemas nuevos una sola vez, sino resolviendo el mismo set muchas veces, hasta que los patrones dejan de necesitar cálculo.</p>
+            <p>El libro se organiza en un <strong>set</strong> de posiciones y una serie de <strong>ciclos</strong>. En cada ciclo resuelves el set entero, y cada ciclo tiene que hacerse en menos tiempo que el anterior.</p>
+
+            <h2>Los siete ciclos</h2>
+            <p>Este es el calendario que sigue Chess Coach. El tiempo de cada ciclo se reduce más o menos a la mitad, hasta que los últimos caben en un solo día.</p>
+            <div class="table-wrap">
+                <table class="guide-table">
+                    <thead><tr><th>Ciclo</th><th>Tiempo para resolver el set entero</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>28 días</td></tr>
+                        <tr><td>2</td><td>14 días</td></tr>
+                        <tr><td>3</td><td>7 días</td></tr>
+                        <tr><td>4</td><td>4 días</td></tr>
+                        <tr><td>5</td><td>2 días</td></tr>
+                        <tr><td>6</td><td>1 día</td></tr>
+                        <tr><td>7</td><td>1 día</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Cómo hacerlo</h2>
+            <ol class="steps">
+                <li><strong>Elige un set y no lo cambies.</strong> Cambiar de posiciones a mitad de camino anula el método: la gracia es volver a ver las mismas.</li>
+                <li><strong>Resuelve todas las posiciones del ciclo.</strong> Decide la jugada y después comprueba. No te saltes las fáciles: la velocidad sale de ellas.</li>
+                <li><strong>Descansa un día entre ciclos.</strong> El descanso es parte del método, no un premio.</li>
+                <li><strong>Vuelve a empezar, en la mitad de tiempo.</strong> Las posiciones que fallaste son las que más atención merecen.</li>
+            </ol>
+
+            <h2>Cómo lo lleva Chess Coach por ti</h2>
+            <p>En el Laboratorio de cálculo, <strong>Practicar</strong> es el método del pájaro carpintero con la contabilidad hecha:</p>
+            <ul>
+                <li><strong>Dos sets de 150 posiciones</strong>, uno de aperturas y otro de medio juego, elegidos y comprobados con un motor.</li>
+                <li><strong>Cuatro flechas, una es la mejor.</strong> Cada posición muestra cuatro candidatas: la mejor, dos creíbles que pierden terreno y un error claro. Eliges una y después juegas la línea que sigue, cinco jugadas de profundidad.</li>
+                <li><strong>Los ciclos te los lleva la app</strong>: en qué día de qué ciclo estás, tu tiempo y cuántas resolviste.</li>
+                <li><strong>Los fallos vuelven.</strong> Una posición que fallaste, o que resolviste con pista, vuelve al día siguiente, y después a intervalos cada vez más largos hasta que la aciertes.</li>
+            </ul>
+            <figure class="inline-shot">
+                <div class="phone"><img src="../images/screens/woodpecker.webp" alt="La pantalla de Practicar con los sets de aperturas y de medio juego, cada uno con su ciclo actual y una pista de siete ciclos de 28 días a uno" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Los dos sets, el ciclo en el que estás y la pista de siete ciclos, de 28 días a uno.</figcaption>
+            </figure>
+
+            <h2>Qué es gratis</h2>
+            <p>Las diez primeras posiciones de cada set son gratis, para que pruebes el método antes de decidir. Los sets completos y sus ciclos forman parte de Premium.</p>
+
+            <h2>Preguntas</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>¿Funciona el método del pájaro carpintero?</summary>
+                    <div>Sus autores lo usaron para prepararse torneos, y se apoya en una idea muy conocida: repetir el mismo material a intervalos cada vez más cortos convierte el cálculo en reconocimiento. Solo funciona si terminas los ciclos, y por eso cumplir el calendario importa más que elegir las posiciones.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>¿Cuántas posiciones debe tener un set?</summary>
+                    <div>Las suficientes para que el primer ciclo cueste de verdad y que el último aún quepa en un solo día. Chess Coach usa sets de 150.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>El método me resulta demasiado difícil. ¿Qué hago?</summary>
+                    <div>Casi todo el que lo deja lo hace en el primer ciclo, cuando todas las posiciones son nuevas. Usa la pista o la solución cuando te atasques: la posición volverá a repaso sin más, y la segunda vez será más fácil.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>¿Puedo hacerlo en el móvil?</summary>
+                    <div>Sí. Chess Coach está en iPhone, iPad y Android, y tus ciclos se sincronizan entre dispositivos si inicias sesión.</div>
+                </details>
+            </div>
+
+            <h2>Sigue entrenando</h2>
+            <div class="related">
+                <a href="finales-de-ajedrez.html"><span>Finales que hay que saber</span><span>Los 100 básicos y cómo practicarlos.</span></a>
+                <a href="entrenador-de-aperturas.html"><span>Entrenador de aperturas</span><span>Tu repertorio con repetición espaciada, y después jugado de verdad.</span></a>
+                <a href="analizar-partidas-de-ajedrez.html"><span>Analizar tus partidas</span><span>Descubre qué falló en tus propias partidas.</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="band download" id="download">
+    <div class="container">
+      <div class="download-grid">
+        <div class="download-copy">
+        <span class="eyebrow">Tu próxima partida</span>
+        <h2>Llévate el coach contigo</h2>
+        <p class="lede">Empieza gratis en iPhone, iPad o Android. Sin anuncios, y sin suscripción para jugar, analizar o hacer el primer curso.</p>
+
+        <div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_woodpecker_method_es%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Disponible en</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_woodpecker_method_es_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Descárgala en el</small>App Store</span>
+            </a>
+        </div>
+
+        <p class="download-note">Inicia sesión y tus partidas, ratings y progreso te siguen al otro dispositivo.</p>
+        </div>
+
+        <div class="download-shot">
+            <div class="phone"><img src="../images/screens/home.webp" alt="La portada de Chess Coach en un iPhone: los ratings de puzzle, racha y tormenta, y las tarjetas de jugar, aprender y el Laboratorio" width="840" height="1708" loading="lazy"></div>
+            <p class="phone-caption">La portada, en un iPhone. La misma app en Android y en iPad.</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="navbar-logo">
+                <img src="../images/app/icon.webp" alt="" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <p>Un coach de ajedrez en el móvil: el motor para la verdad, la IA para el motivo.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">La app</h3>
+            <ul class="footer-links">
+                <li><a href="analizar-partidas-de-ajedrez.html">Coach con IA</a></li>
+                <li><a href="entrenador-de-aperturas.html">Entrenador de aperturas</a></li>
+                <li><a href="finales-de-ajedrez.html">Finales que hay que saber</a></li>
+                <li><a href="metodo-pajaro-carpintero.html">Método del pájaro carpintero</a></li>
+                <li><a href="index.html#labs">Laboratorio</a></li>
+                <li><a href="index.html#courses">Cursos</a></li>
+                <li><a href="index.html#play">Jugar</a></li>
+                <li><a href="index.html#engines">Motores</a></li>
+                <li><a href="index.html#download">Descargar</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Configurar IA</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Qué proveedor</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Proyecto</h3>
+            <ul class="footer-links">
+                <li><a href="../open-source.html">Código abierto</a></li>
+                <li><a href="privacy-policy.html">Privacidad</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Hecho por</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<script src="../js/landing.js"></script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
+</body>
+</html>

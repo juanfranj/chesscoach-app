@@ -97,6 +97,54 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/privacy-policy.html"/>
   </url>
   <url>
+    <loc>https://chesscoach-app.com/ai-chess-coach.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/ai-chess-coach.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/analizar-partidas-de-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/ai-chess-coach.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/analizar-partidas-de-ajedrez.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/ai-chess-coach.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/analizar-partidas-de-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/ai-chess-coach.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/chess-opening-trainer.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-opening-trainer.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/entrenador-de-aperturas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-opening-trainer.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/entrenador-de-aperturas.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-opening-trainer.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/entrenador-de-aperturas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-opening-trainer.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/woodpecker-method.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/woodpecker-method.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/woodpecker-method.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/metodo-pajaro-carpintero.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/woodpecker-method.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/metodo-pajaro-carpintero.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/woodpecker-method.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/essential-chess-endgames.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/finales-de-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/finales-de-ajedrez.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/finales-de-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
+  </url>
+  <url>
     <loc>https://chesscoach-app.com/open-source.html</loc>
   </url>
 </urlset>

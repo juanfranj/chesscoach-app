@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI chess coach app: find out what went wrong | Chess Coach</title>
+    <meta name="description" content="Analyse your chess games with the engine on your phone and an AI coach that explains every mistake in plain words, for your rating. iPhone, iPad and Android.">
+    <link rel="canonical" href="https://chesscoach-app.com/ai-chess-coach.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/ai-chess-coach.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/analizar-partidas-de-ajedrez.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/ai-chess-coach.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="AI chess coach app: find out what went wrong | Chess Coach">
+    <meta property="og:description" content="Analyse your chess games with the engine on your phone and an AI coach that explains every mistake in plain words, for your rating. iPhone, iPad and Android.">
+    <meta property="og:url" content="https://chesscoach-app.com/ai-chess-coach.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI chess coach app: find out what went wrong | Chess Coach">
+    <meta name="twitter:description" content="Analyse your chess games with the engine on your phone and an AI coach that explains every mistake in plain words, for your rating. iPhone, iPad and Android.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var es="es/analizar-partidas-de-ajedrez.html",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;if(s==="es"||(s===null&&!back&&/^es\b/i.test(navigator.language||""))){location.replace(es+location.search+location.hash)}})();</script>
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="images/app/icon.webp">
+    <link rel="apple-touch-icon" href="app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/guide.css">
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a free way to analyse my chess games?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In Chess Coach the engine review is free: accuracy, the evaluation graph and every move graded. The explanations from the AI coach are what use credits."}}, {"@type": "Question", "name": "Can I analyse games I played on Lichess or Chess.com?", "acceptedAnswer": {"@type": "Answer", "text": "Lichess games can be imported directly. From any other site, download the game as PGN and paste it into the app."}}, {"@type": "Question", "name": "How is an AI coach different from a chess engine?", "acceptedAnswer": {"@type": "Answer", "text": "The engine decides what the best move is; the coach turns that into language. In Chess Coach the engine does all the calculating, and the AI only explains what the engine found, so the chess in the explanation comes from the engine."}}, {"@type": "Question", "name": "Does it work on iPhone and Android?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on iPhone, iPad and Android. The engine runs on your device; the coach needs a connection."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+            <img src="images/app/icon.webp" alt="" width="36" height="36">
+            <span>Chess Coach</span>
+        </a>
+
+        <ul class="navbar-links" id="nav-links">
+            <li><a href="ai-chess-coach.html">AI coach</a></li>
+            <li><a href="chess-opening-trainer.html">Openings</a></li>
+            <li><a href="essential-chess-endgames.html">Endgames</a></li>
+            <li><a href="woodpecker-method.html">Woodpecker</a></li>
+            <li><a href="index.html#download">Download</a></li>
+            <li>
+                <div class="lang-toggle" role="group" aria-label="Language"><a href="ai-chess-coach.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/analizar-partidas-de-ajedrez.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+            </li>
+        </ul>
+
+        <button class="navbar-hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Navigation menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<main id="content">
+
+<header class="guide-hero">
+    <div class="container">
+        <div class="guide-hero-grid">
+            <div>
+                <h1>An AI chess coach that tells you what went wrong in your games, in plain words</h1>
+                <p class="lede">An engine shows you the best move and a number. It never tells you what you walked into. Chess Coach runs your game through the engine on your phone, marks the moves that cost you something, and an AI coach explains each one in a sentence you can use in the next game.</p>
+<div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_ai_chess_coach_en%26utm_content%3Dhero" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Get it on</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_ai_chess_coach_en_hero&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Download on the</small>App Store</span>
+            </a>
+        </div>
+
+            </div>
+            <div class="guide-hero-shot">
+                <div class="phone"><img src="images/screens/review-coach.webp" alt="The Chess Coach review: the coach commenting a single move, with the engine evaluation beside it" width="840" height="1708"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2>How to analyse a game</h2>
+            <ol class="steps">
+                <li><strong>Bring the game in.</strong> Play one in the app against one of the twenty rivals, import your games from Lichess, or paste any PGN, including one downloaded from another site.</li>
+                <li><strong>Let the engine read it.</strong> It runs on your phone and gives you the accuracy of both players, an evaluation graph split into opening, middlegame and endgame, and every move graded from best to blunder.</li>
+                <li><strong>Step through it with the coach.</strong> On the moves that mattered, the coach explains the idea you missed and what to play instead, written for your level.</li>
+            </ol>
+
+            <figure class="inline-shot">
+                <div class="phone"><img src="images/screens/review-report.webp" alt="A game review with accuracy for both players, an evaluation graph split into opening, middlegame and endgame, and the engine best move on the board" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Accuracy, the graph of the game and the moment it turned. The engine part is free.</figcaption>
+            </figure>
+
+            <h2>Engine analysis versus an AI coach</h2>
+            <div class="table-wrap">
+                <table class="guide-table">
+                    <thead><tr><th></th><th>Engine only</th><th>Chess Coach</th></tr></thead>
+                    <tbody>
+                        <tr><td>Best move</td><td>Yes</td><td>Yes</td></tr>
+                        <tr><td>Evaluation and accuracy</td><td>Yes</td><td>Yes</td></tr>
+                        <tr><td>Why your move was bad</td><td>No, only a number</td><td>In one or two sentences</td></tr>
+                        <tr><td>Written for your rating</td><td>No</td><td>Yes</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>What it costs</h2>
+            <p>Playing and the engine review are free. The coach’s explanations use credits: one credit is one explanation from the AI coach. Premium comes with 150 welcome credits, and credit packs do not expire. If you prefer, you can connect your own key from an AI provider (OpenAI, DeepSeek, Gemini, Claude or Qwen) and pay the provider directly.</p>
+            <p>The <a href="api-setup.html">AI setup guide</a> compares the providers and what an analysis costs with each.</p>
+
+            <h2>Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>Is there a free way to analyse my chess games?</summary>
+                    <div>Yes. In Chess Coach the engine review is free: accuracy, the evaluation graph and every move graded. The explanations from the AI coach are what use credits.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I analyse games I played on Lichess or Chess.com?</summary>
+                    <div>Lichess games can be imported directly. From any other site, download the game as PGN and paste it into the app.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How is an AI coach different from a chess engine?</summary>
+                    <div>The engine decides what the best move is; the coach turns that into language. In Chess Coach the engine does all the calculating, and the AI only explains what the engine found, so the chess in the explanation comes from the engine.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Does it work on iPhone and Android?</summary>
+                    <div>Yes, on iPhone, iPad and Android. The engine runs on your device; the coach needs a connection.</div>
+                </details>
+            </div>
+
+            <h2>Keep training</h2>
+            <div class="related">
+                <a href="chess-opening-trainer.html"><span>Opening trainer</span><span>Your repertoire with spaced repetition, then played for real.</span></a>
+                <a href="essential-chess-endgames.html"><span>Essential endgames</span><span>The 100 to know, and a way to practise them.</span></a>
+                <a href="woodpecker-method.html"><span>The Woodpecker method</span><span>The same set, faster every cycle, until you see it at a glance.</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="band download" id="download">
+    <div class="container">
+      <div class="download-grid">
+        <div class="download-copy">
+        <span class="eyebrow">Your next game</span>
+        <h2>Take the coach with you</h2>
+        <p class="lede">Start free on iPhone, iPad or Android. No ads, and no subscription needed to play, analyse or take the first course.</p>
+
+        <div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_ai_chess_coach_en%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Get it on</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_ai_chess_coach_en_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Download on the</small>App Store</span>
+            </a>
+        </div>
+
+        <p class="download-note">Sign in and your games, ratings and progress follow you to the other device.</p>
+        </div>
+
+        <div class="download-shot">
+            <div class="phone"><img src="images/screens/home.webp" alt="The Chess Coach home screen on an iPhone: puzzle, streak and storm ratings, and the cards for playing, learning and the Practice Lab" width="840" height="1708" loading="lazy"></div>
+            <p class="phone-caption">The home screen, on an iPhone. Same app on Android and iPad.</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <p>A chess coach on your phone: an engine for the truth, AI for the reason.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">The app</h3>
+            <ul class="footer-links">
+                <li><a href="ai-chess-coach.html">AI coach</a></li>
+                <li><a href="chess-opening-trainer.html">Opening trainer</a></li>
+                <li><a href="essential-chess-endgames.html">Essential endgames</a></li>
+                <li><a href="woodpecker-method.html">Woodpecker method</a></li>
+                <li><a href="index.html#labs">Practice Lab</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#play">Play</a></li>
+                <li><a href="index.html#engines">Engines</a></li>
+                <li><a href="index.html#download">Download</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">AI setup</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Which provider</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Project</h3>
+            <ul class="footer-links">
+                <li><a href="open-source.html">Open source</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Built by</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<script src="js/landing.js"></script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
+</body>
+</html>

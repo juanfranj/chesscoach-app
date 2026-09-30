@@ -31,13 +31,12 @@ OG_IMAGE = SITE + '/images/og-card.jpg'
 # (title, description) per page and language.
 META = {
     'index': {
-        'en': ('Chess Coach — the AI chess coach that explains your moves',
-               'Play, then find out what went wrong. The engine on your phone does the calculating and an AI '
-               'coach turns it into a sentence you can use. Openings, middlegames, endgames and calculation '
-               'on iPhone, iPad and Android.'),
-        'es': ('Chess Coach — el entrenador de ajedrez con IA que te explica tus jugadas',
-               'Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una '
-               'frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.'),
+        'en': ('Chess Coach: AI chess coach app that explains your mistakes',
+               'Play, then find out what went wrong: the engine on your phone calculates and an AI coach '
+               'explains it. Openings, endgames and calculation training.'),
+        'es': ('Chess Coach: entrenador de ajedrez con IA que analiza tus partidas',
+               'Juega y descubre qué falló: el motor de tu móvil calcula y un coach con IA te lo explica. '
+               'Aperturas, finales y cálculo en iPhone y Android.'),
     },
     'api-setup': {
         'en': ('Set up an AI provider — Chess Coach',
@@ -83,6 +82,42 @@ META = {
                'Cómo trata Chess Coach tus datos: qué se queda en tu dispositivo, qué se envía y por qué, y cómo '
                'borrar tu cuenta.'),
     },
+    'ai-chess-coach': {
+        'slug': {'es': 'analizar-partidas-de-ajedrez'},
+        'en': ('AI chess coach app: find out what went wrong | Chess Coach',
+               'Analyse your chess games with the engine on your phone and an AI coach that explains every '
+               'mistake in plain words, for your rating. iPhone, iPad and Android.'),
+        'es': ('Analizar partidas de ajedrez con IA: qué falló y por qué',
+               'Analiza tus partidas con el motor de tu móvil y un coach con IA que te explica cada error en '
+               'palabras claras y para tu nivel. iPhone, iPad y Android.'),
+    },
+    'chess-opening-trainer': {
+        'slug': {'es': 'entrenador-de-aperturas'},
+        'en': ('Chess opening trainer app with spaced repetition | Chess Coach',
+               'Learn chess openings with spaced repetition, then play the same lines against Maia, a rival '
+               'that moves like a club player. The Italian Game is free.'),
+        'es': ('App para aprender aperturas de ajedrez con repetición espaciada',
+               'Aprende aperturas con repetición espaciada y juega esas líneas contra Maia, un rival que juega '
+               'como un jugador de club. La Italiana es gratis.'),
+    },
+    'woodpecker-method': {
+        'slug': {'es': 'metodo-pajaro-carpintero'},
+        'en': ('The Woodpecker method: how to do it, and an app for it',
+               'The Woodpecker method explained: the set, the seven cycles from 28 days to one, and an app that '
+               'runs them for you with two sets of 150 positions.'),
+        'es': ('Método del pájaro carpintero en ajedrez: qué es y cómo hacerlo',
+               'El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app '
+               'que los lleva por ti con dos sets de 150 posiciones.'),
+    },
+    'essential-chess-endgames': {
+        'slug': {'es': 'finales-de-ajedrez'},
+        'en': ('Essential chess endgames: the 100 to know and how to practise',
+               'The 100 essential chess endgames by family: king and pawn, rook, queen, bishop and knight. '
+               'Which win, which draw, and how to practise them.'),
+        'es': ('Finales de ajedrez que hay que saber: los 100 básicos',
+               'Los 100 finales básicos de ajedrez por familias: rey y peones, torre, dama, alfil y caballo. '
+               'Cuáles ganan, cuáles son tablas y cómo practicarlos.'),
+    },
     'open-source': {
         'en': ('Open source and corresponding source — Chess Coach',
                'Open-source licences and the GPLv3 corresponding-source offer for the chess engines distributed '
@@ -95,21 +130,23 @@ ASSETS = ['css', 'js', 'images', 'app_icon_chesscoach.png']
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 
 
-def page_file(page):
-    return page + '.html'
+def page_file(page, lang='en'):
+    """The published file name. A page can have its own Spanish slug (META[page]['slug']['es']),
+    because the words in a URL are words people search for."""
+    return META[page].get('slug', {}).get(lang, page) + '.html'
 
 
 def abs_url(page, lang):
-    path = '' if page == 'index' else page_file(page)
+    path = '' if page == 'index' else page_file(page, lang)
     return f'{SITE}/{"es/" if lang == "es" else ""}{path}'
 
 
 def rel_link(page, from_lang, to_lang):
     """Relative link from a page in one language to the same page in another."""
-    name = '' if page == 'index' else page_file(page)
+    name = '' if page == 'index' else page_file(page, to_lang)
     if from_lang == to_lang:
         return name or './'
-    return ('es/' + name) if to_lang == 'es' else ('../' + name or '../')
+    return ('es/' + name) if to_lang == 'es' else ('../' + name)
 
 
 class Translatables(HTMLParser):
@@ -213,16 +250,16 @@ def rebuild_tag(tag, lang):
 
 
 def rewrite_relative(text):
-    """In es/, point assets and English-only pages one level up."""
-    same_dir = {page_file(p) for p in BILINGUAL}
+    """In es/, point bilingual pages at their Spanish file and everything else one level up."""
+    spanish = {page_file(p): page_file(p, 'es') for p in BILINGUAL}
 
     def fix(m):
         attr, value = m.group(1), m.group(2)
         if re.match(r'^(?:[a-z]+:|#|/|//)', value):
             return m.group(0)
         path = re.split(r'[#?]', value)[0]
-        if path in same_dir:
-            return m.group(0)
+        if path in spanish:
+            return f'{attr}="{spanish[path]}{value[len(path):]}"'
         return f'{attr}="../{value}"'
 
     return re.sub(r'\b(href|src)="([^"]*)"', fix, text)
@@ -324,9 +361,47 @@ def tag_play_links(text, page, lang):
     return text.replace(f'href="{APP_STORE_LINK}"', f'href="{apple}"')
 
 
+def include_partials(text):
+    """<!--INCLUDE:nav--> pastes src/partials/nav.html: pieces several pages share."""
+    return re.sub(r'<!--INCLUDE:([a-z0-9-]+)-->',
+                  lambda m: open(os.path.join(SRC, 'partials', m.group(1) + '.html'), encoding='utf-8').read(),
+                  text)
+
+
+def store_links(text, page, lang):
+    """{{PLAY:slot}} and {{APPSTORE:slot}} become store links tagged with web_<page>_<lang>[_slot],
+    the convention the ASO work reads in Play Console and App Store Connect."""
+    name = 'home' if page == 'index' else page.replace('-', '_')
+    campaign = f'web_{name}_{lang}'
+
+    def play(m):
+        return (f'{PLAY_LINK}&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite'
+                f'%26utm_campaign%3D{campaign}%26utm_content%3D{m.group(1)}')
+
+    def apple(m):
+        return (f'https://apps.apple.com/app/apple-store/id6790447113?pt={APP_STORE_PROVIDER}'
+                f'&amp;ct={campaign}_{m.group(1)}&amp;mt=8')
+
+    text = re.sub(r'\{\{PLAY:([a-z]+)\}\}', play, text)
+    return re.sub(r'\{\{APPSTORE:([a-z]+)\}\}', apple, text)
+
+
+def faq_schema(text):
+    """FAQPage from the page's own <details class="faq-item"> blocks, so the two never disagree."""
+    items = re.findall(r'<details class="faq-item"[^>]*>\s*<summary[^>]*>(.*?)</summary>(.*?)</details>', text, re.S)
+    if not items:
+        return ''
+    clean = lambda h: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', h))).strip()
+    data = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+        {'@type': 'Question', 'name': clean(q), 'acceptedAnswer': {'@type': 'Answer', 'text': clean(a)}}
+        for q, a in items]}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>'
+
+
 def build_page(page, lang):
     name = page_file(page)
-    text = open(os.path.join(SRC, name), encoding='utf-8').read()
+    text = include_partials(open(os.path.join(SRC, name), encoding='utf-8').read())
+    text = store_links(text, page, lang)
     text = translate(text, lang, name) if 'data-en=' in text else text
     text = re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"', text, count=1)
     # Drop the old head metadata; head_block writes a complete, consistent set.
@@ -341,7 +416,10 @@ def build_page(page, lang):
         text = text.replace('</body>', REMEMBER_CHOICE + '\n</body>', 1)
     text = text.replace('https://juanfranj.github.io/cheescoach/', SITE + '/')
     text = tag_play_links(text, page, lang)
-    dest = os.path.join(OUT, 'es', name) if lang == 'es' else os.path.join(OUT, name)
+    faq = faq_schema(text)
+    if faq:
+        text = text.replace('</head>', '    ' + faq + '\n</head>', 1)
+    dest = os.path.join(OUT, 'es', page_file(page, 'es')) if lang == 'es' else os.path.join(OUT, name)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     open(dest, 'w', encoding='utf-8').write(text)
 

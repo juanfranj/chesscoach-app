@@ -1,0 +1,272 @@
+/* ============================================================
+   Guide pages — one page per thing people search for.
+   Built on the landing's tokens; only the article pieces live here.
+   ============================================================ */
+
+.guide-hero {
+    padding: clamp(7rem, 12vw, 9rem) 0 clamp(3rem, 6vw, 4.5rem);
+}
+
+.guide-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+}
+
+.guide-hero h1 {
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    line-height: 1.05;
+    margin-bottom: var(--space-5);
+}
+
+.guide-hero .lede { max-width: 40rem; }
+
+.guide-hero .stores { margin-top: var(--space-8); }
+
+.guide-hero-shot .phone { max-width: 17rem; margin-inline: auto; }
+
+/* The article: one readable column, wide pieces break out to the container. */
+.guide-body {
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.prose {
+    max-width: 44rem;
+}
+
+.prose h2 {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    margin: var(--space-16) 0 var(--space-4);
+}
+
+.prose h3 {
+    font-size: 1.2rem;
+    margin: var(--space-8) 0 var(--space-3);
+}
+
+.prose p,
+.prose li {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+.prose p + p { margin-top: var(--space-4); }
+
+.prose ul,
+.prose ol {
+    margin: var(--space-4) 0;
+    padding-left: 1.3rem;
+}
+
+.prose li + li { margin-top: var(--space-2); }
+
+.prose strong { color: var(--text-primary); }
+
+.prose a {
+    color: var(--accent-bright);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* A real sequence: the steps of doing something, in order. */
+.steps {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0 !important;
+}
+
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.6rem;
+}
+
+.steps li + li { margin-top: var(--space-5); }
+
+.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    color: var(--accent-bright);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    display: grid;
+    place-items: center;
+}
+
+/* Tables that carry data, not decoration. */
+.table-wrap {
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.guide-table th,
+.guide-table td {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+}
+
+.guide-table th {
+    color: var(--text-primary);
+    font-weight: 700;
+    background: var(--bg-secondary);
+}
+
+.guide-table td { color: var(--text-secondary); }
+
+.guide-table tr:last-child td { border-bottom: 0; }
+
+/* A screenshot inside the article, with its caption. */
+.inline-shot {
+    display: grid;
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: center;
+    margin: var(--space-8) 0;
+}
+
+.inline-shot figcaption {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* The endgame list: one block per family, each ending marked win or hold. */
+.families {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.family {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    background: var(--bg-secondary);
+}
+
+.family h3 {
+    margin: 0 0 var(--space-3);
+    font-size: 1.1rem;
+}
+
+.family ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.family li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
+.family li:last-child { border-bottom: 0; }
+
+.goal {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: var(--radius-sm);
+    align-self: center;
+}
+
+.goal-win { color: var(--success); border: 1px solid var(--success-dim); }
+.goal-hold { color: var(--ice); border: 1px solid var(--ice-dim); }
+
+/* Questions people ask, in the page and in the structured data. */
+.faq {
+    margin-top: var(--space-6);
+}
+
+.faq-item {
+    border-top: 1px solid var(--border);
+    padding: var(--space-4) 0;
+}
+
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--text-primary);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: "+";
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.faq-item[open] summary::after { content: "−"; }
+
+.faq-item > div {
+    margin-top: var(--space-3);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* Links to the other guides at the end of each page. */
+.related {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.related a {
+    display: block;
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.related a:hover { border-color: var(--border-strong); background: var(--bg-card); }
+
+.related a span { display: block; }
+
+.related a span + span {
+    margin-top: var(--space-2);
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 860px) {
+    .guide-hero-grid { grid-template-columns: 1fr; }
+    .inline-shot { grid-template-columns: 1fr; }
+    .inline-shot .phone { max-width: 14rem; }
+}
+
+.guide-hero .stores { justify-content: flex-start; }

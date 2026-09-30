@@ -152,7 +152,11 @@
 
 .hero-kicker img { width: 20px; height: 20px; border-radius: 4px; }
 
-.hero h1 {
+.hero .hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
     font-size: clamp(2.4rem, 5.2vw, 4rem);
     line-height: 1.03;
     margin-bottom: var(--space-6);
@@ -309,7 +313,7 @@
     .hero-grid { grid-template-columns: 1fr; }
     .hero::after { display: none; }
     .annotation { max-width: 27rem; margin-left: 0; }
-    .hero h1 { max-width: none; }
+    .hero .hero-title { max-width: none; }
 }
 
 /* ============================================================
@@ -1038,3 +1042,15 @@
 }
 
 .engine-accent .engine-role { color: var(--accent); }
+
+/* A plain link from a section to its guide page. */
+.act-link {
+    margin: calc(var(--space-4) * -1) 0 var(--space-6);
+}
+
+.act-link a {
+    color: var(--accent-bright);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
