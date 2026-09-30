@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Source &amp; Corresponding Source - Chess Coach</title>
+    <meta name="description" content="Open-source licenses and GPLv3 corresponding-source offer for the chess engines distributed with Chess Coach.">
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        .policy-container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: calc(var(--space-24) + var(--space-8)) var(--space-6) var(--space-16);
+        }
+        .policy-container h1 { font-size: var(--text-4xl); margin-bottom: var(--space-4); }
+        .policy-date { color: var(--text-muted); font-size: var(--text-sm); margin-bottom: var(--space-12); }
+        .policy-container h2 {
+            font-size: var(--text-2xl);
+            margin-top: var(--space-12);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .policy-container h3 { font-size: var(--text-lg); margin-top: var(--space-8); margin-bottom: var(--space-3); color: var(--accent-bright); }
+        .policy-container p, .policy-container li { color: var(--text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4); }
+        .policy-container ul { padding-left: var(--space-6); margin-bottom: var(--space-4); }
+        .policy-container li { margin-bottom: var(--space-2); }
+        .policy-container strong { color: var(--text-primary); }
+        .policy-container a { color: var(--accent-bright); }
+        .policy-container a:hover { text-decoration: underline; }
+        .policy-container code, .policy-container pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+        }
+        .policy-container pre {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            overflow-x: auto;
+            margin-bottom: var(--space-6);
+            white-space: pre;
+        }
+        .policy-container code { background: var(--bg-glass); padding: 1px 5px; border-radius: 4px; }
+        .policy-container pre code { background: none; padding: 0; }
+        .callout {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-bright);
+            border-radius: var(--radius-md);
+            padding: var(--space-5) var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+    </style>
+</head>
+<body>
+    <main class="policy-container">
+        <h1>Open Source &amp; Corresponding Source</h1>
+        <p class="policy-date">Chess Coach · last updated 2026-07-21</p>
+
+        <p>Chess Coach is built on open-source software. This page provides the required
+        attribution for the components we use and, for the <strong>GPLv3-licensed chess
+        engines that the Android app distributes on-device</strong>, the
+        <strong>Corresponding Source</strong> as required by section 6 of the
+        <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License,
+        version 3</a>.</p>
+
+        <div class="callout">
+            <p style="margin-bottom:0"><strong>How to get the source.</strong> For each
+            GPL engine below we give the exact upstream version tag plus the complete build
+            instructions we used to produce the binary shipped in the app. Together these
+            constitute the Corresponding Source. This page is kept available for as long as
+            Chess Coach distributes the corresponding binary. If any upstream link is
+            unavailable, contact us (see the bottom of this page) and we will provide the
+            source directly.</p>
+        </div>
+
+        <h2>1. GPLv3 engines shipped on Android (on-device)</h2>
+
+        <h3>Stockfish 18 — GPL-3.0-or-later</h3>
+        <p>The Android app bundles the <strong>official, unmodified</strong> Stockfish 18
+        binary for <code>arm64-v8a</code> (release tag <code>sf_18</code>), placed at
+        <code>app/src/main/jniLibs/arm64-v8a/libstockfish.so</code>. Because it is the
+        official release binary with no modifications, its Corresponding Source is the
+        upstream source at the same tag:</p>
+        <ul>
+            <li>Source (tag <code>sf_18</code>): <a href="https://github.com/official-stockfish/Stockfish/tree/sf_18">github.com/official-stockfish/Stockfish/tree/sf_18</a></li>
+            <li>Release &amp; binary asset (<code>stockfish-android-armv8.tar</code>): <a href="https://github.com/official-stockfish/Stockfish/releases/tag/sf_18">github.com/official-stockfish/Stockfish/releases/tag/sf_18</a></li>
+        </ul>
+        <p>Copyright © The Stockfish developers (see the <code>AUTHORS</code> file in the source).</p>
+
+        <h3>Leela Chess Zero (lc0) v0.31.2 — GPL-3.0-or-later</h3>
+        <p>The "human-like bots" (Maia) run on an <strong>lc0 binary that we cross-compile
+        ourselves</strong> for <code>arm64-v8a</code> from tag <code>v0.31.2</code>, placed
+        at <code>app/src/main/jniLibs/arm64-v8a/liblc0.so</code> (no embedded network). Because
+        this is a self-built binary, the Corresponding Source comprises the upstream lc0
+        source, the statically-linked OpenBLAS source, and the exact build configuration
+        below.</p>
+        <ul>
+            <li>lc0 source (tag <code>v0.31.2</code>, clone <strong>with submodules</strong>): <a href="https://github.com/LeelaChessZero/lc0/tree/v0.31.2">github.com/LeelaChessZero/lc0/tree/v0.31.2</a></li>
+            <li>OpenBLAS source (tag <code>v0.3.27</code>, statically linked into <code>liblc0.so</code>): <a href="https://github.com/OpenMathLib/OpenBLAS/tree/v0.3.27">github.com/OpenMathLib/OpenBLAS/tree/v0.3.27</a></li>
+            <li>Toolchain: Android NDK <code>26.3.11579264</code>, API level 21, <code>meson</code> + <code>ninja</code>.</li>
+        </ul>
+        <p>Exact build steps (the complete build script is
+        <code>documentos/maia/build-lc0-android.sh</code> in our source tree; its essential
+        commands are reproduced here so the binary can be regenerated from upstream alone):</p>
+        <pre><code># 1) OpenBLAS v0.3.27, static, android-aarch64
+git clone --depth 1 -b v0.3.27 https://github.com/OpenMathLib/OpenBLAS.git
+make -C OpenBLAS TARGET=ARMV8 ONLY_CBLAS=1 NO_LAPACK=1 NO_SHARED=1 \
+     USE_OPENMP=0 USE_THREAD=0 HOSTCC=cc \
+     CC=aarch64-linux-android21-clang AR=llvm-ar RANLIB=llvm-ranlib
+make -C OpenBLAS PREFIX=&lt;install&gt; NO_SHARED=1 install
+
+# 2) lc0 v0.31.2 with submodules
+git clone --depth 1 -b v0.31.2 --recurse-submodules \
+     https://github.com/LeelaChessZero/lc0.git
+
+# 3) meson cross-file (NDK 26, 16 KB page alignment for Android 15+)
+#   [host_machine] system=android cpu_family=aarch64 cpu=aarch64 endian=little
+#   [properties]  cpp_link_args = ['-llog','-static-libstdc++','-Wl,-z,max-page-size=16384']
+#   [binaries]    c/cpp = aarch64-linux-android21-clang(++), ar/strip/ranlib = llvm-*
+
+# 4) configure + build
+meson setup arm64-v8a --buildtype release \
+     -Dgtest=false -Dembed=false -Ddefault_library=static \
+     -Dopenblas=true -Dopenblas_include=&lt;install&gt;/include \
+     -Dopenblas_libdirs=&lt;install&gt;/lib --cross-file crossfile-aarch64
+ninja -C arm64-v8a lc0
+llvm-strip arm64-v8a/lc0   # → liblc0.so</code></pre>
+        <p>Copyright © The LCZero Authors (lc0) and © The OpenBLAS contributors (OpenBLAS,
+        <a href="https://github.com/OpenMathLib/OpenBLAS/blob/v0.3.27/LICENSE">BSD-3-Clause</a>).</p>
+
+        <h3>Maia networks (weights) — data</h3>
+        <p>The nine Maia strength networks (<code>maia-1100 … maia-1900</code>) are shipped
+        as <strong>data</strong> (neural-network weights loaded by lc0 at runtime), not as
+        executable code. They originate from the Maia Chess project:
+        <a href="https://github.com/CSSLab/maia-chess">github.com/CSSLab/maia-chess</a>
+        (CSSLab, University of Toronto). Maia-1 networks are distributed under GPL-3.0.</p>
+
+        <h2>2. iOS build</h2>
+        <p>The iOS app does <strong>not</strong> ship any GPL binary on-device. Stockfish
+        runs <strong>server-side</strong> (accessed over the network, which is not
+        "conveying" under the GPLv3); on-device play and analysis use
+        <strong>Caissa</strong> (MIT), and the human-like play uses a clean-room
+        <strong>ONNX Runtime</strong> (MIT) with MIT-licensed models. Section 6 therefore
+        does not apply to the iOS build; only attribution applies (section 3 below).</p>
+
+        <h2>3. Other components &amp; attributions</h2>
+        <ul>
+            <li><strong>kchesslib</strong> (<code>io.github.cvb941:kchesslib</code>) — Apache-2.0. A Kotlin Multiplatform port of <a href="https://github.com/bhlangonijr/chesslib">bhlangonijr/chesslib</a>.</li>
+            <li><strong>Chess piece graphics</strong> — by <a href="https://en.wikipedia.org/wiki/User:Cburnett">Colin M.L. Burnett</a>, multi-licensed by their author (GFDL / CC BY-SA 3.0 / BSD-3-Clause / GPLv2+). Chess Coach uses them under the <strong>BSD-3-Clause</strong> option. The original SVGs were <em>adapted</em> into Android vector drawables (format conversion and recolouring); the required notice is reproduced in section 4.</li>
+            <li><strong>Free piece sets from Lichess</strong>, all <em>adapted</em> (flattened with picosvg and converted to vector drawables); no endorsement by their authors is implied:
+                <ul>
+                    <li><strong>RhosGFX</strong> by <a href="https://rhosgfx.itch.io/">RhosGFX</a> — <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>.</li>
+                    <li><strong>Chessnut</strong> © 2015 Alexis Luengas (<a href="https://github.com/LexLuengas/chessnut-pieces">chessnut-pieces</a>) — Apache License 2.0 (section 4).</li>
+                    <li><strong>Celtic</strong>, <strong>Spatial</strong> and <strong>Fantasy</strong> © Maurizio Monge (<a href="https://github.com/maurimo/chess-art">chess-art</a>) — MIT License, reproduced in section 4.</li>
+                    <li><strong>Kiwen Suwi</strong> by neverRare (<a href="https://github.com/neverRare/kiwen-suwi">kiwen-suwi</a>) — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+                    <li><strong>Totoy</strong> by Kosal Sen — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (licence stated by the author in <a href="https://github.com/lichess-org/lila/pull/20477">lichess-org/lila#20477</a>).</li>
+                </ul>
+            </li>
+            <li><strong>OpenBLAS</strong> v0.3.27 — <a href="https://github.com/OpenMathLib/OpenBLAS/blob/v0.3.27/LICENSE">BSD-3-Clause</a> (see section 1, statically linked into <code>liblc0.so</code>).</li>
+            <li><strong>Fonts</strong> — Lato, Playfair Display and JetBrains Mono, all under the <a href="https://openfontlicense.org/">SIL Open Font License 1.1</a>. The full OFL texts are distributed with the app source under <code>documentos/licenses/fonts/</code>.</li>
+            <li><strong>iOS engines</strong> (informational, non-GPL): <a href="https://github.com/Witek902/Caissa">Caissa</a> (MIT), <a href="https://github.com/CSSLab/maia2">Maia-2</a> (MIT, CSSLab) and <a href="https://github.com/microsoft/onnxruntime">ONNX Runtime</a> (MIT).</li>
+        </ul>
+
+        <h2>4. Full license texts</h2>
+        <ul>
+            <li>GNU GPL v3.0 — <a href="https://www.gnu.org/licenses/gpl-3.0.txt">gnu.org/licenses/gpl-3.0.txt</a></li>
+            <li>BSD-3-Clause (OpenBLAS) — <a href="https://github.com/OpenMathLib/OpenBLAS/blob/v0.3.27/LICENSE">OpenBLAS LICENSE</a></li>
+            <li>Apache License 2.0 (kchesslib, Chessnut pieces) — <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">apache.org/licenses/LICENSE-2.0.txt</a></li>
+            <li>MIT (Celtic, Spatial and Fantasy pieces) — reproduced in full below</li>
+            <li>CC BY 4.0 (Kiwen Suwi and Totoy pieces) — <a href="https://creativecommons.org/licenses/by/4.0/legalcode">creativecommons.org/licenses/by/4.0/legalcode</a></li>
+            <li>BSD-3-Clause (pieces) — reproduced in full below</li>
+            <li>SIL OFL 1.1 (fonts) — <a href="https://openfontlicense.org/open-font-license-official-text/">openfontlicense.org</a></li>
+        </ul>
+
+        <h3>BSD-3-Clause notice — chess piece graphics</h3>
+        <pre style="white-space: pre-wrap;">Copyright (c) 2006, Colin M.L. Burnett
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</pre>
+
+        <h3>MIT License — Celtic, Spatial and Fantasy piece sets</h3>
+        <pre style="white-space: pre-wrap;">MIT License
+
+Copyright (c) Maurizio Monge
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+
+        <h2>Contact</h2>
+        <p>For any question about these licenses or to request the Corresponding Source
+        directly, email <a href="mailto:juanfranj80@gmail.com">juanfranj80@gmail.com</a>.</p>
+
+        <p style="margin-top: var(--space-12);"><a href="index.html">← Back to Chess Coach</a></p>
+    </main>
+</body>
+</html>

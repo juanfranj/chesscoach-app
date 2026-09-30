@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropic Claude API Key Setup - Chess Coach</title>
+    <meta name="description" content="Step-by-step guide to create an Anthropic Claude API key for Chess Coach chess coaching app.">
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        .setup-step {
+            display: flex;
+            gap: var(--space-5);
+            position: relative;
+        }
+        .setup-step + .setup-step {
+            margin-top: var(--space-6);
+        }
+        .setup-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--claude-accent), #d97706);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: var(--text-inverse);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        .setup-step-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .setup-step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        .setup-step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        .setup-step-desc a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .hero-provider-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 2px solid var(--claude-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+        }
+        @media (max-width: 640px) {
+            .setup-step {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+            .setup-step-number {
+                width: 38px;
+                height: 38px;
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Top bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="api-setup.html" class="back-link" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span data-en="Back to guides" data-es="Volver a las guias">Back to guides</span>
+            </a>
+            <!--LANG-TOGGLE-->
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section gradient-hero" style="padding-top: 8rem; padding-bottom: var(--space-12);">
+        <div class="container container-md text-center">
+            <div class="hero-provider-icon reveal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--claude-accent)"><path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" opacity="0.9"/><path d="M12 6L7 9V15L12 18L17 15V9L12 6Z" fill="var(--bg-primary)"/></svg>
+            </div>
+            <div class="badge badge-gold mb-6 reveal" data-en="API Setup Guide" data-es="Guia de configuracion API">API Setup Guide</div>
+            <h1 class="reveal" data-en="Anthropic Claude API Key Setup" data-es="Configuracion de API Key de Anthropic Claude">Anthropic Claude API Key Setup</h1>
+            <p class="section-subtitle mt-4 reveal" data-en="Get your Claude API key to enable advanced chess coaching in Chess Coach." data-es="Obtene tu API key de Claude para habilitar el coaching de ajedrez avanzado en Chess Coach.">Get your Claude API key to enable advanced chess coaching in Chess Coach.</p>
+        </div>
+    </section>
+
+    <div class="container container-md">
+
+        <!-- What you'll get -->
+        <section class="section" style="padding-top: var(--space-8);">
+            <h2 class="font-display mb-6 reveal" data-en="What you'll get" data-es="Lo que obtendras">What you'll get</h2>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(245, 158, 11, 0.15); color: var(--claude-accent);">&#129504;</div>
+                    <div class="card-title" data-en="Claude Haiku 4.5" data-es="Claude Haiku 4.5">Claude Haiku 4.5</div>
+                    <div class="card-text" data-en="Best quality/price ratio for Chess Coach" data-es="Mejor relacion calidad/precio para Chess Coach">Best quality/price ratio for Chess Coach</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(245, 158, 11, 0.15); color: var(--claude-accent);">&#128176;</div>
+                    <div class="card-title" data-en="$5 free credits" data-es="$5 creditos gratis">$5 free credits</div>
+                    <div class="card-text" data-en="Via phone verification (region dependent)" data-es="Mediante verificacion telefonica (depende de la region)">Via phone verification (region dependent)</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(245, 158, 11, 0.15); color: var(--claude-accent);">&#9733;</div>
+                    <div class="card-title" data-en="Excellent quality" data-es="Excelente calidad">Excellent quality</div>
+                    <div class="card-text" data-en="Top-tier chess analysis" data-es="Analisis de ajedrez de primer nivel">Top-tier chess analysis</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-step guide -->
+        <section class="section">
+            <h2 class="font-display mb-8 reveal" data-en="Step-by-step guide" data-es="Guia paso a paso">Step-by-step guide</h2>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Create an account" data-es="Crea una cuenta">Create an account</div>
+                        <p class="setup-step-desc" data-en='Visit <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a> and click "Sign up".' data-es='Visita <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a> y hace clic en "Sign up".'>Visit <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a> and click "Sign up".</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Verify your email (Magic Link)" data-es="Verifica tu email (Magic Link)">Verify your email (Magic Link)</div>
+                        <p class="setup-step-desc" data-en="Anthropic uses magic links instead of passwords. Check your email and click the verification link. You'll use this method every time you log in." data-es="Anthropic usa magic links en vez de contrasenas. Revisa tu email y hace clic en el enlace de verificacion. Usaras este metodo cada vez que inicies sesion.">Anthropic uses magic links instead of passwords. Check your email and click the verification link. You'll use this method every time you log in.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Complete onboarding" data-es="Completa el registro">Complete onboarding</div>
+                        <p class="setup-step-desc" data-en="Enter your full name, confirm you're over 18, and accept the terms of service." data-es="Ingresa tu nombre completo, confirma que sos mayor de 18 y acepta los terminos de servicio.">Enter your full name, confirm you're over 18, and accept the terms of service.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Create your organization" data-es="Crea tu organizacion">Create your organization</div>
+                        <p class="setup-step-desc" data-en="Enter an organization name (can be your personal name)." data-es="Ingresa un nombre de organizacion (puede ser tu nombre personal).">Enter an organization name (can be your personal name).</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">5</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Get free credits (optional)" data-es="Obtene creditos gratuitos (opcional)">Get free credits (optional)</div>
+                        <p class="setup-step-desc" data-en="Try verifying your phone number to get $5 in free credits. This works in many countries but not all. If it doesn't work in your region, you'll need to add a payment method." data-es="Intenta verificar tu numero de telefono para obtener $5 en creditos gratuitos. Esto funciona en muchos paises pero no en todos. Si no funciona en tu region, necesitaras agregar un metodo de pago.">Try verifying your phone number to get $5 in free credits. This works in many countries but not all. If it doesn't work in your region, you'll need to add a payment method.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">6</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Set up billing (if needed)" data-es="Configura la facturacion (si es necesario)">Set up billing (if needed)</div>
+                        <p class="setup-step-desc" data-en='If free credits aren&apos;t available, go to Settings &rarr; Billing &rarr; Add credits. Anthropic uses a prepaid system &mdash; you buy credits upfront (minimum $5).' data-es='Si los creditos gratuitos no estan disponibles, ve a Settings &rarr; Billing &rarr; Add credits. Anthropic usa un sistema prepago &mdash; compras creditos por adelantado (minimo $5).'>If free credits aren't available, go to Settings &rarr; Billing &rarr; Add credits. Anthropic uses a prepaid system &mdash; you buy credits upfront (minimum $5).</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">7</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Navigate to API Keys" data-es="Navega a API Keys">Navigate to API Keys</div>
+                        <p class="setup-step-desc" data-en='Go to Settings &rarr; API Keys or visit <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">console.anthropic.com/settings/keys</a>.' data-es='Ve a Settings &rarr; API Keys o visita <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">console.anthropic.com/settings/keys</a>.'>Go to Settings &rarr; API Keys or visit <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">console.anthropic.com/settings/keys</a>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">8</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Create an API key" data-es="Crea una API key">Create an API key</div>
+                        <p class="setup-step-desc" data-en='Click "+ Create Key", give it a name like "Chess Coach".' data-es='Hace clic en "+ Create Key", dale un nombre como "Chess Coach".'>Click "+ Create Key", give it a name like "Chess Coach".</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">9</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Copy your key immediately!" data-es="Copia tu key inmediatamente!">Copy your key immediately!</div>
+                        <div class="alert alert-error mt-4">
+                            <span class="alert-icon">&#9888;&#65039;</span>
+                            <span data-en='IMPORTANT: The key (starts with <code class="code-inline">sk-ant-...</code>) is only shown ONCE. Copy it immediately!' data-es='IMPORTANTE: La key (empieza con <code class="code-inline">sk-ant-...</code>) solo se muestra UNA VEZ. Copiala inmediatamente!'>IMPORTANT: The key (starts with <code class="code-inline">sk-ant-...</code>) is only shown ONCE. Copy it immediately!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">10</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Paste in Chess Coach" data-es="Pega en Chess Coach">Paste in Chess Coach</div>
+                        <p class="setup-step-desc" data-en='Open Chess Coach &rarr; Settings &rarr; AI section &rarr; Select "Claude Haiku 4.5" &rarr; Configure &rarr; Paste your API key.' data-es='Abri Chess Coach &rarr; Settings &rarr; Seccion IA &rarr; Selecciona "Claude Haiku 4.5" &rarr; Configurar &rarr; Pega tu API key.'>Open Chess Coach &rarr; Settings &rarr; AI section &rarr; Select "Claude Haiku 4.5" &rarr; Configure &rarr; Paste your API key.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal" data-en="Pricing" data-es="Precios">Pricing</h2>
+            <div class="reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th data-en="Model" data-es="Modelo">Model</th>
+                            <th data-en="Input (1M tokens)" data-es="Entrada (1M tokens)">Input (1M tokens)</th>
+                            <th data-en="Output (1M tokens)" data-es="Salida (1M tokens)">Output (1M tokens)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="recommended">
+                            <td>
+                                <strong>Claude Haiku 4.5</strong>
+                                <span class="badge badge-gold" style="margin-left: var(--space-2);" data-en="Recommended" data-es="Recomendado">Recommended</span>
+                            </td>
+                            <td>$1.00</td>
+                            <td>$5.00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude Sonnet 5</strong></td>
+                            <td>$3.00</td>
+                            <td>$15.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Important notes -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal" data-en="Important notes" data-es="Notas importantes">Important notes</h2>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="alert alert-warning">
+                    <span class="alert-icon">&#128274;</span>
+                    <span data-en="Claude uses magic links (no password) &mdash; check your email each time you log in" data-es="Claude usa magic links (sin contrasena) &mdash; revisa tu email cada vez que inicies sesion">Claude uses magic links (no password) &mdash; check your email each time you log in</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128176;</span>
+                    <span data-en="Prepaid credits are non-refundable" data-es="Los creditos prepagos no son reembolsables">Prepaid credits are non-refundable</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#9733;</span>
+                    <span data-en="Claude Haiku 4.5 offers the best quality for chess coaching" data-es="Claude Haiku 4.5 ofrece la mejor calidad para coaching de ajedrez">Claude Haiku 4.5 offers the best quality for chess coaching</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>&copy; 2026 Chess Coach. <a href="api-setup.html" data-en="Back to API guides" data-es="Volver a las guias API">Back to API guides</a></span>
+            <span>JuanfranDevs</span>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        var navbar = document.querySelector('.navbar');
+        if (navbar) window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            reveals.forEach(function(el) { observer.observe(el); });
+        } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+    })();
+    </script>
+
+</body>
+</html>

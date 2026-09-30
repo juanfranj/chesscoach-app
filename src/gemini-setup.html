@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Gemini API Key Setup - Chess Coach</title>
+    <meta name="description" content="Step-by-step guide to create a Google Gemini API key for Chess Coach chess coaching app.">
+    <meta name="author" content="JuanfranDevs">
+    <meta property="og:title" content="Google Gemini API Key Setup - Chess Coach">
+    <meta property="og:description" content="AI-powered chess coaching at minimal cost. Get your Gemini API key in minutes.">
+    <meta property="og:type" content="article">
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        /* Page-specific: step cards vertical timeline */
+        .setup-step {
+            display: flex;
+            gap: var(--space-5);
+            position: relative;
+        }
+        .setup-step + .setup-step {
+            margin-top: var(--space-6);
+        }
+        .setup-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--gemini-accent), #6366f1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+        .setup-step-number.warning-step {
+            background: linear-gradient(135deg, var(--warning), var(--warning-dim));
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+        }
+        .setup-step-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .setup-step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        .setup-step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        .setup-step-desc a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .hero-provider-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(66, 133, 244, 0.15);
+            border: 2px solid var(--gemini-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+        }
+        @media (max-width: 640px) {
+            .setup-step {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+            .setup-step-number {
+                width: 38px;
+                height: 38px;
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Top bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="api-setup.html" class="back-link" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span data-en="Back to guides" data-es="Volver a las guias">Back to guides</span>
+            </a>
+            <!--LANG-TOGGLE-->
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section gradient-hero" style="padding-top: 8rem; padding-bottom: var(--space-12);">
+        <div class="container container-md text-center">
+            <div class="hero-provider-icon reveal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gemini-accent)"><path d="M12 2C12 2 14.5 7 17.5 9.5C20 11.5 22 12 22 12C22 12 20 12.5 17.5 14.5C14.5 17 12 22 12 22C12 22 9.5 17 6.5 14.5C4 12.5 2 12 2 12C2 12 4 11.5 6.5 9.5C9.5 7 12 2 12 2Z"/></svg>
+            </div>
+            <div class="badge badge-success mb-6 reveal" data-en="Popular - Very low cost" data-es="Popular - Coste muy bajo">Popular - Very low cost</div>
+            <h1 class="reveal">
+                <span data-en="Google Gemini" data-es="Google Gemini">Google Gemini</span><br>
+                <span class="text-gradient-blue" data-en="API Key Setup" data-es="Configuracion de API Key">API Key Setup</span>
+            </h1>
+            <p class="section-subtitle mt-4 reveal" data-en="Get your Gemini API key in under 5 minutes. Typical cost: a few cents per month." data-es="Obtiene tu API key de Gemini en menos de 5 minutos. Coste tipico: centimos al mes.">Get your Gemini API key in under 5 minutes. Typical cost: a few cents per month.</p>
+        </div>
+    </section>
+
+    <div class="container container-md">
+
+        <!-- What you'll get -->
+        <section class="section" style="padding-top: var(--space-8);">
+            <h2 class="font-display mb-6 reveal" data-en="What you'll get" data-es="Lo que obtendras">What you'll get</h2>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(66, 133, 244, 0.15); color: var(--gemini-accent);">&#9889;</div>
+                    <div class="card-title" data-en="Flash Lite: fast &amp; cheap" data-es="Flash Lite: rapido y barato">Flash Lite: fast &amp; cheap</div>
+                    <div class="card-text" data-en="$0.30 / 1M input tokens" data-es="$0.30 / 1M tokens de entrada">$0.30 / 1M input tokens</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(66, 133, 244, 0.15); color: var(--gemini-accent);">&#129504;</div>
+                    <div class="card-title" data-en="Flash: advanced reasoning" data-es="Flash: razonamiento avanzado">Flash: advanced reasoning</div>
+                    <div class="card-text" data-en="$0.75 / 1M input tokens" data-es="$0.75 / 1M tokens de entrada">$0.75 / 1M input tokens</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(66, 133, 244, 0.15); color: var(--gemini-accent);">&#128176;</div>
+                    <div class="card-title" data-en="Pennies per month" data-es="Centimos al mes">Pennies per month</div>
+                    <div class="card-text" data-en="Normal chess coaching: ~&euro;0.01&ndash;0.15/month" data-es="Coaching de ajedrez normal: ~0,01&ndash;0,15&euro;/mes">Normal chess coaching: ~&euro;0.01&ndash;0.15/month</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-step guide -->
+        <section class="section">
+            <h2 class="font-display mb-8 reveal" data-en="Step-by-step guide" data-es="Guia paso a paso">Step-by-step guide</h2>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Go to Google AI Studio" data-es="Ve a Google AI Studio">Go to Google AI Studio</div>
+                        <p class="setup-step-desc" data-en='Visit <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a> and click <strong>"Get Started"</strong>.' data-es='Visita <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a> y haz clic en <strong>"Get Started"</strong>.'>Visit <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a> and click <strong>"Get Started"</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Sign in with Google" data-es="Inicia sesion con Google">Sign in with Google</div>
+                        <p class="setup-step-desc" data-en='Use any Google account (Gmail). If you don&apos;t have one, create one at <a href="https://accounts.google.com" target="_blank" rel="noopener noreferrer">accounts.google.com</a>.' data-es='Usa cualquier cuenta de Google (Gmail). Si no tienes una, creala en <a href="https://accounts.google.com" target="_blank" rel="noopener noreferrer">accounts.google.com</a>.'>Use any Google account (Gmail). If you don&apos;t have one, create one at <a href="https://accounts.google.com" target="_blank" rel="noopener noreferrer">accounts.google.com</a>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Accept Terms of Service" data-es="Acepta los Terminos de Servicio">Accept Terms of Service</div>
+                        <p class="setup-step-desc" data-en="Read and accept Google AI Studio's Terms of Service to continue." data-es="Lee y acepta los Terminos de Servicio de Google AI Studio para continuar.">Read and accept Google AI Studio's Terms of Service to continue.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Navigate to API Keys" data-es="Navega a API Keys">Navigate to API Keys</div>
+                        <p class="setup-step-desc" data-en='In the left sidebar, click on <strong>"API Keys"</strong>, or go directly to <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/app/apikey</a>.' data-es='En la barra lateral izquierda, haz clic en <strong>"API Keys"</strong>, o ve directamente a <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/app/apikey</a>.'>In the left sidebar, click on <strong>"API Keys"</strong>, or go directly to <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/app/apikey</a>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">5</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Create API Key" data-es="Crea la API Key">Create API Key</div>
+                        <p class="setup-step-desc" data-en='Click <strong>"Create API Key"</strong>. Select a Google Cloud project (one will be created automatically if you don&apos;t have any).' data-es='Haz clic en <strong>"Create API Key"</strong>. Selecciona un proyecto de Google Cloud (se creara uno automaticamente si no tienes ninguno).'>Click <strong>"Create API Key"</strong>. Select a Google Cloud project (one will be created automatically if you don&apos;t have any).</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">6</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Copy your key" data-es="Copia tu clave">Copy your key</div>
+                        <p class="setup-step-desc" data-en='Copy the generated API key (starts with <code class="code-inline">AIza...</code>). Store it safely &mdash; you can always generate a new one if lost.' data-es='Copia la API key generada (empieza con <code class="code-inline">AIza...</code>). Guardala en un lugar seguro &mdash; siempre puedes generar una nueva si la pierdes.'>Copy the generated API key (starts with <code class="code-inline">AIza...</code>). Store it safely &mdash; you can always generate a new one if lost.</p>
+                        <div class="alert alert-info mt-4">
+                            <span class="alert-icon">&#128203;</span>
+                            <span data-en="Tip: Click the copy icon next to the key to copy it to your clipboard instantly." data-es="Consejo: Haz clic en el icono de copiar junto a la clave para copiarla al portapapeles al instante.">Tip: Click the copy icon next to the key to copy it to your clipboard instantly.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">7</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Paste in Chess Coach" data-es="Pega en Chess Coach">Paste in Chess Coach</div>
+                        <p class="setup-step-desc" data-en='Open Chess Coach &rarr; <strong>Settings</strong> &rarr; <strong>AI section</strong> &rarr; Select <strong>"Gemini"</strong> &rarr; <strong>Configure</strong> &rarr; Paste your API key.' data-es='Abre Chess Coach &rarr; <strong>Ajustes</strong> &rarr; <strong>Seccion IA</strong> &rarr; Selecciona <strong>"Gemini"</strong> &rarr; <strong>Configurar</strong> &rarr; Pega tu API key.'>Open Chess Coach &rarr; <strong>Settings</strong> &rarr; <strong>AI section</strong> &rarr; Select <strong>"Gemini"</strong> &rarr; <strong>Configure</strong> &rarr; Paste your API key.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal" data-en="Pricing" data-es="Precios">Pricing</h2>
+
+            <div class="alert alert-warning mb-6 reveal">
+                <span class="alert-icon">&#127466;&#127482;</span>
+                <span data-en="<strong>EU / EEA / UK / Switzerland:</strong> Google requires a billing account due to GDPR. Once billing is linked, all usage is pay-as-you-go &mdash; but for normal chess coaching the cost is <strong>just a few cents per month</strong>." data-es="<strong>UE / EEE / Reino Unido / Suiza:</strong> Google requiere una cuenta de facturacion por el RGPD. Una vez vinculada, todo el uso es de pago &mdash; pero para coaching de ajedrez normal el coste es de <strong>solo unos centimos al mes</strong>.">
+                    <strong>EU / EEA / UK / Switzerland:</strong> Google requires a billing account due to GDPR. Once billing is linked, all usage is pay-as-you-go &mdash; but for normal chess coaching the cost is <strong>just a few cents per month</strong>.
+                </span>
+            </div>
+
+            <!-- Gemini 3.7 Flash is at launch pricing ($0.75 in / $3.75 out) until 2026-12-31.
+                 From 2027-01-01 it goes to $1.50 in / $7.50 out - update this table then. -->
+            <div class="reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th data-en="Model" data-es="Modelo">Model</th>
+                            <th data-en="Input" data-es="Entrada">Input</th>
+                            <th data-en="Output" data-es="Salida">Output</th>
+                            <th data-en="~Cost per game" data-es="~Coste por partida">~Cost per game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="recommended">
+                            <td>
+                                <strong>Gemini 3.5 Flash Lite</strong>
+                                <span class="badge badge-success ml-2" data-en="Recommended" data-es="Recomendado" style="margin-left: var(--space-2);">Recommended</span>
+                            </td>
+                            <td>$0.30 / 1M</td>
+                            <td>$2.50 / 1M</td>
+                            <td data-en="~&euro;0.01" data-es="~0,01&euro;"><strong class="text-success">~&euro;0.01</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 3.7 Flash</strong></td>
+                            <td>$0.75 / 1M</td>
+                            <td>$3.75 / 1M</td>
+                            <td data-en="~&euro;0.02" data-es="~0,02&euro;">~&euro;0.02</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-info mt-4 reveal">
+                <span class="alert-icon">&#128200;</span>
+                <span data-en="<strong>Real-world example:</strong> Analyzing a 40-move game with Gemini 3.5 Flash Lite costs approximately &euro;0.01. A typical month of chess coaching (50&ndash;100 analyses) would cost &euro;0.05&ndash;0.15." data-es="<strong>Ejemplo real:</strong> Analizar una partida de 40 movimientos con Gemini 3.5 Flash Lite cuesta aproximadamente 0,01&euro;. Un mes tipico de coaching de ajedrez (50&ndash;100 analisis) costaria 0,05&ndash;0,15&euro;.">
+                    <strong>Real-world example:</strong> Analyzing a 40-move game with Gemini 3.5 Flash Lite costs approximately &euro;0.01. A typical month of chess coaching (50&ndash;100 analyses) would cost &euro;0.05&ndash;0.15.
+                </span>
+            </div>
+
+            <div class="alert alert-info mt-3 reveal">
+                <span class="alert-icon">&#127760;</span>
+                <span data-en="<strong>Outside EU/EEA:</strong> Gemini offers a free tier (250 req/day for Flash Lite, 100 for Flash) that does <strong>not</strong> require a billing account. If you are outside Europe, you can use Gemini at no cost." data-es="<strong>Fuera de la UE/EEE:</strong> Gemini ofrece un plan gratuito (250 req/dia para Flash Lite, 100 para Flash) que <strong>no</strong> requiere cuenta de facturacion. Si estas fuera de Europa, puedes usar Gemini sin coste.">
+                    <strong>Outside EU/EEA:</strong> Gemini offers a free tier (250 req/day for Flash Lite, 100 for Flash) that does <strong>not</strong> require a billing account. If you are outside Europe, you can use Gemini at no cost.
+                </span>
+            </div>
+        </section>
+
+        <!-- EU / EEA Billing Requirement -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal" data-en="EU / EEA users: Billing account required" data-es="Usuarios de la UE / EEE: Cuenta de facturacion necesaria">EU / EEA users: Billing account required</h2>
+
+            <div class="alert alert-warning mb-6 reveal">
+                <span class="alert-icon">&#9888;&#65039;</span>
+                <span data-en="If you are in the <strong>European Union, EEA, UK, or Switzerland</strong>, Google requires a billing account to use the Gemini API. This is a GDPR restriction. Once billing is linked, <strong>all API usage is pay-as-you-go</strong> (the free tier does not apply). However, the cost for normal chess coaching is <strong>just a few cents per month</strong>." data-es="Si estas en la <strong>Union Europea, EEE, Reino Unido o Suiza</strong>, Google requiere una cuenta de facturacion para usar la API de Gemini. Es una restriccion del RGPD. Una vez vinculada, <strong>todo el uso de la API es de pago</strong> (el plan gratuito no aplica). Sin embargo, el coste para coaching de ajedrez normal es de <strong>solo unos centimos al mes</strong>.">If you are in the <strong>European Union, EEA, UK, or Switzerland</strong>, Google requires a billing account to use the Gemini API. This is a GDPR restriction. Once billing is linked, <strong>all API usage is pay-as-you-go</strong> (the free tier does not apply). However, the cost for normal chess coaching is <strong>just a few cents per month</strong>.</span>
+            </div>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number warning-step">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Go to Google Cloud Billing" data-es="Ve a Google Cloud Billing">Go to Google Cloud Billing</div>
+                        <p class="setup-step-desc" data-en='Visit <a href="https://console.cloud.google.com/billing" target="_blank" rel="noopener noreferrer">console.cloud.google.com/billing</a> and sign in with the same Google account you used for your API key.' data-es='Visita <a href="https://console.cloud.google.com/billing" target="_blank" rel="noopener noreferrer">console.cloud.google.com/billing</a> e inicia sesion con la misma cuenta de Google que usaste para tu API key.'>Visit <a href="https://console.cloud.google.com/billing" target="_blank" rel="noopener noreferrer">console.cloud.google.com/billing</a> and sign in with the same Google account you used for your API key.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number warning-step">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Create a billing account" data-es="Crea una cuenta de facturacion">Create a billing account</div>
+                        <p class="setup-step-desc" data-en='Click <strong>"Create account"</strong> or <strong>"Link a billing account"</strong>. Enter your payment details (credit/debit card). All usage will be billed, but <strong>chess coaching typically costs less than &euro;0.15/month</strong>.' data-es='Haz clic en <strong>"Crear cuenta"</strong> o <strong>"Vincular una cuenta de facturacion"</strong>. Introduce tus datos de pago (tarjeta de credito/debito). Todo el uso se facturara, pero <strong>el coaching de ajedrez suele costar menos de 0,15&euro;/mes</strong>.'>Click <strong>"Create account"</strong> or <strong>"Link a billing account"</strong>. Enter your payment details (credit/debit card). All usage will be billed, but <strong>chess coaching typically costs less than &euro;0.15/month</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number warning-step">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Link to your project" data-es="Vincula a tu proyecto">Link to your project</div>
+                        <p class="setup-step-desc" data-en='Make sure the billing account is linked to the Google Cloud project that contains your API key. You can check this in <a href="https://console.cloud.google.com/billing/projects" target="_blank" rel="noopener noreferrer">Billing &rarr; My projects</a>.' data-es='Asegurate de que la cuenta de facturacion esta vinculada al proyecto de Google Cloud que contiene tu API key. Puedes comprobarlo en <a href="https://console.cloud.google.com/billing/projects" target="_blank" rel="noopener noreferrer">Facturacion &rarr; Mis proyectos</a>.'>Make sure the billing account is linked to the Google Cloud project that contains your API key. You can check this in <a href="https://console.cloud.google.com/billing/projects" target="_blank" rel="noopener noreferrer">Billing &rarr; My projects</a>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number warning-step">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title" data-en="Set up a budget alert (recommended)" data-es="Configura una alerta de presupuesto (recomendado)">Set up a budget alert (recommended)</div>
+                        <p class="setup-step-desc" data-en='Go to <a href="https://console.cloud.google.com/billing/budgets" target="_blank" rel="noopener noreferrer">Billing &rarr; Budgets &amp; alerts</a> &rarr; <strong>"Create budget"</strong>. Set the amount to <strong>&euro;1</strong> with alerts at 50%, 90%, and 100%. This way you&apos;ll receive an email if any unexpected charges occur.' data-es='Ve a <a href="https://console.cloud.google.com/billing/budgets" target="_blank" rel="noopener noreferrer">Facturacion &rarr; Presupuestos y alertas</a> &rarr; <strong>"Crear presupuesto"</strong>. Establece el importe en <strong>1&euro;</strong> con alertas al 50%, 90% y 100%. Asi recibiras un email si se produce algun cargo inesperado.'>Go to <a href="https://console.cloud.google.com/billing/budgets" target="_blank" rel="noopener noreferrer">Billing &rarr; Budgets &amp; alerts</a> &rarr; <strong>"Create budget"</strong>. Set the amount to <strong>&euro;1</strong> with alerts at 50%, 90%, and 100%. This way you&apos;ll receive an email if any unexpected charges occur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal" data-en="Tips" data-es="Consejos">Tips</h2>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="alert alert-warning">
+                    <span class="alert-icon">&#9203;</span>
+                    <span data-en="If you hit rate limits (error 429), just wait a minute and try again. The limit resets daily." data-es="Si alcanzas el limite de solicitudes (error 429), espera un minuto e intentalo de nuevo. El limite se restablece diariamente.">If you hit rate limits (error 429), just wait a minute and try again. The limit resets daily.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#127466;&#127482;</span>
+                    <span data-en="<strong>EU/EEA users:</strong> With a billing account you get higher rate limits (2,000 RPM vs 10 RPM) and your data is <strong>not used</strong> for model training (GDPR compliant)." data-es="<strong>Usuarios UE/EEE:</strong> Con cuenta de facturacion obtienes limites mas altos (2.000 RPM vs 10 RPM) y tus datos <strong>no se usan</strong> para entrenar modelos (compatible con RGPD)."><strong>EU/EEA users:</strong> With a billing account you get higher rate limits (2,000 RPM vs 10 RPM) and your data is <strong>not used</strong> for model training (GDPR compliant).</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#127760;</span>
+                    <span data-en="<strong>Non-EU users:</strong> The free tier (no billing needed) is permanent and does not expire." data-es="<strong>Usuarios fuera de la UE:</strong> El plan gratuito (sin facturacion) es permanente y no caduca."><strong>Non-EU users:</strong> The free tier (no billing needed) is permanent and does not expire.</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#11088;</span>
+                    <span data-en="Gemini Flash Lite is a <strong>very affordable option</strong> for chess coaching. Even with billing, a typical month costs less than a cup of coffee." data-es="Gemini Flash Lite es una <strong>opcion muy asequible</strong> para coaching de ajedrez. Incluso con facturacion, un mes tipico cuesta menos que un cafe.">Gemini Flash Lite is a <strong>very affordable option</strong> for chess coaching. Even with billing, a typical month costs less than a cup of coffee.</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>Chess Coach &mdash; <a href="https://github.com/juanfranj" target="_blank" rel="noopener noreferrer">JuanfranDevs</a></span>
+            <span>&copy; 2026</span>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        // Navbar scroll
+        var navbar = document.querySelector('.navbar');
+        if (navbar) window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+        // Scroll reveal
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            reveals.forEach(function(el) { observer.observe(el); });
+        } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+    })();
+    </script>
+
+</body>
+</html>
