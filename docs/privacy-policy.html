@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy policy — Chess Coach</title>
+    <meta name="description" content="How Chess Coach handles your data: what stays on your device, what is sent and why, and how to delete your account.">
+    <link rel="canonical" href="https://chesscoach-app.com/privacy-policy.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/privacy-policy.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/privacy-policy.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/privacy-policy.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Privacy policy — Chess Coach">
+    <meta property="og:description" content="How Chess Coach handles your data: what stays on your device, what is sent and why, and how to delete your account.">
+    <meta property="og:url" content="https://chesscoach-app.com/privacy-policy.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy policy — Chess Coach">
+    <meta name="twitter:description" content="How Chess Coach handles your data: what stays on your device, what is sent and why, and how to delete your account.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;if(s==="es"||(s===null&&!own&&/^es\b/i.test(navigator.language||""))){location.replace("es/privacy-policy.html"+location.hash)}})();</script>
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: calc(var(--space-24) + var(--space-8)) var(--space-6) var(--space-16);
+        }
+        .policy-container h1 {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-4);
+        }
+        .policy-date {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-12);
+        }
+        .policy-container h2 {
+            font-size: var(--text-2xl);
+            margin-top: var(--space-12);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .policy-container h3 {
+            font-size: var(--text-lg);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-3);
+            color: var(--accent-bright);
+        }
+        .policy-container p,
+        .policy-container li {
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        .policy-container ul {
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-4);
+        }
+        .policy-container li {
+            margin-bottom: var(--space-2);
+        }
+        .policy-container strong {
+            color: var(--text-primary);
+        }
+        .policy-container a {
+            color: var(--accent-bright);
+        }
+        .policy-container a:hover {
+            text-decoration: underline;
+        }
+        .policy-toc {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        .policy-toc h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .policy-toc ol {
+            padding-left: var(--space-6);
+            margin-bottom: 0;
+        }
+        .policy-toc li {
+            margin-bottom: var(--space-2);
+        }
+        .policy-toc a {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+        .policy-toc a:hover {
+            color: var(--accent-bright);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-6);
+        }
+        .data-table th,
+        .data-table td {
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            font-size: var(--text-sm);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .data-table th {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        .data-table td {
+            color: var(--text-secondary);
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="Chess Coach" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <ul class="navbar-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="api-setup.html">API Setup</a></li>
+                <li>
+                    <div class="lang-toggle" role="group" aria-label="Language"><a href="privacy-policy.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/privacy-policy.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+                </li>
+            </ul>
+            <button class="navbar-hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="policy-container">
+
+        <h1>Privacy Policy</h1>
+        <p class="policy-date">Last updated: September 23, 2026</p>
+
+        <div class="policy-toc">
+            <h3>Contents</h3>
+            <ol>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#data-collection">Data Collection</a></li>
+                <li><a href="#ai-services">AI Services, Backend & Purchases</a></li>
+                <li><a href="#lichess">Online Play</a></li>
+                <li><a href="#data-storage">Data Storage & Security</a></li>
+                <li><a href="#data-sharing">Data Sharing</a></li>
+                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#rights">Your Rights</a></li>
+                <li><a href="#changes">Changes to This Policy</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ol>
+        </div>
+
+        <!-- 1. Overview -->
+        <h2 id="overview">1. Overview</h2>
+        <p>Chess Coach (listed on the App Store as “CheesCoach: AI Chess Coach”) is a chess coaching application for Android and iOS developed by JuanfranDevs. This privacy policy explains how our application handles your data. We are committed to protecting your privacy and being transparent about our data practices.</p>
+        <p><strong>Key principle:</strong> Chess Coach is local-first. Playing, puzzles, courses, game review and Stockfish analysis run on your device and are stored on your device. Some <strong>optional</strong> features — AI coaching through our backend, online multiplayer, and credit or premium purchases — require an account, and for those we store a small amount of personal data (your email address, your chosen nickname, and usage counters) on our servers. Sections 2 to 4 describe exactly what and why.</p>
+
+        <!-- 2. Data Collection -->
+        <h2 id="data-collection">2. Data Collection</h2>
+        <p>Chess Coach is <strong>offline-first</strong>: the core features (playing, puzzles, move review, Stockfish analysis, importing/exporting PGN) work without an internet connection and store everything locally on your device. No personal data is collected for these features, except the bot game statistics described below.</p>
+        <p>Some <strong>optional online features</strong> (AI coaching via our backend, online play via Lichess, endgame hints via the Lichess tablebase) transmit limited data to third parties. These features are described in sections 3 and 4 below. All of them are triggered only by an action of yours, and the account-based ones can be disabled at any time.</p>
+
+        <h3>Data stored locally on your device:</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Purpose</th>
+                    <th>Storage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chess games (PGN)</td>
+                    <td>Saving and reviewing your games</td>
+                    <td>Local database (Room)</td>
+                </tr>
+                <tr>
+                    <td>Move analysis</td>
+                    <td>Caching AI analysis to avoid repeated API calls</td>
+                    <td>Local database (Room)</td>
+                </tr>
+                <tr>
+                    <td>API keys</td>
+                    <td>Authenticating with AI providers you choose</td>
+                    <td>Encrypted (AES-256-GCM)</td>
+                </tr>
+                <tr>
+                    <td>App preferences</td>
+                    <td>Theme, ELO level, board colors</td>
+                    <td>DataStore Preferences</td>
+                </tr>
+                <tr>
+                    <td>Puzzle progress</td>
+                    <td>Tracking your puzzle rating and streaks</td>
+                    <td>DataStore Preferences</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Data collected when you sign in or use online features:</h3>
+        <p>Signing in is <strong>optional</strong> — you can skip it and keep using the app offline. If you do sign in (Google Sign-In on Android, Sign in with Apple on iOS), the following is stored in our backend:</p>
+        <ul>
+            <li><strong>Your email address</strong> — used as your account identifier, to restore your credits and premium status across devices and reinstalls, and to answer you if you send in-app feedback. With Sign in with Apple you may use Apple's private relay address instead.</li>
+            <li><strong>User identifiers</strong> — the account id created by our backend and the Google/Apple account id linked to it</li>
+            <li><strong>The nickname and country flag you choose</strong> for online multiplayer, together with your ratings and win/loss record. These are shown to other players in games and in the public ranking.</li>
+            <li><strong>A device identifier</strong> (Android ID on Android, vendor identifier on iOS) — used only to stop the same device from farming free AI analyses by reinstalling the app</li>
+            <li><strong>Purchase history</strong> — which credit or premium purchase you made and the Google Play / App Store transaction token, so we can grant, verify and restore what you bought and detect refunds or fraud</li>
+            <li><strong>Chess activity linked to your account</strong> — the usage log described in section 3, your online games, and a cache of positions with their AI hints so the same position is not re-analysed twice</li>
+        </ul>
+
+        <h3>Analytics and crash reporting:</h3>
+        <p>The app includes <strong>Firebase Analytics</strong>, <strong>Firebase Crashlytics</strong> and <strong>Firebase Remote Config</strong> (Google). They collect usage events (which screens you open, puzzles solved, games played), crash logs and technical diagnostics, tied to a randomly generated Firebase installation identifier — <strong>never to your email address or nickname</strong>. We use this only to fix crashes and to understand which features are actually used. This data is not sold and not shared with anyone else.</p>
+        <p><strong>Bot game statistics:</strong> when a game against a bot ends, the app sends our backend a short record (which bot, which engine played it, the result, the number of moves, your colour, the platform and when the game ended). It is tied to a random installation ID created by the app — not your advertising ID, Android ID or Apple vendor ID — and <strong>never to your account</strong>, even if you are signed in. We use it only to measure and tune how hard each bot is; it is not sold or shared. The installation ID is replaced every 13 months and records are deleted after 25 months.</p>
+
+        <h3>Data we do NOT collect:</h3>
+        <ul>
+            <li>Your real name, phone number, postal address, date of birth or gender</li>
+            <li>Location data — the country flag in your online profile is chosen by you, it is never read from your device or your IP address</li>
+            <li>Advertising identifiers, ad networks or cross-app trackers — the app has no ads</li>
+            <li>Payment details (card or bank data) — purchases are handled entirely by Google Play and the App Store, we never see them</li>
+            <li>Contacts, photos, microphone, or any other personal files</li>
+        </ul>
+
+        <!-- 3. AI Services -->
+        <h2 id="ai-services">3. AI Services, Backend & Purchases</h2>
+        <p>Chess Coach offers optional AI-generated chess commentary. There are two independent ways to use it and you choose which one.</p>
+
+        <h3>Mode A — Backend proxy (credits & free calls)</h3>
+        <p>By default, every user gets <strong>5 free AI analyses</strong>. Additional analyses require credits, which can be purchased inside the app via Google Play Billing. In this mode, your requests go through our backend hosted on <strong>Supabase (EU region)</strong>, which forwards the chess data to the AI provider on your behalf.</p>
+        <p>To use Mode A you must sign in with <strong>Google</strong>, because we need a stable identifier to track your free-call and credit balance across reinstalls. We store the following on the backend:</p>
+        <ul>
+            <li>Your Google account email (identifier only, never shared with third parties)</li>
+            <li>Credit balance, free calls consumed, and purchase history (for fraud prevention and refund support)</li>
+            <li>A usage log (timestamp, analysis type, token counts, cost) for billing and abuse detection — does NOT contain the chess position itself</li>
+            <li>A device identifier hash used exclusively to prevent free-call farming via reinstalls</li>
+        </ul>
+        <p>The AI providers used by the backend are <strong>DeepSeek</strong> (primary) and <strong>Google Gemini</strong> (fallback if DeepSeek is unavailable).</p>
+
+        <div class="alert alert-info" style="margin-top: var(--space-4); margin-bottom: var(--space-4);">
+            <span class="alert-icon">&#9432;</span>
+            <div>
+                <p><strong>Data residency notice:</strong> DeepSeek is a Chinese company and processes requests on servers located in the People's Republic of China. The backend only sends non-personal chess data (FEN position, move history in PGN, Stockfish evaluation, coach ELO). Your Google email is NEVER included in the AI provider request — the backend uses it only internally to look up your credit balance. If you prefer to avoid DeepSeek entirely, you can use Mode B (your own API key) or contact us to request DeepSeek be disabled for your account. An administrative kill switch also lets us disable DeepSeek instantly and route all traffic to Gemini (EU) if needed.</p>
+            </div>
+        </div>
+
+        <h3>Mode B — Bring Your Own Key (BYOK)</h3>
+        <p>If you have your own API key from a supported AI provider, you can configure it in Settings and the app will call the provider <strong>directly from your device</strong>, completely bypassing our backend. This mode does not require a Google account, does not consume credits, and does not involve any of our servers.</p>
+
+        <h3>Supported BYOK providers:</h3>
+        <ul>
+            <li><strong>Google Gemini</strong> — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+            <li><strong>OpenAI</strong> — <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+            <li><strong>Anthropic (Claude)</strong> — <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+            <li><strong>DeepSeek</strong> — <a href="https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+            <li><strong>Qwen (Alibaba Cloud)</strong> — <a href="https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+        </ul>
+
+        <div class="alert alert-info" style="margin-top: var(--space-4); margin-bottom: var(--space-4);">
+            <span class="alert-icon">&#9432;</span>
+            <div>
+                <p><strong>A note on DeepSeek and Qwen:</strong> both are Chinese companies. In BYOK mode the request travels from your device straight to the provider you chose, under your own account and your own API key, so we never see it — but the data is processed under that provider's terms, not ours. Qwen keys issued through Alibaba Cloud Model Studio use the international endpoint (Singapore). If you would rather not use either, any of the other three providers works exactly the same way.</p>
+            </div>
+        </div>
+
+        <h3>What data is sent to AI providers:</h3>
+        <p>When you use the AI coaching feature, the following chess-specific data is sent to your chosen AI provider:</p>
+        <ul>
+            <li>The current chess position (FEN notation)</li>
+            <li>The game move history (PGN notation)</li>
+            <li>The Stockfish engine evaluation (numeric score)</li>
+            <li>Your configured ELO level (for adjusting explanation complexity)</li>
+        </ul>
+        <p><strong>No personal information is ever sent to AI providers.</strong> Only chess positions and game data are transmitted. Your API key is sent as an authentication header but is never shared with us.</p>
+
+        <div class="alert alert-info" style="margin-top: var(--space-4);">
+            <span class="alert-icon">&#9432;</span>
+            <div>
+                <p style="margin-bottom: var(--space-2);"><strong>Important:</strong> Each AI provider has their own privacy policy governing how they handle data sent to their APIs. We encourage you to review the privacy policy of your chosen provider. Chess Coach has no control over how third-party AI providers process the chess data sent to them.</p>
+            </div>
+        </div>
+
+        <h3>API key handling (Mode B only):</h3>
+        <ul>
+            <li>Your API keys are stored <strong>exclusively on your device</strong></li>
+            <li>Keys are encrypted using <strong>AES-256-GCM</strong> via Android's EncryptedSharedPreferences</li>
+            <li>Keys are only used to authenticate API requests — they are never logged, transmitted to us, or shared with any other party</li>
+            <li>You can delete your API keys at any time from the app's Settings screen</li>
+        </ul>
+
+        <h3>Credit purchases (Mode A):</h3>
+        <ul>
+            <li>Purchases are processed by <strong>Google Play Billing</strong> — we never see your payment details</li>
+            <li>After purchase, Google Play sends us a purchase token which we verify server-side with the Google Play Developer API and then credit your account</li>
+            <li>See <a href='https://policies.google.com/privacy' target='_blank' rel='noopener noreferrer'>Google's Privacy Policy</a> for how Google Play handles payment data</li>
+        </ul>
+
+        <!-- 4. Online play -->
+        <h2 id="lichess">4. Online Play</h2>
+
+        <h3>Chess Coach online multiplayer</h3>
+        <p>Playing against other Chess Coach users is optional and requires signing in and choosing a nickname. Matchmaking and the moves of each game travel in real time to <strong>our own game server</strong> (a Hetzner VPS operated by us), which relays them to your opponent and stores the finished game, your ratings and your win/loss record in our Supabase backend.</p>
+        <p>Your <strong>nickname, country flag, ratings and results are visible to other players</strong> in the lobby, during games and in the public ranking. Your email address is never shown to other players.</p>
+
+        <h3>Lichess integration</h3>
+        <p>Chess Coach offers optional online play through <a href='https://lichess.org' target='_blank' rel='noopener noreferrer'>Lichess.org</a>, a free and open-source chess platform.</p>
+
+        <h3>Authentication:</h3>
+        <ul>
+            <li>Lichess login uses <strong>OAuth 2.0 with PKCE</strong> (industry-standard secure authentication)</li>
+            <li>Chess Coach <strong>never sees or stores your Lichess password</strong></li>
+            <li>The OAuth token is stored encrypted on your device and can be revoked at any time</li>
+        </ul>
+
+        <h3>Data exchanged with Lichess:</h3>
+        <ul>
+            <li>Your Lichess username and rating (for display in the app)</li>
+            <li>Game moves and clock data during online matches</li>
+            <li>Game seek parameters (time control, color preference)</li>
+        </ul>
+        <h3>Endgame tablebase (no account needed)</h3>
+        <p>In the <strong>Endgame Lab</strong>, when you tap <em>Hint</em>, the app may look up the position in the public <a href='https://tablebase.lichess.ovh' target='_blank' rel='noopener noreferrer'>Lichess tablebase</a> to give you the exact best move. This is <strong>separate from online play</strong>: it needs no Lichess account and no login.</p>
+        <ul>
+            <li><strong>What is sent:</strong> only the chess position (a FEN string) of the exercise you are solving. As with any web request, Lichess also sees your IP address.</li>
+            <li><strong>What is NOT sent:</strong> no account, no email, no nickname, no device identifier and nothing that identifies you. The request carries no credentials of any kind.</li>
+            <li><strong>When:</strong> only when you ask for a hint. Never in the background, never while you simply play.</li>
+            <li><strong>If you are offline</strong> the lookup is skipped silently and the hint is computed on your device by the chess engine. The feature keeps working without an internet connection.</li>
+            <li>We do not store these lookups. The position is kept in memory only, to avoid asking twice for the same one.</li>
+        </ul>
+
+        <p>For details on how Lichess handles your data, see the <a href='https://lichess.org/privacy' target='_blank' rel='noopener noreferrer'>Lichess Privacy Policy</a>.</p>
+
+        <!-- 5. Data Storage -->
+        <h2 id="data-storage">5. Data Storage & Security</h2>
+        <ul>
+            <li><strong>Your chess data is stored locally</strong> on your device (Android or iOS)</li>
+            <li>Chess games and analysis are stored in a local SQLite database (Room)</li>
+            <li>Sensitive data (API keys, OAuth tokens) is encrypted using <strong>AES-256-GCM</strong></li>
+            <li>Preferences are stored in Android's DataStore</li>
+            <li>The Stockfish chess engine runs <strong>entirely on your device</strong> — no server processing</li>
+            <li>Core features (Stockfish, puzzles, games) work fully offline; the only data they send is the bot game statistics described in section 2, queued and uploaded when there is a connection</li>
+            <li>The optional AI backend (Mode A) runs on <strong>Supabase in the EU region</strong> and stores only the data listed in section 3 and the bot game statistics of section 2 (email, credit balance, usage log, device hash)</li>
+            <li><strong>All data in transit is encrypted</strong> with HTTPS/TLS — our backend, our game server, Firebase and every AI provider</li>
+        </ul>
+
+        <!-- 6. Data Sharing -->
+        <h2 id="data-sharing">6. Data Sharing</h2>
+        <p>Chess Coach does <strong>not sell or rent</strong> your personal data. Data is only transmitted in the following cases:</p>
+        <ul>
+            <li>Chess position data sent to AI providers <strong>only when you actively request AI analysis</strong> (either via our backend in Mode A or directly from your device in Mode B)</li>
+            <li>Your account email and credit/usage data stored in our Supabase backend (Mode A only, requires your explicit Google Sign-In on Android or Sign in with Apple on iOS)</li>
+            <li>Your nickname, country flag, ratings and game moves sent to our game server and shown to other players during online multiplayer (optional feature)</li>
+            <li>Usage events, crash logs and diagnostics sent to Firebase Analytics and Firebase Crashlytics (Google), never linked to your email or nickname</li>
+            <li>Bot game statistics (bot, engine, result, number of moves, colour, platform and when the game ended) sent automatically to our backend with a random installation ID, never linked to your account (section 2)</li>
+            <li>Purchase tokens sent to Google Play Developer API for server-side verification (only when you buy credits)</li>
+            <li>Game data exchanged with Lichess during <strong>online play</strong> (optional feature, requires your Lichess OAuth login), and the chess position of the exercise sent to the <strong>Lichess tablebase</strong> when you ask for a hint in the Endgame Lab (no account, no identifiers)</li>
+        </ul>
+        <p>The app contains <strong>no ads, no advertising identifiers and no cross-app trackers</strong>. The only third-party SDK that collects data is Google's Firebase (Analytics, Crashlytics and Remote Config), described in section 2. <strong>We never sell your data</strong>, and we only transfer it to the providers listed above so they can operate the feature you asked for on our behalf.</p>
+
+        <!-- 7. Children -->
+        <h2 id="children">7. Children's Privacy</h2>
+        <p>Chess Coach is not directed at children under 13 and we do not knowingly collect personal information from them. The offline part of the app collects no personal data, except the bot game statistics described in section 2, which are never linked to an account. The optional features that do — signing in, AI coaching, online multiplayer and purchases — require an account and are described above; if you are a parent and believe your child created an account, contact us using section 10 and we will delete it.</p>
+        <p>Parents or guardians should be aware that the AI coaching feature involves third-party AI providers and, in Mode A, in-app purchases via Google Play Billing. We recommend parental supervision and enabling Google Play parental controls for this feature.</p>
+
+        <!-- 8. Your Rights -->
+        <h2 id="rights">8. Your Rights</h2>
+        <p>You retain full control over your data. Under GDPR (if you are in the EU) you have the rights of access, rectification, erasure, restriction, portability, and objection with respect to any data we store about you. To exercise any of these rights, contact us using the details in section 10.</p>
+        <ul>
+            <li><strong>Delete local data:</strong> Clear app data from Android Settings, or uninstall the app (on iOS, deleting the app removes its local data)</li>
+            <li><strong>Delete BYOK API keys:</strong> Remove them from the Settings screen within the app</li>
+            <li><strong>Sign out:</strong> Settings → Account → Sign out. Your local app data remains untouched; the backend account and credit balance remain available if you sign in again.</li>
+            <li><strong>Delete your account and the data linked to it:</strong> see the section below</li>
+            <li><strong>Bot game statistics:</strong> they are not linked to your account, so deleting it does not remove them; they are deleted automatically after 25 months</li>
+            <li><strong>Revoke Lichess access:</strong> Disconnect from Settings or revoke the token from your Lichess account</li>
+            <li><strong>Export your games:</strong> Games can be exported as PGN files at any time</li>
+            <li><strong>Disable AI features:</strong> Skip the sign-in step (Mode A stays disabled) and don't configure a BYOK API key — the app works fully offline</li>
+        </ul>
+
+        <h3 id="delete-account">Account and data deletion</h3>
+        <p>This section explains how to delete your <strong>Chess Coach</strong> account (app published by <strong>JuanfranDevs</strong>) and the data linked to it. There are two ways, and both erase exactly the same data.</p>
+        <p><strong>From inside the app (immediate):</strong> open <strong>Settings → Account → Delete my account</strong>, read the confirmation screen and confirm. The deletion happens right away and you are signed out. This is the fastest route and needs no email.</p>
+        <p><strong>By email (up to 30 days):</strong> use this if you no longer have the app installed, or if the in-app deletion fails.</p>
+        <ol>
+            <li>Send an email to <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a> <strong>from the address you signed in with</strong>, with the subject <strong>"Delete my account"</strong>. No other proof is needed — sending the request from your own address is what identifies you.</li>
+            <li>We delete your account within <strong>30 days</strong> and reply to that same address to confirm it is done.</li>
+        </ol>
+        <ul>
+            <li><strong>What is deleted:</strong> your user record (email, account ids, nickname, country, ratings and results), your usage log, your cached AI hints, your online games and your device-grant records</li>
+            <li><strong>One detail about online games:</strong> a finished multiplayer game is a single record that belongs to <em>both</em> players, so we cannot destroy your opponent's copy of it. Your side of that record is detached instead — your account id is removed and your nickname is replaced with a placeholder — so the game survives for your opponent but is no longer linked to you.</li>
+            <li><strong>What is kept, and for how long:</strong> the accounting record of your purchases (amount, date and transaction id), which Spanish commercial and tax law obliges us to keep for up to <strong>6 years</strong> from the transaction. It is anonymised at deletion time — the email address and account id are stripped, so the record can no longer be traced back to you.</li>
+            <li><strong>Analytics and crash data</strong> are not affected: they were never linked to your email or nickname, and Firebase deletes them automatically according to its own retention window</li>
+            <li><strong>Note:</strong> deleting your account also deletes any unused credits and does not entitle you to a refund; refunds are handled by Google Play or the App Store</li>
+        </ul>
+
+        <!-- 9. Changes -->
+        <h2 id="changes">9. Changes to This Policy</h2>
+        <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically. Continued use of the app after any changes constitutes acceptance of the updated policy.</p>
+
+        <!-- 10. Contact -->
+        <h2 id="contact">10. Contact</h2>
+        <p>If you have any questions or concerns about this privacy policy, please contact us:</p>
+        <ul>
+            <li><strong>Developer:</strong> JuanfranDevs</li>
+            <li><strong>Email:</strong> <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a></li>
+            <li><strong>GitHub:</strong> <a href='https://github.com/juanfranj' target='_blank' rel='noopener noreferrer'>github.com/juanfranj</a></li>
+        </ul>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>Chess Coach by <a href="https://github.com/juanfranj" target="_blank" rel="noopener noreferrer">JuanfranDevs</a></span>
+            <span>&copy; 2026</span>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        // Navbar scroll
+        var nav = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // Hamburger
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                var open = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('open', open);
+                hamburger.setAttribute('aria-expanded', open);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+    })();
+    </script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+</body>
+</html>

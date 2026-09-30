@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo crear una API key de DeepSeek — Chess Coach</title>
+    <meta name="description" content="Guía paso a paso para crear una API key de DeepSeek, añadir saldo y usarla en Chess Coach.">
+    <link rel="canonical" href="https://chesscoach-app.com/es/deepseek-setup.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/deepseek-setup.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/deepseek-setup.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/deepseek-setup.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cómo crear una API key de DeepSeek — Chess Coach">
+    <meta property="og:description" content="Guía paso a paso para crear una API key de DeepSeek, añadir saldo y usarla en Chess Coach.">
+    <meta property="og:url" content="https://chesscoach-app.com/es/deepseek-setup.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cómo crear una API key de DeepSeek — Chess Coach">
+    <meta name="twitter:description" content="Guía paso a paso para crear una API key de DeepSeek, añadir saldo y usarla en Chess Coach.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="en_GB">
+    <link rel="icon" type="image/png" href="../app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+
+    <style>
+        .setup-step {
+            display: flex;
+            gap: var(--space-5);
+            position: relative;
+        }
+        .setup-step + .setup-step {
+            margin-top: var(--space-6);
+        }
+        .setup-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--deepseek-accent), #6366f1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+        }
+        .setup-step-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .setup-step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        .setup-step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        .setup-step-desc a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .hero-provider-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(129, 140, 248, 0.15);
+            border: 2px solid var(--deepseek-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+        }
+        /* Payment option cards */
+        .payment-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            transition: all var(--transition);
+        }
+        .payment-card:hover {
+            border-color: var(--border-hover);
+        }
+        .payment-card.payment-recommended {
+            border-color: var(--success);
+            box-shadow: 0 0 0 1px var(--success), 0 4px 24px rgba(52, 211, 153, 0.1);
+        }
+        .payment-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .payment-card-letter {
+            width: 34px;
+            height: 34px;
+            background: var(--deepseek-accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-sm);
+            color: white;
+            flex-shrink: 0;
+        }
+        .payment-recommended .payment-card-letter {
+            background: var(--success);
+        }
+        .payment-card-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+        }
+        .payment-card-body {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+        }
+        .payment-card-body ol {
+            margin: var(--space-3) 0 0;
+            padding-left: var(--space-5);
+        }
+        .payment-card-body ol li {
+            margin-bottom: var(--space-2);
+        }
+        .payment-card-body a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .payment-card-note {
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--border-subtle);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        @media (max-width: 640px) {
+            .setup-step {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+            .setup-step-number {
+                width: 38px;
+                height: 38px;
+                font-size: var(--text-base);
+            }
+            .payment-card-header {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Top bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="api-setup.html" class="back-link" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Volver a las guías</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../deepseek-setup.html" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="deepseek-setup.html" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section gradient-hero" style="padding-top: 8rem; padding-bottom: var(--space-12);">
+        <div class="container container-md text-center">
+            <div class="hero-provider-icon reveal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--deepseek-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h1 class="reveal">Configurar API Key de DeepSeek</h1>
+            <p class="section-subtitle mt-4 reveal">Guía completa para crear tu API key y agregar fondos en el proveedor de IA más económico.</p>
+
+            <!-- Benefits in hero -->
+            <div class="flex flex-col gap-3 mt-8 reveal" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="alert alert-info">
+                    <span class="alert-icon">$</span>
+                    <span>Muy económico para análisis de ajedrez ($0.22/M entrada, $0.66/M salida)</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#128176;</span>
+                    <span>5 millones de tokens gratis al registrarte (sin tarjeta de crédito)</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128279;</span>
+                    <span>API compatible con el formato de OpenAI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container container-md">
+
+        <!-- Part 1: Creating your API Key -->
+        <section class="section">
+            <div class="section-header reveal" style="text-align: left; margin-bottom: var(--space-8);">
+                <div class="section-label" style="justify-content: flex-start;">
+                    <span>Parte 1</span>
+                </div>
+                <h2 class="section-title">Crear tu API Key</h2>
+            </div>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Crear una cuenta</div>
+                        <p class="setup-step-desc">Visita <a href="https://platform.deepseek.com" target="_blank" rel="noopener">platform.deepseek.com</a> y haz clic en <strong>"Sign Up"</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Verificar tu email</div>
+                        <p class="setup-step-desc">Revisa tu bandeja de entrada y haz clic en el enlace de verificación.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Verificación telefónica (opcional)</div>
+                        <p class="setup-step-desc">La verificación telefónica es opcional pero recomendada. Admite numeros internacionales de más de 180 países.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Ir a API Keys</div>
+                        <p class="setup-step-desc">En la barra lateral izquierda, haz clic en <strong>"API Keys"</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">5</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Crear API Key</div>
+                        <p class="setup-step-desc">Haz clic en <strong>"Create API Key"</strong> y ponle un nombre descriptivo (ej. "Chess Coach").</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">6</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Copiar tu clave</div>
+                        <p class="setup-step-desc">Copia la clave inmediatamente — <strong>no se mostrará de nuevo</strong> después de cerrar la ventana.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">7</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Pegar en Chess Coach</div>
+                        <p class="setup-step-desc">Abre Chess Coach → Ajustes → Sección IA → Selecciona <strong>"DeepSeek Chat"</strong> → Configurar → Pega tu API key.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2: Adding Funds -->
+        <section class="section">
+            <div class="section-header reveal" style="text-align: left; margin-bottom: var(--space-8);">
+                <div class="section-label" style="justify-content: flex-start;">
+                    <span>Parte 2</span>
+                </div>
+                <h2 class="section-title">Agregar Fondos (para usuarios internacionales)</h2>
+            </div>
+
+            <div class="alert alert-warning mb-8 reveal">
+                <span class="alert-icon">&#9888;&#65039;</span>
+                <div>
+                    <strong>El pago puede ser complicado</strong>
+                    <p class="mt-4 text-sm" style="color: var(--text-secondary);">DeepSeek es una empresa china y el pago puede ser complicado para usuarios fuera de China. A continuación tus opciones, de la más fácil a la más compleja.</p>
+                </div>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="flex flex-col gap-6 reveal">
+
+                <!-- Option A: Free tokens (Recommended) -->
+                <div class="payment-card payment-recommended">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">A</div>
+                        <div class="payment-card-title">Usa tus tokens gratis primero</div>
+                        <span class="badge badge-success" style="margin-left: auto;">Recomendado</span>
+                    </div>
+                    <div class="payment-card-body">Las cuentas nuevas reciben <strong>5 millones de tokens gratis</strong>. Esto es suficiente para muchas sesiones de análisis. Pruebalo antes de preocuparte por el pago.</div>
+                </div>
+
+                <!-- Option B: PayPal -->
+                <div class="payment-card">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">B</div>
+                        <div class="payment-card-title">PayPal</div>
+                    </div>
+                    <div class="payment-card-body">Si PayPal está disponible en tu país:<ol><li>Ve a <a href="https://platform.deepseek.com/top_up" target="_blank" rel="noopener">platform.deepseek.com/top_up</a></li><li>Selecciona <strong>"PayPal"</strong></li><li>Sigue el flujo de pago de PayPal</li><li>Recarga minima: ~$2</li></ol></div>
+                    <div class="payment-card-note">Nota: PayPal NO está disponible en todos los países. Si ves un error, prueba las otras opciones.</div>
+                </div>
+
+                <!-- Option C: Bank Card -->
+                <div class="payment-card">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">C</div>
+                        <div class="payment-card-title">Tarjeta Bancaria</div>
+                    </div>
+                    <div class="payment-card-body"><ol><li>Ve a <strong>Top Up</strong> → Selecciona <strong>"Bank Card"</strong></li><li>Introduce los datos de tu Visa/Mastercard</li><li>Algunas tarjetas internacionales pueden ser rechazadas dependiendo de tu región</li></ol></div>
+                </div>
+
+                <!-- Option D: Virtual Card with Crypto -->
+                <div class="payment-card">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">D</div>
+                        <div class="payment-card-title">Tarjeta Virtual con Cripto</div>
+                    </div>
+                    <div class="payment-card-body">Si PayPal y las tarjetas bancarias no funcionan, puedes usar una tarjeta virtual financiada con cripto:<ol><li>Crea una cuenta en un servicio como <strong>Kazawallet</strong> (<a href="https://kazawallet.com" target="_blank" rel="noopener">kazawallet.com</a>) — requiere verificación de identidad (KYC)</li><li>Deposita criptomonedas (USDT recomendado por estabilidad)</li><li>Convierte a USD y emite una tarjeta Visa virtual</li><li>Usa los datos de la tarjeta virtual en la opción "Bank Card" de DeepSeek</li></ol></div>
+                    <div class="payment-card-note">Nota: se aplican comisiones (~4% en total).</div>
+                </div>
+
+                <!-- Option E: OpenRouter -->
+                <div class="payment-card payment-recommended">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">E</div>
+                        <div class="payment-card-title">Usar OpenRouter como intermediario</div>
+                        <span class="badge badge-success" style="margin-left: auto;">Alternativa recomendada</span>
+                    </div>
+                    <div class="payment-card-body">Si no puedes pagar a DeepSeek directamente, <strong>OpenRouter.ai</strong> actua como intermediario:<ol><li>Crea una cuenta en <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a></li><li>Compra créditos con una tarjeta de crédito normal (usan Stripe — funciona en todo el mundo)</li><li>En los ajustes de Chess Coach, usa la API key de OpenRouter en su lugar</li></ol></div>
+                    <div class="alert alert-info mt-4">
+                        <span class="alert-icon">&#128161;</span>
+                        <span>El proveedor DeepSeek de Chess Coach usa el mismo formato de API que OpenRouter, lo que hace que sea una alternativa transparente.</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Precios</h2>
+            <!-- DeepSeek prices changed on 2026-08-16. These are the OFF-PEAK rates (17 h a day).
+                 During peak hours (01:00-04:00 and 06:00-10:00 UTC) they double to $0.44 in / $1.32 out. -->
+            <div class="reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Precio por 1M tokens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Entrada</td>
+                            <td><strong style="color: var(--deepseek-accent);">$0.22</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Salida</td>
+                            <td><strong style="color: var(--deepseek-accent);">$0.66</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-success mt-6">
+                    <span class="alert-icon">&#128176;</span>
+                    <span><strong>DeepSeek es una de las opciones más baratas</strong> — varias veces más económico que los modelos premium. Qwen 3.7 Flash es aun más barato.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important notes -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Notas importantes</h2>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="alert alert-warning">
+                    <span class="alert-icon">&#9888;&#65039;</span>
+                    <span>DeepSeek ha suspendido ocasionalmente las recargas de cuentas nuevas debido a la alta demanda.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#9203;</span>
+                    <span>Los tiempos de respuesta pueden variar durante las horas punta.</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#128640;</span>
+                    <span>Los 5 millones de tokens gratis son suficientes para pruebas extensivas.</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>Chess Coach — Tu Entrenador de Ajedrez con IA</span>
+            <a href="api-setup.html">Todas las guías</a>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        var navbar = document.querySelector('.navbar');
+        if (navbar) window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            reveals.forEach(function(el) { observer.observe(el); });
+        } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+    })();
+    </script>
+
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+</body>
+</html>

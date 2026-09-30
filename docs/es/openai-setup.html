@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo crear una API key de OpenAI — Chess Coach</title>
+    <meta name="description" content="Guía paso a paso para crear una API key de OpenAI y usarla en Chess Coach.">
+    <link rel="canonical" href="https://chesscoach-app.com/es/openai-setup.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/openai-setup.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/openai-setup.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/openai-setup.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cómo crear una API key de OpenAI — Chess Coach">
+    <meta property="og:description" content="Guía paso a paso para crear una API key de OpenAI y usarla en Chess Coach.">
+    <meta property="og:url" content="https://chesscoach-app.com/es/openai-setup.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cómo crear una API key de OpenAI — Chess Coach">
+    <meta name="twitter:description" content="Guía paso a paso para crear una API key de OpenAI y usarla en Chess Coach.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta name="author" content="JuanfranDevs">
+    <link rel="icon" type="image/png" href="../app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+
+    <style>
+        .setup-step {
+            display: flex;
+            gap: var(--space-5);
+            position: relative;
+        }
+        .setup-step + .setup-step {
+            margin-top: var(--space-6);
+        }
+        .setup-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--openai-accent), #059669);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        .setup-step-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .setup-step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        .setup-step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        .setup-step-desc a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .hero-provider-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid var(--openai-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+        }
+        @media (max-width: 640px) {
+            .setup-step {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+            .setup-step-number {
+                width: 38px;
+                height: 38px;
+                font-size: var(--text-base);
+            }
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Top bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="api-setup.html" class="back-link" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Volver a las guías</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../openai-setup.html" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="openai-setup.html" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section gradient-hero" style="padding-top: 8rem; padding-bottom: var(--space-12);">
+        <div class="container container-md text-center">
+            <div class="hero-provider-icon reveal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--openai-accent)"><path d="M22.2 8.7C21.8 7.2 20.8 5.9 19.5 5.1C17.6 3.8 15.1 3.6 13 4.5C11.9 3.4 10.3 2.8 8.7 2.9C7 3 5.5 3.8 4.5 5.1C2.7 6.7 2.1 9.2 2.8 11.4C1.7 12.5 1.1 14.1 1.2 15.7C1.4 17.4 2.2 18.9 3.5 19.8C5.4 21.1 7.9 21.3 10 20.4C11.1 21.5 12.7 22.1 14.3 22C16 21.9 17.5 21.1 18.5 19.8C20.3 18.2 20.9 15.7 20.2 13.5C21.3 12.4 21.9 10.8 21.8 9.2L22.2 8.7Z"/></svg>
+            </div>
+            <div class="badge mb-6 reveal" style="border-color: rgba(16, 185, 129, 0.3); color: var(--openai-accent); background: rgba(16, 185, 129, 0.1);">Configuración del proveedor IA</div>
+            <h1 class="reveal">Configuración de API Key de OpenAI</h1>
+            <p class="section-subtitle mt-4 reveal">Sigue estos pasos para obtener tu API key de OpenAI y comenzar a usar GPT-5.6 Luna en Chess Coach para coaching inteligente de ajedrez.</p>
+        </div>
+    </section>
+
+    <div class="container container-md">
+
+        <!-- What you'll get -->
+        <section class="section" style="padding-top: var(--space-8);">
+            <h2 class="font-display mb-6 reveal">Lo que obtendrás</h2>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(16, 185, 129, 0.15); color: var(--openai-accent);">&#129302;</div>
+                    <div class="card-title">GPT-5.6 Luna</div>
+                    <div class="card-text">Gran calidad, precio accesible</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(16, 185, 129, 0.15); color: var(--openai-accent);">&#128241;</div>
+                    <div class="card-title">Verificación telefónica</div>
+                    <div class="card-text">Verificación por SMS requerida</div>
+                </div>
+                <div class="card reveal text-center">
+                    <div class="card-icon mx-auto" style="background: rgba(16, 185, 129, 0.15); color: var(--openai-accent);">&#128179;</div>
+                    <div class="card-title">Tarjeta de crédito</div>
+                    <div class="card-text">Necesaria para uso de la API</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-step guide -->
+        <section class="section">
+            <h2 class="font-display mb-8 reveal">Guía paso a paso</h2>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Crea una cuenta</div>
+                        <p class="setup-step-desc">Visita <a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a> y haz clic en <strong>"Sign up"</strong>. Puedes usar email, Google, Microsoft o Apple.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Verifica tu email</div>
+                        <p class="setup-step-desc">Revisa tu bandeja de entrada y haz clic en el enlace de verificación enviado por OpenAI.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Verifica tu número de teléfono</div>
+                        <p class="setup-step-desc">OpenAI requiere verificación por SMS. Introduce tu número de teléfono y el código que recibas por mensaje de texto.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Configura la facturación</div>
+                        <p class="setup-step-desc">Ve a <strong>Settings → Billing → Add payment method</strong>. Necesitas agregar créditos (mínimo ~$5) para usar la API.</p>
+                        <div class="alert alert-info mt-4">
+                            <span class="alert-icon">&#128161;</span>
+                            <span>Puedes omitir esto inicialmente, pero la API no funcionara sin créditos cargados en tu cuenta.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">5</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Navega a API Keys</div>
+                        <p class="setup-step-desc">En la barra lateral izquierda, haz clic en <strong>"API Keys"</strong> o ve directamente a <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">platform.openai.com/api-keys</a>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">6</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Crea una nueva clave secreta</div>
+                        <p class="setup-step-desc">Haz clic en <strong>"Create new secret key"</strong>. Dale un nombre descriptivo como <strong>"Chess Coach"</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">7</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Copia tu clave inmediatamente!</div>
+                        <p class="setup-step-desc">Tu API key (comienza con <code class="code-inline">sk-...</code>) se muestra en pantalla. Cópiala de inmediato.</p>
+                        <div class="alert alert-error mt-4">
+                            <span class="alert-icon">&#9888;&#65039;</span>
+                            <span><strong>IMPORTANTE:</strong> La clave solo se muestra <strong>UNA VEZ</strong>. Si cierras el diálogo sin copiarla, tendrás que crear una nueva. No hay forma de verla de nuevo.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">8</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Pega la clave en Chess Coach</div>
+                        <p class="setup-step-desc">Abre <strong>Chess Coach → Ajustes → Sección IA → Selecciona "OpenAI GPT-5.6 Luna" → Configurar → Pega tu API key</strong>.</p>
+                        <div class="alert alert-success mt-4">
+                            <span class="alert-icon">&#9989;</span>
+                            <span>Tu clave se almacena de forma segura en tu dispositivo usando cifrado AES-256-GCM. Nunca se envía a nuestros servidores.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Precios</h2>
+            <div class="reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Entrada (1M tokens)</th>
+                            <th>Salida (1M tokens)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="recommended">
+                            <td>
+                                <strong>GPT-5.6 Luna</strong>
+                                <span class="badge badge-success" style="margin-left: var(--space-2);">Recomendado</span>
+                            </td>
+                            <td>$0.20</td>
+                            <td>$1.20</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GPT-5.6 Terra</strong></td>
+                            <td>$2.00</td>
+                            <td>$12.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Important notes -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Notas importantes</h2>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="alert alert-warning">
+                    <span class="alert-icon">&#128176;</span>
+                    <span>Configura un <strong>límite de gasto</strong> en <strong>Settings → Billing → Usage limits</strong> para evitar cargos inesperados. Recomendamos empezar con $5-10/mes.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128275;</span>
+                    <span>La API key es <strong>independiente</strong> de una suscripción a ChatGPT Plus. Tener ChatGPT Plus no te da acceso a la API; necesitas agregar créditos por separado.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128200;</span>
+                    <span>Los <strong>límites de uso</strong> aumentan a medida que gastas más (sistema de Tiers). Las cuentas nuevas comienzan en Tier 1. Para el uso de Chess Coach, el Tier 1 es más que suficiente.</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span><span>Chess Coach por</span> <a href="https://github.com/juanfranj" target="_blank" rel="noopener noreferrer">JuanfranDevs</a></span>
+            <span>&copy; 2026</span>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        var navbar = document.querySelector('.navbar');
+        if (navbar) window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            reveals.forEach(function(el) { observer.observe(el); });
+        } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+    })();
+    </script>
+
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+</body>
+</html>

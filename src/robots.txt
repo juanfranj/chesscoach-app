@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chesscoach-app.com/sitemap.xml

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Coach — el entrenador de ajedrez con IA que te explica tus jugadas</title>
+    <meta name="description" content="Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.">
+    <link rel="canonical" href="https://chesscoach-app.com/es/">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chess Coach — el entrenador de ajedrez con IA que te explica tus jugadas">
+    <meta property="og:description" content="Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.">
+    <meta property="og:url" content="https://chesscoach-app.com/es/">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chess Coach — el entrenador de ajedrez con IA que te explica tus jugadas">
+    <meta name="twitter:description" content="Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="en_GB">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "Chess Coach", "alternateName": ["CheesCoach", "Chess Coach AI"], "url": "https://chesscoach-app.com/", "inLanguage": ["en", "es"]}, {"@type": "MobileApplication", "name": "Chess Coach", "alternateName": "CheesCoach", "description": "Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.", "operatingSystem": "ANDROID, IOS", "applicationCategory": "GameApplication", "applicationSubCategory": "Board game", "inLanguage": ["en", "es"], "installUrl": ["https://play.google.com/store/apps/details?id=com.app.cheescoach", "https://apps.apple.com/app/id6790447113"], "sameAs": ["https://play.google.com/store/apps/details?id=com.app.cheescoach", "https://apps.apple.com/app/id6790447113"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "author": {"@type": "Person", "name": "JuanfranDevs"}, "image": "https://chesscoach-app.com/images/og-card.jpg", "url": "https://chesscoach-app.com/es/"}]}</script>
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="../images/app/icon.webp">
+    <link rel="apple-touch-icon" href="../app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/landing.css">
+</head>
+<body>
+
+<svg class="piece-sprite" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute">
+  <symbol id="p-wk" viewBox="0 0 50 50"><path d="m27.67 15.225v-3.5436h4.4396v-4.4293h-4.9344v-3.8933h-4.366v3.8933h-4.9344v4.4293h4.4396v3.5436" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linecap="round"/><path d="M21.69265,14.215 h6.6111 a1.39365,1.39365 0 0 1 1.39365,1.39365 v0.0 a1.39365,1.39365 0 0 1 -1.39365,1.39365 h-6.6111 a1.39365,1.39365 0 0 1 -1.39365,-1.39365 v-0.0 a1.39365,1.39365 0 0 1 1.39365,-1.39365 z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m26.416 14.215c0.72479 0 1.3082 0.62142 1.3082 1.3935 0 0.77209-0.58336 1.3935-1.3082 1.3935h1.9736c0.72478 0 1.3081-0.62144 1.3081-1.3935 0-0.77209-0.58336-1.3935-1.3081-1.3935z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m21.631 14.842c-0.40169 0-0.72499 0.34468-0.72499 0.77259 0 0.42787 0.3233 0.77227 0.72499 0.77227h0.87379c-0.40169 0-0.72499-0.3444-0.72499-0.77227 0-0.42791 0.3233-0.77259 0.72499-0.77259z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m33.635 36.986s7.776-13.318 6.6127-15.916c-1.1632-2.5964-8.4802-4.4974-15.248-4.4974-6.7677 0-14.084 1.9004-15.248 4.4974-1.1632 2.5966 6.6127 15.916 6.6127 15.916z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linecap="round"/><path d="m24.996 16.576c15.938 2.6216 12.573 9.3539 6.6406 22.543l2.0273-1.7288s7.7472-13.723 6.5839-16.32c-1.5452-2.8334-7.5027-4.1592-15.252-4.4945z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m23.765 17.295c-3.904-0.18436-14.621 1.8014-13.503 5.0167 0.81724 3.7274 2.7544 7.244 4.5085 10.504-5.6872-10.335-5.9421-13.774 8.9943-15.521z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m23.391 3.997-0.01613 3.3123h0.54565l0.01622-3.3123zm-4.9311 3.8699-0.0075 3.2077h0.77316l0.0075-3.2077zm4.4128 3.213 0.02573 2.4859h0.52l-0.02573-2.4859z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m26.189 3.3582-1.9e-5 3.8935h0.98678l2.8e-5 -3.8935zm4.441 3.8937v4.9453h1.4802v-4.9453zm-4.4396 4.4291 2.7e-5 2.4923h1.4802l-2.8e-5 -2.4923z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.0481-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.23495-2.6723-0.17255-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.13732-11.624 1.6658c-0.36985 0.22904-0.69925 0.83943-0.95359 1.3902 0.26077-0.3313 0.50213-0.61301 0.88663-0.84901 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.0479 11.692 1.6191c0.39104 0.24 0.59243 0.53161 0.85561 0.87009 0.0258-0.0759-0.40837-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-wq" viewBox="0 0 50 50"><path d="m24.959 5.0937a2.9585 3.3158 90 0 0-3.3155 2.9585 2.9585 3.3158 90 0 0 3.3155 2.9585 2.9585 3.3158 90 0 0 3.316-2.9585 2.9585 3.3158 90 0 0-3.316-2.9585z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.1999" stroke-linecap="round" stroke-linejoin="round"/><path d="m24.836 5.7323c-0.37582-0.20962-3.7243 0.80586-2.1848 3.5753-0.23547-1.5446 0.43755-3.2031 2.1848-3.5753z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m24.959 11.011c-6.5068 0-9.5953 5.8843-9.5951 10.358h19.263c1.99e-4 -4.4741-3.1607-10.358-9.6676-10.358z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m18.161 14.977c1.0418-1.4783 2.9196-3.2199 6.8404-3.3796-0.31072 0.27709-4.7888 1.1374-6.8404 3.3796z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m24.836 5.0067s0.04572 0.23808-1e-4 0c2.4799 1.1289 2.0497 3.8473 0.81734 5.547 7.3536 3.8036 2.2125 8.669 2.2122 8.6681h2.7008c1.7619 1.287 7.2086-2.7409-3.8351-8.669 3.5276-3.1154 0.09642-5.6072-1.8952-5.5466z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m25 15.225c-1.971 0-2.3483 2.6494-4.1366 2.8592-1.8213 0.21366-3.3816-2.3114-5.2505-1.7361-1.4945 0.46001-0.77828 2.5999-1.8053 3.1752-1.4018 0.78508-3.1845-1.8324-5.2902-0.29827 6.8387 8.8288 8.0859 12.377 7.9833 18.819l16.998-9.9e-5c-0.10268-6.4426 1.1445-9.9904 7.9831-18.819-2.1056-1.5341-3.8884 1.0833-5.2901 0.29827-1.0271-0.57526-0.31082-2.7152-1.8053-3.1752-1.8688-0.57526-3.4293 1.9498-5.2506 1.7361-1.7884-0.20981-2.1655-2.8592-4.1365-2.8592z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.1999" stroke-linecap="round" stroke-linejoin="round"/><path d="m9.8952 19.34c-0.13588-0.0099-0.33139 0.05615-0.45862 0.08471 3.0815 4.0999 6.5751 9.5372 7.0991 12.417-1.4062-4.9323-3.2664-9.5622-6.1403-12.472z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m39.974 18.735c-9.4852 10.003-9.9239 17.985-16.941 19.31h10.476c-0.10268-6.4427 1.1445-9.9905 7.9831-18.819 0 0-0.68803-0.75582-1.5179-0.49124z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m14.912 18.945c0.20277-0.08767 1.1841-1.8078 1.9805-1.9501-1.42-0.34555-1.6188-0.0463-1.9805 1.9501z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m22.511 17.876c0.95342-0.84704 1.6333-2.6551 3.2379-1.8453-0.79746-0.22882-2.2148 1.0403-3.2379 1.8453z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m31.12 18.133c0.20983 0.06994 2.1762-1.6423 2.8625-1.2176 0 0-1.4313 1.1196-2.8625 1.2176z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6515-1.8998 6.3237l27.182-1e-4c0.2349-2.6723-0.1726-5.2635-1.8999-6.3237-2.5598-1.5711-11.691-1.6192-11.691-1.6192z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1374-11.624 1.6658c-0.3699 0.229-0.6993 0.8394-0.9536 1.3902 0.2608-0.3313 0.5021-0.613 0.8866-0.849 2.5597-1.5711 11.691-1.6192 11.691-1.6192s9.1318 0.048 11.692 1.6192c0.3911 0.24 0.5925 0.5316 0.8556 0.87 0.026-0.076-0.4083-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-wr" viewBox="0 0 50 50"><path d="m17.932 20.414c4.9056-0.74066 9.5787-0.57845 14.136 0m-17.885-10.752c-1.0592 8.7669 1.1034 10.677 3.7482 10.752l-3.3154 18.159h20.767l-3.3154-18.159c2.6448-0.0745 4.8074-1.9849 3.7482-10.752l-3.6072-0.52917-1.0733 3.6427-3.1416-0.0995-0.5222-3.754h-4.9448l-0.52127 3.754-3.142 0.0995-1.0733-3.6427z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2"/><path d="m17.932 20.414c6.828 0 13.118 0.40763 14.948 16.572l2.3187 0.38585-3.1311-16.428c-0.03144-0.30772-6.0881-1.8224-14.136-0.52917z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m14.777 10.219 2.2766-0.28599c-1.9137 0.31197-2.3128 5.2958-2.3128 5.2958-0.23801-0.17655-0.18808-4.9033 0.03618-5.0098z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m25.276 9.5507c-1.6477 0-2.5191 2.7475-2.5191 2.7475l0.33726-2.7288z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m32.671 9.8162 0.93397 0.11826c-0.78478 0.49954-1.5905 1.9884-1.5905 1.9884z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m18.472 20.964 2.6206-0.29312c-2.6206 0.29312-4.8888 13.113-4.8888 13.113z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m34.013 9.3979c0.35682 6.3635-1.9499 10.603-8.0415 10.536l4.778 0.56323c7.5226 0.30904 5.101-10.806 5.0671-10.835z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.04814-11.691 1.6192c-1.7273 1.0602-2.1348 3.6515-1.8998 6.3237h27.182c0.23496-2.6723-0.17255-5.2635-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.146s-8.7121-0.13732-11.624 1.6658c-0.36985 0.22905-0.69926 0.83944-0.95359 1.3902 0.26077-0.3313 0.50213-0.61301 0.88664-0.84902 2.5597-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.04794 11.692 1.6191c0.39104 0.24 0.59242 0.53161 0.85561 0.87009 0.02583-0.0759-0.40837-1.1579-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-wb" viewBox="0 0 50 50"><path d="m25 5.767c-2.1056 0-3.8124 0.87865-3.8121 1.9632l1.5166 2.6505c-16.049 14.089-5.707 27.135-5.707 27.135h16.006s7.0496-8.6714 0.76227-19.51l-2.989 4.8276c-0.67072 1.0833-1.9632 1.4898-2.898 0.91107-0.93477-0.57872-1.1472-1.917-0.47652-3.0003l3.8867-6.2771c-1.1073-1.3449-2.4252-2.7101-3.9926-4.0861l1.5166-2.6505c0-1.0846-1.7066-1.9632-3.8121-1.9632z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 5.767c-0.8164 0-1.5711 0.1335-2.1913 0.35847 4.3387 0.84718 4.9765 1.1195 2.5601 4.3506l3.246 3.5665c-3.6565 8.2403-1.6037 7.9919-1.6037 7.9919s0.6964-2.6485 4.1117-7.7689c-1.0722-1.2796-2.3377-2.578-3.8266-3.8851l1.5161-2.6501c1e-4 -1.0845-1.7067-1.9631-3.8123-1.9634zm8.7655 12.238-1.0091 1.5127c3.7363 8.4129-4.1347 17.997-4.1347 17.997h4.3815c0.1581 0.0339 6.958-8.8438 0.76227-19.51z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m15.145 31.721c-0.2191-0.0314-3.4233-9.7859 5.7543-18.751-2.3019 1.895-7.1351 13.163-5.7543 18.751z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m23.292 10.196-1.4772-2.5943s0.2425-0.72175 1.7808-1.0472c-1.7266 1.3502-0.988 1.6622-0.3036 3.6415z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.2349-2.6723-0.1726-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1374-11.624 1.6658c-0.3699 0.229-0.6993 0.8394-0.9536 1.3902 0.2607-0.3313 0.5021-0.6131 0.8866-0.8491 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.048 11.692 1.6191c0.391 0.24 0.5924 0.5317 0.8556 0.8701 0.026-0.076-0.4084-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-wn" viewBox="0 0 50 50"><path d="m25.192 23.015c-0.16544 6.9672-11.758 5.2189-11.516 18.104l22.86 0.1184c-2.094-6.442 9.69-25.16-11.931-32.258v-1e-4s-2.4381-2.601-5.9655-2.8237l0.2227 3.5347-4.5583 4.5816c-2.6294 3.1455-8.7347 8.3784-7.7513 9.6111 3.1158 5.3041 6.3306 4.4316 6.3306 4.4316 4.2418-4.5433 5.8193-2.0894 12.309-5.2997z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m19.32 14.694c-0.7757 0.86088-0.6902 1.1156-0.8137 2.1503 0.8055 0.12316 1.5069 0.23982 2.2486 0.0656 2.3809-1.262 0.075-3.4026-1.4347-2.2162z" fill="#000000" fill-opacity="0.35" fill-rule="evenodd"/><path d="m9.1916 22.166c-0.8496 0.4078-0.9984 0.9608-1.0565 1.4754 0.7288 0.4181 1.8765-0.1255 2.0412-1.4316l-0.9846-0.044z" fill="#000000" fill-opacity="0.3" fill-rule="evenodd"/><path d="m8.1905 25.15s0.6525 1.1374-1.1019-1.641c0.6594-1.9774 8.263-9.0796 12.438-13.534l-0.1836-3.0857s1.0689 1.6901 1.2475 3.468c-4.3898 4.39-12.22 10.833-12.824 13.213 0.023 0.6738 0.24 1.0278 0.4231 1.5797z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m13.26 28.257c2.0291-3.3367 8.3914-3.2239 11.932-5.2424 0.3228 0.1024 0.1304 1.3697 0.2398 1.23 0.8476-1.0903 2.9259-3.279 0.8684-6.8743 0.5214 5.9575-13.718 5.5912-15.89 10.305-0.2005 0.4355 2.1818 0.7932 2.85 0.5818z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m25.8 23.781c-1.0131 5.8132-9.5449 6.1169-10.988 12.641 2.8332-6.4058 10.762-5.7136 10.988-12.641z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m18.64 6.1556s3.051 0.73807 4.9045 3.9825c20.499 7.1536 7.6413 27.937 5.7883 31.073l7.2034 0.026c-1.9871-3.2431 9.5482-25.597-11.931-32.258-1.7757-1.0691-2.7677-2.6092-5.9655-2.8238z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.235-2.6723-0.1725-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1373-11.624 1.6658c-0.3698 0.2291-0.6992 0.8394-0.9536 1.3902 0.2608-0.3313 0.5022-0.613 0.8867-0.849 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.048 11.692 1.6191c0.391 0.24 0.5924 0.5316 0.8556 0.8701 0.026-0.076-0.4084-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-wp" viewBox="0 0 50 50"><path d="m21.503 27.594h6.9944m-9.4974-10.086c0 1.7315 0.7123 3.3873 1.9657 4.587l-3.6504 2.0999 0.43091 3.3988h4.3059c-0.79438 3.559-2.7548 7.3308-5.0622 8.6173s-5.2994 3.0968-4.8425 8.189l25.706 2.1e-5c0.45687-5.0922-2.5352-6.9025-4.8425-8.189-2.3074-1.2865-4.2678-5.0583-5.0622-8.6173h4.3059l0.43091-3.3988-3.6503-2.0999c1.2533-1.1996 1.9655-2.8554 1.9655-4.5869 3.11e-4 -3.3667-2.628-5.9118-6.0006-5.9118-3.3726-1.1e-5 -6.0008 2.545-6.0006 5.9117z" fill="#F0F0F0" fill-rule="evenodd" stroke="#3C3C3C" stroke-width="1.2" stroke-linejoin="round"/><path d="m24.962 11.537c1.1709-0.4586 9.5273 5.9057 0.64714 10.773l4.512 2.1-0.56221 3.125h2.6586l0.42868-3.3987-3.6504-2.0999c1.2534-1.1996 1.9618-2.5812 1.9646-4.3128-0.46888-5.4159-5.9985-6.1861-5.9985-6.1861zm-2.9485 15.998c4.5025 7.9337 9.4701 9.994 13.074 9.9646l-2.1157-1.347c-2.075-1.4895-4.7317-4.8572-5.0622-8.6177z" fill="#000000" fill-opacity="0.15" fill-rule="evenodd"/><path d="m21.983 22.213-1.647 2.3466-2.3561-0.01371 4.013-2.3234z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m24.307 12.267c-2.5425 0.1381-5.73 3.1733-4.3848 6.9183l0.19878 0.64312c-0.3298-3.4894 2.1268-7.1169 4.186-7.5614z" fill="#FFFFFF" fill-rule="evenodd"/><path d="m17.863 37.625c-3.9839 2.3053-5.117 6.1402-5.117 6.1402-0.01037 0-0.54754-4.1751 3.9564-6.654 4.5039-2.4789 4.8215-6.1507 5.8602-8.8927-0.63708 3.7031-0.71573 7.1012-4.6996 9.4065z" fill="#FFFFFF" fill-rule="evenodd"/></symbol>
+  <symbol id="p-bk" viewBox="0 0 50 50"><path d="m27.67 15.225v-3.5436h4.4396v-4.4293h-4.9344v-3.8933h-4.366v3.8933h-4.9344v4.4293h4.4396v3.5436" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linecap="round"/><path d="M21.69265,14.215 h6.6111 a1.39365,1.39365 0 0 1 1.39365,1.39365 v0.0 a1.39365,1.39365 0 0 1 -1.39365,1.39365 h-6.6111 a1.39365,1.39365 0 0 1 -1.39365,-1.39365 v-0.0 a1.39365,1.39365 0 0 1 1.39365,-1.39365 z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m26.416 14.215c0.72479 0 1.3082 0.62142 1.3082 1.3935 0 0.77209-0.58336 1.3935-1.3082 1.3935h1.9736c0.72478 0 1.3081-0.62144 1.3081-1.3935 0-0.77209-0.58336-1.3935-1.3081-1.3935z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m21.631 14.842c-0.40169 0-0.72499 0.34468-0.72499 0.77259 0 0.42787 0.3233 0.77227 0.72499 0.77227h0.87379c-0.40169 0-0.72499-0.3444-0.72499-0.77227 0-0.42791 0.3233-0.77259 0.72499-0.77259z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m33.635 36.986s7.776-13.318 6.6127-15.916c-1.1632-2.5964-8.4802-4.4974-15.248-4.4974-6.7677 0-14.084 1.9004-15.248 4.4974-1.1632 2.5966 6.6127 15.916 6.6127 15.916z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linecap="round"/><path d="m24.996 16.576c15.938 2.6216 12.573 9.3539 6.6406 22.543l2.0273-1.7288s7.7472-13.723 6.5839-16.32c-1.5452-2.8334-7.5027-4.1592-15.252-4.4945z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m23.765 17.295c-3.904-0.18436-14.621 1.8014-13.503 5.0167 0.81724 3.7274 2.7544 7.244 4.5085 10.504-5.6872-10.335-5.9421-13.774 8.9943-15.521z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m23.391 3.997-0.01613 3.3123h0.54565l0.01622-3.3123zm-4.9311 3.8699-0.0075 3.2077h0.77316l0.0075-3.2077zm4.4128 3.213 0.02573 2.4859h0.52l-0.02573-2.4859z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m26.189 3.3582-1.9e-5 3.8935h0.98678l2.8e-5 -3.8935zm4.441 3.8937v4.9453h1.4802v-4.9453zm-4.4396 4.4291 2.7e-5 2.4923h1.4802l-2.8e-5 -2.4923z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.0481-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.23495-2.6723-0.17255-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.13732-11.624 1.6658c-0.36985 0.22904-0.69925 0.83943-0.95359 1.3902 0.26077-0.3313 0.50213-0.61301 0.88663-0.84901 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.0479 11.692 1.6191c0.39104 0.24 0.59243 0.53161 0.85561 0.87009 0.0258-0.0759-0.40837-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+  <symbol id="p-bq" viewBox="0 0 50 50"><path d="m24.959 5.0937a2.9585 3.3158 90 0 0-3.3155 2.9585 2.9585 3.3158 90 0 0 3.3155 2.9585 2.9585 3.3158 90 0 0 3.316-2.9585 2.9585 3.3158 90 0 0-3.316-2.9585z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.1999" stroke-linecap="round" stroke-linejoin="round"/><path d="m24.836 5.7323c-0.37582-0.20962-3.7243 0.80586-2.1848 3.5753-0.23547-1.5446 0.43755-3.2031 2.1848-3.5753z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m24.959 11.011c-6.5068 0-9.5953 5.8843-9.5951 10.358h19.263c1.99e-4 -4.4741-3.1607-10.358-9.6676-10.358z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m18.161 14.977c1.0418-1.4783 2.9196-3.2199 6.8404-3.3796-0.31072 0.27709-4.7888 1.1374-6.8404 3.3796z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m24.836 5.0067s0.04572 0.23808-1e-4 0c2.4799 1.1289 2.0497 3.8473 0.81734 5.547 7.3536 3.8036 2.2125 8.669 2.2122 8.6681h2.7008c1.7619 1.287 7.2086-2.7409-3.8351-8.669 3.5276-3.1154 0.09642-5.6072-1.8952-5.5466z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m25 15.225c-1.971 0-2.3483 2.6494-4.1366 2.8592-1.8213 0.21366-3.3816-2.3114-5.2505-1.7361-1.4945 0.46001-0.77828 2.5999-1.8053 3.1752-1.4018 0.78508-3.1845-1.8324-5.2902-0.29827 6.8387 8.8288 8.0859 12.377 7.9833 18.819l16.998-9.9e-5c-0.10268-6.4426 1.1445-9.9904 7.9831-18.819-2.1056-1.5341-3.8884 1.0833-5.2901 0.29827-1.0271-0.57526-0.31082-2.7152-1.8053-3.1752-1.8688-0.57526-3.4293 1.9498-5.2506 1.7361-1.7884-0.20981-2.1655-2.8592-4.1365-2.8592z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.1999" stroke-linecap="round" stroke-linejoin="round"/><path d="m9.8952 19.34c-0.13588-0.0099-0.33139 0.05615-0.45862 0.08471 3.0815 4.0999 6.5751 9.5372 7.0991 12.417-1.4062-4.9323-3.2664-9.5622-6.1403-12.472z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m39.974 18.735c-9.4852 10.003-9.9239 17.985-16.941 19.31h10.476c-0.10268-6.4427 1.1445-9.9905 7.9831-18.819 0 0-0.68803-0.75582-1.5179-0.49124z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m14.912 18.945c0.20277-0.08767 1.1841-1.8078 1.9805-1.9501-1.42-0.34555-1.6188-0.0463-1.9805 1.9501z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m22.511 17.876c0.95342-0.84704 1.6333-2.6551 3.2379-1.8453-0.79746-0.22882-2.2148 1.0403-3.2379 1.8453z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m31.12 18.133c0.20983 0.06994 2.1762-1.6423 2.8625-1.2176 0 0-1.4313 1.1196-2.8625 1.2176z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6515-1.8998 6.3237l27.182-1e-4c0.2349-2.6723-0.1726-5.2635-1.8999-6.3237-2.5598-1.5711-11.691-1.6192-11.691-1.6192z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1374-11.624 1.6658c-0.3699 0.229-0.6993 0.8394-0.9536 1.3902 0.2608-0.3313 0.5021-0.613 0.8866-0.849 2.5597-1.5711 11.691-1.6192 11.691-1.6192s9.1318 0.048 11.692 1.6192c0.3911 0.24 0.5925 0.5316 0.8556 0.87 0.026-0.076-0.4083-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+  <symbol id="p-br" viewBox="0 0 50 50"><path d="m17.932 20.414c4.9056-0.74066 9.5787-0.57845 14.136 0m-17.885-10.752c-1.0592 8.7669 1.1034 10.677 3.7482 10.752l-3.3154 18.159h20.767l-3.3154-18.159c2.6448-0.0745 4.8074-1.9849 3.7482-10.752l-3.6072-0.52917-1.0733 3.6427-3.1416-0.0995-0.5222-3.754h-4.9448l-0.52127 3.754-3.142 0.0995-1.0733-3.6427z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2"/><path d="m17.932 20.414c6.828 0 13.118 0.40763 14.948 16.572l2.3187 0.38585-3.1311-16.428c-0.03144-0.30772-6.0881-1.8224-14.136-0.52917z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m14.777 10.219 2.2766-0.28599c-1.9137 0.31197-2.3128 5.2958-2.3128 5.2958-0.23801-0.17655-0.18808-4.9033 0.03618-5.0098z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m25.276 9.5507c-1.6477 0-2.5191 2.7475-2.5191 2.7475l0.33726-2.7288z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m32.671 9.8162 0.93397 0.11826c-0.78478 0.49954-1.5905 1.9884-1.5905 1.9884z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m18.472 20.964 2.6206-0.29312c-2.6206 0.29312-4.8959 13.053-4.9066 13.113z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m34.013 9.3979c0.35682 6.3635-1.9499 10.603-8.0415 10.536l4.778 0.56323c7.5226 0.30904 5.101-10.806 5.0671-10.835z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.04814-11.691 1.6192c-1.7273 1.0602-2.1348 3.6515-1.8998 6.3237h27.182c0.23496-2.6723-0.17255-5.2635-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.146s-8.7121-0.13732-11.624 1.6658c-0.36985 0.22905-0.69926 0.83944-0.95359 1.3902 0.26077-0.3313 0.50213-0.61301 0.88664-0.84902 2.5597-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.04794 11.692 1.6191c0.39104 0.24 0.59242 0.53161 0.85561 0.87009 0.02583-0.0759-0.40837-1.1579-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+  <symbol id="p-bb" viewBox="0 0 50 50"><path d="m25 5.767c-2.1056 0-3.8124 0.87865-3.8121 1.9632l1.5166 2.6505c-16.049 14.089-5.707 27.135-5.707 27.135h16.006s7.0496-8.6714 0.76227-19.51l-2.989 4.8276c-0.67072 1.0833-1.9632 1.4898-2.898 0.91107-0.93477-0.57872-1.1472-1.917-0.47652-3.0003l3.8867-6.2771c-1.1073-1.3449-2.4252-2.7101-3.9926-4.0861l1.5166-2.6505c0-1.0846-1.7066-1.9632-3.8121-1.9632z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 5.767c-0.8164 0-1.5711 0.1335-2.1913 0.35847 4.3387 0.84718 4.9765 1.1195 2.5601 4.3506l3.246 3.5665c-3.6565 8.2403-1.6037 7.9919-1.6037 7.9919s0.6964-2.6485 4.1117-7.7689c-1.0722-1.2796-2.3377-2.578-3.8266-3.8851l1.5161-2.6501c1e-4 -1.0845-1.7067-1.9631-3.8123-1.9634zm8.7655 12.238-1.0091 1.5127c3.7363 8.4129-4.1347 17.997-4.1347 17.997h4.3815c0.1581 0.0339 6.958-8.8438 0.76227-19.51z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m15.145 31.721c-0.2191-0.0314-3.4233-9.7859 5.7543-18.751-2.3019 1.895-7.1351 13.163-5.7543 18.751z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m23.292 10.196-1.4772-2.5943s0.2425-0.72175 1.7808-1.0472c-1.7266 1.3502-0.988 1.6622-0.3036 3.6415z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.2349-2.6723-0.1726-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1374-11.624 1.6658c-0.3699 0.229-0.6993 0.8394-0.9536 1.3902 0.2607-0.3313 0.5021-0.6131 0.8866-0.8491 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.048 11.692 1.6191c0.391 0.24 0.5924 0.5317 0.8556 0.8701 0.026-0.076-0.4084-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+  <symbol id="p-bn" viewBox="0 0 50 50"><path d="m25.192 23.015c-0.16544 6.9672-11.758 5.2189-11.516 18.104l22.86 0.1184c-2.094-6.442 9.69-25.16-11.931-32.258v-1e-4s-2.4381-2.601-5.9655-2.8237l0.2227 3.5347-4.5583 4.5816c-2.6294 3.1455-8.7347 8.3784-7.7513 9.6111 3.1158 5.3041 6.3306 4.4316 6.3306 4.4316 4.2418-4.5433 5.8193-2.0894 12.309-5.2997z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m19.32 14.694c-0.7757 0.86088-0.6902 1.1156-0.8137 2.1503 0.8055 0.12316 1.5069 0.23982 2.2486 0.0656 2.3809-1.262 0.075-3.4026-1.4347-2.2162z" fill="#000000" fill-opacity="0.4" fill-rule="evenodd"/><path d="m9.1916 22.166c-0.8496 0.4078-0.9984 0.9608-1.0565 1.4754 0.7288 0.4181 1.8765-0.1255 2.0412-1.4316l-0.9846-0.044z" fill="#000000" fill-opacity="0.35" fill-rule="evenodd"/><path d="m8.1905 25.15s0.6525 1.1374-1.1019-1.641c0.6594-1.9774 8.263-9.0796 12.438-13.534l-0.1836-3.0857s1.0689 1.6901 1.2475 3.468c-4.3898 4.39-12.22 10.833-12.824 13.213 0.023 0.6738 0.24 1.0278 0.4231 1.5797z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m13.26 28.257c2.0291-3.3367 8.3914-3.2239 11.932-5.2424 0.3228 0.1024 0.1304 1.3697 0.2398 1.23 0.8476-1.0903 2.9259-3.279 0.8684-6.8743 0.5214 5.9575-13.718 5.5912-15.89 10.305-0.2005 0.4355 2.1818 0.7932 2.85 0.5818z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m25.8 23.781c-1.0131 5.8132-9.5449 6.1169-10.988 12.641 2.8332-6.4058 10.762-5.7136 10.988-12.641z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m18.64 6.1556s3.051 0.73807 4.9045 3.9825c20.499 7.1536 7.6413 27.937 5.7883 31.073l7.2034 0.026c-1.9871-3.2431 9.5482-25.597-11.931-32.258-1.7757-1.0691-2.7677-2.6092-5.9655-2.8238z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m25 36.457s-9.1309 0.048-11.691 1.6192c-1.7273 1.0602-2.1348 3.6514-1.8998 6.3237h27.182c0.235-2.6723-0.1725-5.2636-1.8999-6.3237-2.5597-1.5711-11.691-1.6192-11.691-1.6192z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m25 37.147s-8.7121-0.1373-11.624 1.6658c-0.3698 0.2291-0.6992 0.8394-0.9536 1.3902 0.2608-0.3313 0.5022-0.613 0.8867-0.849 2.5598-1.5711 11.691-1.6191 11.691-1.6191s9.1318 0.048 11.692 1.6191c0.391 0.24 0.5924 0.5316 0.8556 0.8701 0.026-0.076-0.4084-1.1578-1.1438-1.5962-2.7554-1.492-11.403-1.4808-11.403-1.4808z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+  <symbol id="p-bp" viewBox="0 0 50 50"><path d="m21.503 27.594h6.9944m-9.4974-10.086c0 1.7315 0.7123 3.3873 1.9657 4.587l-3.6504 2.0999 0.43091 3.3988h4.3059c-0.79438 3.559-2.7548 7.3308-5.0622 8.6173s-5.2994 3.0968-4.8425 8.189l25.706 2.1e-5c0.45687-5.0922-2.5352-6.9025-4.8425-8.189-2.3074-1.2865-4.2678-5.0583-5.0622-8.6173h4.3059l0.43091-3.3988-3.6503-2.0999c1.2533-1.1996 1.9655-2.8554 1.9655-4.5869 3.11e-4 -3.3667-2.628-5.9118-6.0006-5.9118-3.3726-1.1e-5 -6.0008 2.545-6.0006 5.9117z" fill="#5F5955" fill-rule="evenodd" stroke="#1E1E1E" stroke-width="1.2" stroke-linejoin="round"/><path d="m24.962 11.537c1.1709-0.4586 9.5273 5.9057 0.64714 10.773l4.512 2.1-0.56221 3.125h2.6586l0.42868-3.3987-3.6504-2.0999c1.2534-1.1996 1.9618-2.5812 1.9646-4.3128-0.46888-5.4159-5.9985-6.1861-5.9985-6.1861zm-2.9485 15.998c4.5025 7.9337 9.4701 9.994 13.074 9.9646l-2.1157-1.347c-2.075-1.4895-4.7317-4.8572-5.0622-8.6177z" fill="#000000" fill-opacity="0.18" fill-rule="evenodd"/><path d="m21.983 22.213-1.647 2.3466-2.3561-0.01371 4.013-2.3234z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m24.307 12.267c-2.5425 0.1381-5.73 3.1733-4.3848 6.9183l0.19878 0.64312c-0.3298-3.4894 2.1268-7.1169 4.186-7.5614z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/><path d="m17.863 37.625c-3.9839 2.3053-5.117 6.1402-5.117 6.1402-0.01037 0-0.54754-4.1751 3.9564-6.654 4.5039-2.4789 4.8215-6.1507 5.8602-8.8927-0.63708 3.7031-0.71573 7.1012-4.6996 9.4065z" fill="#FFFFFF" fill-opacity="0.25" fill-rule="evenodd"/></symbol>
+</svg>
+
+<a class="skip-link" href="#content">Saltar al contenido</a>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+            <img src="../images/app/icon.webp" alt="" width="36" height="36">
+            <span>Chess Coach</span>
+        </a>
+
+        <ul class="navbar-links" id="nav-links">
+            <li><a href="#coach">El coach</a></li>
+            <li><a href="#labs">Laboratorios</a></li>
+            <li><a href="#courses">Cursos</a></li>
+            <li><a href="#play">Jugar</a></li>
+            <li><a href="#engines">Motores</a></li>
+            <li><a href="api-setup.html">Configurar IA</a></li>
+            <li>
+                <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="./" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
+            </li>
+        </ul>
+
+        <button class="navbar-hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Menú de navegación">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<main id="content">
+
+<!-- ========== HERO ========== -->
+<header class="hero" id="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <p class="hero-kicker">
+                    <img src="../images/app/icon.webp" alt="" width="20" height="20">
+                    <span>Coach de ajedrez con IA</span>
+                </p>
+
+                <h1>Perdiste esa partida por algo. Aquí está el motivo.</h1>
+
+                <p class="hero-sub">Juega una partida y descubre qué falló de verdad. El motor que llevas en el bolsillo hace el cálculo. Un coach con IA lo convierte en una frase que puedes usar en la siguiente partida.</p>
+
+                <div class="hero-ctas">
+                    <a href="#download" class="btn btn-primary btn-lg">Descargar Chess Coach</a>
+                    <a href="#coach" class="btn btn-outline btn-lg">Ver qué te dice</a>
+                </div>
+
+                <p class="hero-note">Empieza gratis. iPhone, iPad y Android. Sin anuncios.</p>
+            </div>
+
+            <figure class="annotation">
+                <div class="annotation-head">
+                    <span class="annotation-move">5&hellip;Nxd5<span class="glyph">??</span></span>
+                    <span class="annotation-eval">+0.3 &rarr; +2.4</span>
+                </div>
+                <span class="annotation-verdict">Error grave</span>
+                <div class="annotation-board" role="img" aria-label="Posición después de 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5, con el caballo negro de d5 marcado como el error grave">
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-br"/></svg></span>
+                        <span class="d"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bb"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bq"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bk"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bb"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-br"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bn"/></svg></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d from"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l hit"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bn"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-bp"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wn"/></svg></span>
+                        <span class="l"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wb"/></svg></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wp"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wr"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wn"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wb"/></svg></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wq"/></svg></span>
+                        <span class="d"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wk"/></svg></span>
+                        <span class="l"></span>
+                        <span class="d"></span>
+                        <span class="l"><svg class="pc" viewBox="0 0 50 50" aria-hidden="true"><use href="#p-wr"/></svg></span>
+                </div>
+                <p class="annotation-text">Tomar en d5 abre la puerta a 6.Nxf7. Tu rey sale a rastras con la dama y el alfil blancos ya apuntándole.</p>
+                <p class="annotation-text">Juega 5…Na5. Cuesta un peón y deja al rey en casa.</p>
+                <figcaption class="annotation-foot">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span>El motor encontró la jugada. El coach escribió el motivo.</span>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</header>
+
+
+<!-- ========== THE GAP ========== -->
+<section class="gap-band">
+    <div class="container">
+        <div class="gap-grid">
+            <div>
+                <span class="eyebrow">Por qué otra app de ajedrez</span>
+                <h2>Los motores son gratis. Entender, no.</h2>
+                <p class="lede">Cualquier móvil ejecuta un motor más fuerte que cualquier humano vivo. Te enseña la jugada y un número. Nunca te dice en qué te metiste, y un número no es una lección. Chess Coach mantiene el motor y añade lo que faltaba: una frase clara sobre la idea que se te escapó, escrita para tu nivel.</p>
+            </div>
+            <blockquote class="gap-quote">
+                <p>«Entramos en el final. Ahora la actividad del rey pesa más que el material: llévalo al centro antes de empujar nada.»</p>
+                <span>Un comentario real, de un repaso real</span>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== THE POST-MORTEM ========== -->
+<section class="band" id="coach">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Después de la partida</span>
+            <h2>La partida termina. Ahí es cuando empieza a enseñar.</h2>
+            <p class="lede">Termina una partida y Chess Coach la pasa por el motor que llevas en el móvil, marca las jugadas que te costaron algo y las comenta una a una según avanzas. Trae partidas de Lichess o pega cualquier PGN.</p>
+        </div>
+
+        <div class="review-grid">
+            <div>
+                <div class="phone"><img src="../images/screens/review-report.webp" alt="Repaso de partida con la precisión de los dos jugadores, la gráfica de evaluación dividida en apertura, medio juego y final, y la mejor jugada del motor sobre el tablero" width="840" height="1708" loading="lazy"></div>
+                <p class="phone-caption">Precisión, errores y dónde giró la partida</p>
+            </div>
+            <div>
+                <div class="phone"><img src="../images/screens/review-coach.webp" alt="El coach comentando una jugada, con la evaluación al lado" width="840" height="1708" loading="lazy"></div>
+                <p class="phone-caption">Un comentario en cada jugada que recorres</p>
+            </div>
+            <div>
+                <div class="phone"><img src="../images/screens/my-games.webp" alt="Lista de partidas guardadas con filtros de victorias, derrotas, tablas e importadas de Lichess" width="840" height="1708" loading="lazy"></div>
+                <p class="phone-caption">Tus partidas, más todo lo que importes</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== THE THREE ACTS — INTRO ========== -->
+<section class="band band-tight gradient-section" id="labs">
+    <div class="container">
+        <div class="gap-grid">
+            <div>
+                <span class="eyebrow">Laboratorio</span>
+                <h2>Una partida tiene tres partes. El entrenamiento también.</h2>
+                <p class="lede">No es un montón de ejercicios. Tres laboratorios, uno por cada fase de la partida, y todos con la misma forma: primero aprendes la idea y después la juegas contra un rival que te castiga si la haces mal. Y un cuarto para lo que necesitan los tres: el cálculo.</p>
+                <p class="premium-tag" style="margin-top: var(--space-6);">Los cuatro laboratorios son Premium. Para probar, gratis: la Italiana en el entrenador de aperturas, el primer ejercicio de medio juego y las diez primeras posiciones de cada set de cálculo.</p>
+            </div>
+            <div>
+                <div class="phone" style="max-width: 17rem; margin-left: auto;"><img src="../images/screens/lab-hub.webp" alt="La pantalla del Laboratorio con cuatro tarjetas: aperturas, medio juego, finales y cálculo" width="840" height="1708" loading="lazy"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== ACT I — THE OPENING ========== -->
+<section class="act" id="openings">
+    <div class="container">
+        <div class="act-inner">
+            <div>
+                <p class="act-num"><span>I — La apertura</span></p>
+                <h2>Tu repertorio, hasta que se te quede</h2>
+                <p class="lede">Elige las aperturas que juegas de verdad. El entrenador repasa las jugadas con repetición espaciada y te avisa cuando una línea toca repasarla. Después juegas esa misma línea contra Maia, una red entrenada con partidas reales de club, que se equivoca como se equivocan las personas.</p>
+
+                <div class="act-art">
+                    <img src="../images/app/lab_openings.webp" alt="" width="1200" height="480" loading="lazy">
+                </div>
+
+                <div class="act-halves">
+                    <div class="half">
+                        <h3>Entrenador de aperturas</h3>
+                        <p>Las jugadas de tu repertorio, repasadas hasta que dejas de pensarlas.</p>
+                        <span class="half-count">Repetición espaciada, tres estrellas por línea</span>
+                    </div>
+                    <div class="half">
+                        <h3>Practicar</h3>
+                        <p>Juega la línea de verdad contra un rival que se mueve como un jugador de club.</p>
+                        <span class="half-count">Redes Maia por nivel</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="act-shots">
+                <div>
+                    <div class="phone"><img src="../images/screens/opening-trainer.webp" alt="El Entrenador de aperturas con un repertorio de blancas y de negras, cada una con sus estrellas y un aviso de repaso pendiente" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Tu repertorio, por color</p>
+                </div>
+                <div>
+                    <div class="phone"><img src="../images/screens/opening-drill.webp" alt="Una posición de entrenamiento en el Giuoco Piano, con una flecha verde señalando la jugada y las candidatas debajo" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Juega la jugada, no la teoría</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== ACT II — THE MIDDLEGAME ========== -->
+<section class="act act-rev" id="middlegames">
+    <div class="container">
+        <div class="act-inner">
+            <div>
+                <p class="act-num"><span>II — El medio juego</span></p>
+                <h2>El plan cuando se acaba el libro</h2>
+                <p class="lede">Jugada quince, se acabó la teoría y nadie te enseñó qué hacer después. El Laboratorio de medio juego va por estructuras de peones: la Carlsbad, la Benoni, la cadena francesa y veintidós más, cada una con su teoría, el plan de cada bando y posiciones de partidas reales donde nombras la estructura y luego llevas el plan a cabo.</p>
+
+                <div class="act-art">
+                    <img src="../images/app/lab_middlegame.webp" alt="" width="1200" height="480" loading="lazy">
+                </div>
+
+                <div class="act-halves">
+                    <div class="half">
+                        <h3>Aprende las estructuras</h3>
+                        <p>Cada estructura con su teoría, los planes de cada bando y una pregunta para comprobar que la has leído bien.</p>
+                        <span class="half-count">25 <span>estructuras</span></span>
+                    </div>
+                    <div class="half">
+                        <h3>Practicar</h3>
+                        <p>Nombra la estructura, di hacia dónde va la partida y después ejecuta el plan con un presupuesto de jugadas.</p>
+                        <span class="half-count">1000 <span>posiciones</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="act-shots">
+                <div>
+                    <div class="phone phone-crop"><img src="../images/screens/middlegame-lab.webp" alt="El Laboratorio de medio juego con dos tarjetas: aprender las veinticinco estructuras y practicar con mil posiciones" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Apréndela y después juégala</p>
+                </div>
+                <div>
+                    <div class="phone"><img src="../images/screens/middlegame-structures.webp" alt="Una rejilla de estructuras de peones: Benko, Benoni asimétrica, Carlsbad, formación Caro-Kann y cadena francesa" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Benko, Benoni, Carlsbad, cadena francesa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== ACT III — THE ENDGAME ========== -->
+<section class="act act-ice" id="endgames">
+    <div class="container">
+        <div class="act-inner">
+            <div>
+                <p class="act-num"><span>III — El final</span></p>
+                <h2>Los cien finales que hay que saber</h2>
+                <p class="lede">Posición a posición: el objetivo, la técnica en cuatro líneas y después la juegas contra un motor a plena fuerza que no se despista. Unos hay que ganarlos y otros solo aguantarlos. El modo guiado te avisa en cuanto una jugada tira el resultado.</p>
+
+                <div class="act-art">
+                    <img src="../images/app/lab_endgames.webp" alt="" width="1200" height="480" loading="lazy">
+                </div>
+
+                <div class="act-halves">
+                    <div class="half">
+                        <h3>Aprende la técnica</h3>
+                        <p>Rey y peones, torres, damas, alfiles y caballos; cada familia en orden de dificultad.</p>
+                        <span class="half-count">100 <span>finales</span></span>
+                    </div>
+                    <div class="half">
+                        <h3>Practicar</h3>
+                        <p>Una posición nueva cada vez, sacada de partidas reales. Unas se ganan, otras se aguantan.</p>
+                        <span class="half-count">45&thinsp;000+ <span>ejercicios</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="act-shots">
+                <div>
+                    <div class="phone"><img src="../images/screens/endgame-families.webp" alt="Los cien finales agrupados por familias: rey y peones, torres, damas, alfiles y caballos, cada una con su barra de progreso" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Cinco familias, veinticinco resueltos</p>
+                </div>
+                <div>
+                    <div class="phone"><img src="../images/screens/endgame-technique.webp" alt="El final «dentro del cuadrado»: el objetivo, el selector entre modo guiado y libre, y la técnica explicada en cuatro pasos" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">El objetivo y después la técnica en cuatro pasos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== ACROSS ALL THREE — CALCULATION ========== -->
+<section class="act act-rev act-ice" id="calculation">
+    <div class="container">
+        <div class="act-inner">
+            <div>
+                <p class="act-num"><span>En las tres — El cálculo</span></p>
+                <h2>Verlo de un vistazo, no a los diez minutos</h2>
+                <p class="lede">Apertura, medio juego o final: toda partida acaba en una posición donde hay que sacar la jugada. El Laboratorio de cálculo lo entrena de dos formas: decisiones que lees, calculas y después juegas, y ejercicios rápidos que vuelven una y otra vez hasta que ves la respuesta sin pensarla.</p>
+
+                <div class="act-art">
+                    <img src="../images/app/lab_calculation.webp" alt="" width="1200" height="480" loading="lazy">
+                </div>
+
+                <div class="act-halves">
+                    <div class="half">
+                        <h3>Entrenador de decisiones</h3>
+                        <p>Lee la posición, calcula y decide. Después juega tu línea y comprueba si aguanta.</p>
+                        <span class="half-count">149 <span>ejercicios, por temática</span></span>
+                    </div>
+                    <div class="half">
+                        <h3>Practicar</h3>
+                        <p>El método del pájaro carpintero: cuatro flechas y una es la mejor. El mismo set en siete ciclos, cuatro semanas, luego dos, una… hasta un solo día. Los fallos vuelven a repaso.</p>
+                        <span class="half-count">2 <span>sets de 150 posiciones</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="act-shots">
+                <div>
+                    <div class="phone"><img src="../images/screens/woodpecker-session.webp" alt="Una posición de Practicar: cuatro flechas numeradas sobre el tablero y la pregunta ¿Cuál es la mejor jugada?, con las cuatro candidatas debajo" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Cuatro flechas. Solo una es la mejor.</p>
+                </div>
+                <div>
+                    <div class="phone"><img src="../images/screens/woodpecker.webp" alt="La pantalla de Practicar con los sets de aperturas y de medio juego, cada uno con su ciclo actual y una pista de siete ciclos de 28 días a uno" width="840" height="1708" loading="lazy"></div>
+                    <p class="phone-caption">Siete ciclos, de 28 días a uno</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== COURSES ========== -->
+<section class="band band-paper" id="courses">
+    <div class="container">
+        <div class="gap-grid">
+            <div>
+                <span class="eyebrow">Cursos</span>
+                <h2>Si prefieres que te digan por dónde empezar</h2>
+                <p class="lede">Una escalera de cursos guiados, 303 lecciones, cada una con su teoría, sus puzzles, una apertura que aprender y una partida contra un bot que tienes que ganar para seguir. El primer nivel enseña las reglas desde cero y es gratis.</p>
+
+                <div class="ladder">
+                    <article class="rung" data-state="free">
+                        <span class="rung-level">Level 01</span>
+                        <h3>Primeros pasos</h3>
+                        <p>Cómo se mueven las piezas, el mate, qué es un plan.</p>
+                        <span class="rung-elo">29 lecciones, gratis</span>
+                    </article>
+                    <article class="rung">
+                        <span class="rung-level">Level 02</span>
+                        <h3>Principiante</h3>
+                        <p>Táctica y las primeras aperturas que merece la pena saber.</p>
+                        <span class="rung-elo">44 lecciones, 0–1000</span>
+                    </article>
+                    <article class="rung">
+                        <span class="rung-level">Level 03</span>
+                        <h3>Intermedio</h3>
+                        <p>Estrategia, estructuras y los finales que deciden partidas.</p>
+                        <span class="rung-elo">91 lecciones, 1000–1500</span>
+                    </article>
+                    <article class="rung">
+                        <span class="rung-level">Level 04</span>
+                        <h3>Avanzado</h3>
+                        <p>Cálculo y planes largos.</p>
+                        <span class="rung-elo">139 lecciones, 1500–2000</span>
+                    </article>
+                </div>
+            </div>
+
+            <div>
+                <div class="phone" style="max-width: 16rem; margin: 0 auto;"><img src="../images/screens/courses.webp" alt="La pantalla de cursos: un camino con Primeros pasos, Principiante e Intermedio completados y Avanzado todavía bloqueado" width="840" height="1708" loading="lazy"></div>
+                <p class="phone-caption" style="text-align:center">Un camino, una lección cada vez</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== PLAY ========== -->
+<section class="band" id="play">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow eyebrow-ice">Jugar</span>
+            <h2>Alguien contra quien jugar, estés como estés</h2>
+            <p class="lede">Veinte rivales con cara y nivel, desde un principiante que cuelga piezas hasta un gran maestro que no. Gente de verdad en línea. Puzzles cuando tienes tres minutos. Y un tablero para analizar lo que quieras.</p>
+        </div>
+
+        <div class="modes">
+            <article class="mode">
+                <img src="../images/app/home_play_bots.webp" alt="" width="512" height="512" loading="lazy">
+                <h3>Veinte rivales</h3>
+                <p>Cinco niveles, cuatro rivales cada uno. Fallan como dice el nivel de su ficha.</p>
+            </article>
+            <article class="mode">
+                <img src="../images/app/home_play_online.webp" alt="" width="512" height="512" loading="lazy">
+                <h3>HU Chess</h3>
+                <p>Ajedrez y Go en línea, con reloj, rating y clasificación mensual.</p>
+            </article>
+            <article class="mode">
+                <img src="../images/app/home_tile_puzzles.webp" alt="" width="512" height="512" loading="lazy">
+                <h3>Puzzles</h3>
+                <p>Uno diario, por temas, una racha que mantener y una tormenta de tres minutos.</p>
+            </article>
+            <article class="mode">
+                <img src="../images/app/home_tile_analysis.webp" alt="" width="512" height="512" loading="lazy">
+                <h3>Tablero de análisis</h3>
+                <p>Monta cualquier posición, mira las líneas del motor y pregunta al coach qué significan.</p>
+            </article>
+        </div>
+
+        <div class="rail" tabindex="0" role="region" aria-label="Capturas de Chess Coach" style="margin-top: clamp(2rem, 4vw, 3rem);">
+            <figure>
+                <div class="phone"><img src="../images/screens/play-setup.webp" alt="La pantalla de partida nueva con el rival, el color con el que juegas y el modo coach encendido" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Enciende el coach antes de empezar</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="../images/screens/opponents.webp" alt="Elegir rival: contrincantes principiantes e intermedios con su retrato y su marcador" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Elige rival y lleva el marcador</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="../images/screens/puzzles.webp" alt="La pantalla de ejercicios con el puzzle diario, los puzzles por tema y los modos racha y tormenta" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Puzzle diario, temas, racha, tormenta</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="../images/screens/puzzle-streak.webp" alt="Una racha de puzzles en marcha: encuentra la mejor jugada sin fallar ninguna" width="840" height="1708" loading="lazy"></div>
+                <figcaption>Racha: un fallo y se acabó</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="../images/screens/royalchess.webp" alt="El reto diario de RoyalChess: reconstruir la posición objetivo en las menos jugadas posibles" width="840" height="1708" loading="lazy"></div>
+                <figcaption>RoyalChess: el reto diario</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== THE ENGINES ========== -->
+<section class="band band-tight" id="engines">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow eyebrow-ice">Lo que hay debajo</span>
+            <h2>Un solo motor no puede con los tres trabajos</h2>
+            <p class="lede">Juzgar una posición, jugar como una persona y caber dentro de un iPhone son problemas distintos. Corren en tu dispositivo, no en un servidor, así que el análisis funciona en el metro sin cobertura.</p>
+        </div>
+
+        <div class="engines">
+            <article class="engine">
+                <h3>Stockfish 18</h3>
+                <p class="engine-role">El que juzga</p>
+                <p>En Android corre en el móvil como proceso propio, con su evaluación neuronal. Es lo que marca tus errores graves, lo que dibuja la gráfica de evaluación y lo que encuentra la jugada que se te escapó; y es con lo que juegan los rivales más fuertes.</p>
+            </article>
+
+            <article class="engine">
+                <h3>Caissa</h3>
+                <p class="engine-role">El del iPhone y el iPad</p>
+                <p>No es un capricho. Stockfish es GPLv3 e iOS no deja arrancar un proceso aparte, así que enlazarlo dentro de la app metería la app entera bajo esa licencia. Caissa hace el mismo trabajo con una licencia que sí le permite vivir ahí dentro, y analiza y juega en el dispositivo igual.</p>
+            </article>
+
+            <article class="engine engine-accent">
+                <h3>Maia</h3>
+                <p class="engine-role">El que juega como una persona</p>
+                <p>No es un motor fuerte con el volumen bajado. Cada nivel es una red distinta entrenada con partidas reales de jugadores de esa fuerza, así que se equivoca donde se equivoca la gente y juega la jugada que elegiría de verdad un jugador de club de ese nivel. Es el rival del Laboratorio de aperturas.</p>
+            </article>
+        </div>
+
+        <p class="caveat" style="margin-top: clamp(1.5rem, 3vw, 2.5rem);">Y uno más, por honestidad: por debajo de unos 1300 el Stockfish oficial ya no se puede debilitar más — su ajuste más flojo sigue jugando a unos 1320. Los rivales de principiante corren sobre Fairy-Stockfish, que sí puede, así que un bot etiquetado 800 pierde como pierde un 800 y no regalando una pieza al azar.</p>
+    </div>
+</section>
+
+
+<!-- ========== THE AI LAYER ========== -->
+<section class="band gradient-section" id="ai">
+    <div class="container">
+        <div class="ai-grid">
+            <div>
+                <span class="eyebrow eyebrow-gold">Con qué funciona el coach</span>
+                <h2>Trae tu clave, o no pienses en ello</h2>
+                <p class="lede">El motor corre en tu móvil. Las explicaciones vienen de un modelo de lenguaje, y tú eliges cómo pagarlas: créditos dentro de la app, o tu propia clave con uno de cinco proveedores, que te cobran ellos a precio de coste.</p>
+
+                <div class="access">
+                    <div class="access-row">
+                        <span class="access-key">Créditos</span>
+                        <p>Compras un paquete y te olvidas. Empiezas con llamadas gratis, para oír cómo habla el coach antes de pagar nada.</p>
+                    </div>
+                    <div class="access-row">
+                        <span class="access-key">Tu clave</span>
+                        <p>Pegas una clave y la app habla directamente con ese proveedor. Repasar una partida entera cuesta una fracción de céntimo.</p>
+                    </div>
+                    <div class="access-row">
+                        <span class="access-key">Privacidad</span>
+                        <p>Las claves se cifran en el dispositivo y no salen de él salvo para llegar al proveedor que elegiste. Sin anuncios, sin rastreadores y sin vender las partidas de nadie.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: var(--space-6);">
+                    <a href="api-setup.html" class="btn btn-outline">Cómo configurar una clave</a>
+                </p>
+            </div>
+
+            <div>
+                <div class="providers">
+                    <a class="provider" href="openai-setup.html">
+                        <span class="provider-mark" style="background: var(--openai-accent)"></span>
+                        <strong>OpenAI</strong>
+                        <span>Recomendado</span>
+                    </a>
+                    <a class="provider" href="deepseek-setup.html">
+                        <span class="provider-mark" style="background: var(--deepseek-accent)"></span>
+                        <strong>DeepSeek</strong>
+                        <span>El más barato</span>
+                    </a>
+                    <a class="provider" href="gemini-setup.html">
+                        <span class="provider-mark" style="background: var(--gemini-accent)"></span>
+                        <strong>Gemini</strong>
+                        <span>Google</span>
+                    </a>
+                    <a class="provider" href="claude-setup.html">
+                        <span class="provider-mark" style="background: var(--claude-accent)"></span>
+                        <strong>Claude</strong>
+                        <span>Anthropic</span>
+                    </a>
+                    <a class="provider" href="qwen-setup.html">
+                        <span class="provider-mark" style="background: var(--qwen-accent)"></span>
+                        <strong>Qwen</strong>
+                        <span>Alibaba</span>
+                    </a>
+                </div>
+
+                <div class="review-note" style="margin-top: var(--space-6);">
+                    <h3>El motor es tuyo, y es abierto</h3>
+                    <p>Stockfish, Fairy-Stockfish y las redes Maia son GPL y corren en el dispositivo. Las fuentes y los binarios exactos están publicados.</p>
+                    <p style="margin-top: var(--space-4);"><a href="../open-source.html">Ver el aviso de código abierto</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== DOWNLOAD ========== -->
+<section class="band download" id="download">
+    <div class="container">
+      <div class="download-grid">
+        <div class="download-copy">
+        <span class="eyebrow">Tu próxima partida</span>
+        <h2>Llévate el coach contigo</h2>
+        <p class="lede">Empieza gratis en iPhone, iPad o Android. Sin anuncios, y sin suscripción para jugar, analizar o hacer el primer curso.</p>
+
+        <div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Disponible en</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/id6790447113" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Descárgala en el</small>App Store</span>
+            </a>
+        </div>
+
+        <p class="download-note">Inicia sesión y tus partidas, ratings y progreso te siguen al otro dispositivo.</p>
+        </div>
+
+        <div class="download-shot">
+            <div class="phone"><img src="../images/screens/home.webp" alt="La portada de Chess Coach en un iPhone: los ratings de puzzle, racha y tormenta, y las tarjetas de jugar, aprender y el Laboratorio" width="840" height="1708" loading="lazy"></div>
+            <p class="phone-caption">La portada, en un iPhone. La misma app en Android y en iPad.</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="navbar-logo">
+                <img src="../images/app/icon.webp" alt="" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <p>Un coach de ajedrez en el móvil: el motor para la verdad, la IA para el motivo.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">La app</h3>
+            <ul class="footer-links">
+                <li><a href="#coach">El coach</a></li>
+                <li><a href="#labs">Laboratorio</a></li>
+                <li><a href="#courses">Cursos</a></li>
+                <li><a href="#play">Jugar</a></li>
+                <li><a href="#engines">Motores</a></li>
+                <li><a href="#download">Descargar</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Configurar IA</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Qué proveedor</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Proyecto</h3>
+            <ul class="footer-links">
+                <li><a href="../open-source.html">Código abierto</a></li>
+                <li><a href="privacy-policy.html">Privacidad</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Hecho por</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<!-- ========== SCRIPTS ========== -->
+<script src="../js/landing.js"></script>
+
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+</body>
+</html>

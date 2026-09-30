@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qwen API key setup — Chess Coach</title>
+    <meta name="description" content="Step-by-step guide to create a Qwen API key in Alibaba Cloud Model Studio and use it in Chess Coach.">
+    <link rel="canonical" href="https://chesscoach-app.com/qwen-setup.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/qwen-setup.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/qwen-setup.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/qwen-setup.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Qwen API key setup — Chess Coach">
+    <meta property="og:description" content="Step-by-step guide to create a Qwen API key in Alibaba Cloud Model Studio and use it in Chess Coach.">
+    <meta property="og:url" content="https://chesscoach-app.com/qwen-setup.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Qwen API key setup — Chess Coach">
+    <meta name="twitter:description" content="Step-by-step guide to create a Qwen API key in Alibaba Cloud Model Studio and use it in Chess Coach.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;if(s==="es"||(s===null&&!own&&/^es\b/i.test(navigator.language||""))){location.replace("es/qwen-setup.html"+location.hash)}})();</script>
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        /* Qwen accent lives here: css/variables.css is shared and synced separately */
+        .setup-step {
+            display: flex;
+            gap: var(--space-5);
+            position: relative;
+        }
+        .setup-step + .setup-step {
+            margin-top: var(--space-6);
+        }
+        .setup-step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--qwen-accent), #6d28d9);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+        }
+        .setup-step-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .setup-step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+        .setup-step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        .setup-step-desc a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .hero-provider-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 2px solid var(--qwen-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+        }
+        /* Model option cards */
+        .payment-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            transition: all var(--transition);
+        }
+        .payment-card:hover {
+            border-color: var(--border-hover);
+        }
+        .payment-card.payment-recommended {
+            border-color: var(--success);
+            box-shadow: 0 0 0 1px var(--success), 0 4px 24px rgba(52, 211, 153, 0.1);
+        }
+        .payment-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .payment-card-letter {
+            width: 34px;
+            height: 34px;
+            background: var(--qwen-accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-sm);
+            color: white;
+            flex-shrink: 0;
+        }
+        .payment-recommended .payment-card-letter {
+            background: var(--success);
+        }
+        .payment-card-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+        }
+        .payment-card-body {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+        }
+        .payment-card-body ol {
+            margin: var(--space-3) 0 0;
+            padding-left: var(--space-5);
+        }
+        .payment-card-body ol li {
+            margin-bottom: var(--space-2);
+        }
+        .payment-card-body a {
+            color: var(--accent-bright);
+            font-weight: 500;
+        }
+        .payment-card-note {
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--border-subtle);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        @media (max-width: 640px) {
+            .setup-step {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+            .setup-step-number {
+                width: 38px;
+                height: 38px;
+                font-size: var(--text-base);
+            }
+            .payment-card-header {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Top bar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="api-setup.html" class="back-link" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Back to guides</span>
+            </a>
+            <div class="lang-toggle" role="group" aria-label="Language"><a href="qwen-setup.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/qwen-setup.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="section gradient-hero" style="padding-top: 8rem; padding-bottom: var(--space-12);">
+        <div class="container container-md text-center">
+            <div class="hero-provider-icon reveal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--qwen-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/><path d="M12 7l4.5 2.5v5L12 17l-4.5-2.5v-5z"/></svg>
+            </div>
+            <h1 class="reveal">Qwen API Key Setup</h1>
+            <p class="section-subtitle mt-4 reveal">Complete guide to creating your API key in Alibaba Cloud Model Studio, the cheapest provider in Chess Coach.</p>
+
+            <!-- Benefits in hero -->
+            <div class="flex flex-col gap-3 mt-8 reveal" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="alert alert-info">
+                    <span class="alert-icon">$</span>
+                    <span>The cheapest option in all of Chess Coach: Qwen 3.7 Flash costs $0.03/M input, $0.13/M output</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#128176;</span>
+                    <span>New accounts include free tokens to try the models</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128279;</span>
+                    <span>API compatible with OpenAI format</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container container-md">
+
+        <!-- Part 1: Creating your API Key -->
+        <section class="section">
+            <div class="section-header reveal" style="text-align: left; margin-bottom: var(--space-8);">
+                <div class="section-label" style="justify-content: flex-start;">
+                    <span>Part 1</span>
+                </div>
+                <h2 class="section-title">Creating your API Key</h2>
+            </div>
+
+            <div class="reveal">
+                <div class="setup-step">
+                    <div class="setup-step-number">1</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Create an Alibaba Cloud account</div>
+                        <p class="setup-step-desc">Visit <a href="https://modelstudio.console.alibabacloud.com/?tab=playground#/api-key" target="_blank" rel="noopener">Alibaba Cloud Model Studio</a> and sign up with your email. Model Studio is the console that serves the Qwen models.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">2</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Choose the Singapore region</div>
+                        <p class="setup-step-desc">The first time you enter, the console asks you to pick a region. Stay on <strong>Singapore (ap-southeast-1)</strong>: that is the international endpoint Chess Coach talks to. A key created in another region will not work.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">3</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">If the console shows up in Chinese</div>
+                        <p class="setup-step-desc">It happens, and it is disconcerting the first time. Use the language selector at the top of the page to switch to English. The button you are looking for reads <strong>"Create API Key"</strong> in English and <strong>"创建 API Key"</strong> in Chinese.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">4</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Open the API Keys page</div>
+                        <p class="setup-step-desc">Go to <a href="https://modelstudio.console.alibabacloud.com/?tab=playground#/api-key" target="_blank" rel="noopener">the API Key section</a> of the console (left sidebar, <strong>"API Key"</strong>).</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">5</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Create API Key</div>
+                        <p class="setup-step-desc">Click <strong>"Create API Key"</strong>. Keep the <strong>default workspace</strong>, write any description you like (e.g. "Chess Coach") and leave the permissions as <strong>"All"</strong>.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">6</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Copy the key NOW</div>
+                        <p class="setup-step-desc">The key is shown <strong>only once</strong>. Copy it or download it right there, before closing the dialog. If you lose it there is no way to see it again — you can only delete it and create a new one.</p>
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="setup-step-number">7</div>
+                    <div class="setup-step-content">
+                        <div class="setup-step-title">Paste in Chess Coach</div>
+                        <p class="setup-step-desc">Open Chess Coach → Settings → AI section → Select <strong>"Qwen 3.7 Flash"</strong> → Configure → Paste your API key.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-warning mt-8 reveal">
+                <span class="alert-icon">&#9888;&#65039;</span>
+                <div>
+                    <strong>The key is shown only once</strong>
+                    <p class="mt-4 text-sm" style="color: var(--text-secondary);">This is the step that causes the most trouble. Alibaba Cloud does not let you look at an existing key again: copy it or download it the moment it appears on screen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2: Choosing your model -->
+        <section class="section">
+            <div class="section-header reveal" style="text-align: left; margin-bottom: var(--space-8);">
+                <div class="section-label" style="justify-content: flex-start;">
+                    <span>Part 2</span>
+                </div>
+                <h2 class="section-title">Choosing your model</h2>
+            </div>
+
+            <div class="flex flex-col gap-6 reveal">
+
+                <!-- Option A: Qwen 3.7 Flash (Recommended) -->
+                <div class="payment-card payment-recommended">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">A</div>
+                        <div class="payment-card-title">Qwen 3.7 Flash</div>
+                        <span class="badge badge-success" style="margin-left: auto;">Recommended</span>
+                    </div>
+                    <div class="payment-card-body">The <strong>cheapest model in the whole app</strong>: $0.03 per million input tokens and $0.13 per million output tokens. It answers fast and it is more than enough for move-by-move coaching.</div>
+                    <div class="payment-card-note">Chess Coach turns Qwen's reasoning mode off on this model, so each analysis stays as small (and as cheap) as it looks.</div>
+                </div>
+
+                <!-- Option B: Qwen 3.7 Plus -->
+                <div class="payment-card">
+                    <div class="payment-card-header">
+                        <div class="payment-card-letter">B</div>
+                        <div class="payment-card-title">Qwen 3.7 Plus</div>
+                    </div>
+                    <div class="payment-card-body">The powerful tier: $0.32 per million input tokens and $1.28 per million output tokens. It thinks before answering, so explanations are deeper — and each analysis costs noticeably more than with Flash.</div>
+                    <div class="payment-card-note">Both models use the same API key. You can switch between them in Chess Coach settings at any time.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Pricing</h2>
+            <!-- Rates of the <32K context tier on the international (Singapore) endpoint,
+                 which is where our ~150-token prompts always land. -->
+            <div class="reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Input per 1M tokens</th>
+                            <th>Output per 1M tokens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Qwen 3.7 Flash</td>
+                            <td><strong style="color: var(--qwen-accent);">$0.03</strong></td>
+                            <td><strong style="color: var(--qwen-accent);">$0.13</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Qwen 3.7 Plus</td>
+                            <td><strong style="color: var(--qwen-accent);">$0.32</strong></td>
+                            <td><strong style="color: var(--qwen-accent);">$1.28</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-success mt-6">
+                    <span class="alert-icon">&#128176;</span>
+                    <span><strong>Qwen 3.7 Flash is the cheapest option in Chess Coach</strong> — several times cheaper than DeepSeek, which used to hold that spot.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important notes -->
+        <section class="section">
+            <h2 class="font-display mb-6 reveal">Important notes</h2>
+            <div class="flex flex-col gap-3 reveal">
+                <div class="alert alert-warning">
+                    <span class="alert-icon">&#9888;&#65039;</span>
+                    <span>Copy the key when it is created: Alibaba Cloud never shows it again.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#127759;</span>
+                    <span>Keep the Singapore (ap-southeast-1) region: it is the international endpoint Chess Coach uses.</span>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-icon">&#128172;</span>
+                    <span>The console sometimes opens in Chinese. Switch the language at the top of the page and carry on.</span>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-icon">&#128640;</span>
+                    <span>The free tokens that come with a new account are enough for plenty of testing.</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>Chess Coach — Your AI Chess Coach</span>
+            <a href="api-setup.html">All setup guides</a>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        var navbar = document.querySelector('.navbar');
+        if (navbar) window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+
+        var reveals = document.querySelectorAll('.reveal');
+        if (reveals.length && 'IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            reveals.forEach(function(el) { observer.observe(el); });
+        } else { reveals.forEach(function(el) { el.classList.add('visible'); }); }
+    })();
+    </script>
+
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+</body>
+</html>

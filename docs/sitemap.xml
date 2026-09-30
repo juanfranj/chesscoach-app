@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://chesscoach-app.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/api-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/api-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/api-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/api-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/api-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/api-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/api-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/api-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/openai-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/openai-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/openai-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/openai-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/openai-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/openai-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/openai-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/openai-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/deepseek-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/deepseek-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/deepseek-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/deepseek-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/deepseek-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/deepseek-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/deepseek-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/deepseek-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/gemini-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/gemini-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/gemini-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/gemini-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/gemini-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/gemini-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/gemini-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/gemini-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/claude-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/claude-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/claude-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/claude-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/claude-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/claude-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/claude-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/claude-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/qwen-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/qwen-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/qwen-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/qwen-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/qwen-setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/qwen-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/qwen-setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/qwen-setup.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/privacy-policy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/privacy-policy.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/privacy-policy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/privacy-policy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/privacy-policy.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/open-source.html</loc>
+  </url>
+</urlset>

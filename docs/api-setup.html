@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set up an AI provider — Chess Coach</title>
+    <meta name="description" content="Which AI provider to connect to Chess Coach, what it costs per analysis, and how to get an API key.">
+    <link rel="canonical" href="https://chesscoach-app.com/api-setup.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/api-setup.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/api-setup.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/api-setup.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Set up an AI provider — Chess Coach">
+    <meta property="og:description" content="Which AI provider to connect to Chess Coach, what it costs per analysis, and how to get an API key.">
+    <meta property="og:url" content="https://chesscoach-app.com/api-setup.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Set up an AI provider — Chess Coach">
+    <meta name="twitter:description" content="Which AI provider to connect to Chess Coach, what it costs per analysis, and how to get an API key.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;if(s==="es"||(s===null&&!own&&/^es\b/i.test(navigator.language||""))){location.replace("es/api-setup.html"+location.hash)}})();</script>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Chess Coach - AI API Key Setup Instructions">
-    <title>Chess Coach - API Key Setup</title>
     <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
 
     <!-- Fonts -->
@@ -102,10 +121,10 @@
                 <span>Chess Coach</span>
             </a>
             <ul class="navbar-links" id="nav-links">
-                <li><a href="index.html" data-en="Home" data-es="Inicio">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="api-setup.html" class="active">API Setup</a></li>
                 <li>
-                    <!--LANG-TOGGLE-->
+                    <div class="lang-toggle" role="group" aria-label="Language"><a href="api-setup.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/api-setup.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
                 </li>
             </ul>
             <button class="navbar-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -118,13 +137,13 @@
     <section class="section gradient-hero" style="padding-top: 10rem;">
         <div class="container text-center">
             <div class="section-label reveal">
-                <span data-en="Setup Guide" data-es="Guía de configuración">Setup Guide</span>
+                <span>Setup Guide</span>
             </div>
             <h1 class="section-title reveal" style="animation-delay: 0.1s;">
-                <span data-en="AI Coach" data-es="Coach IA">AI Coach</span>
-                <span class="text-gradient" data-en=" Configuration" data-es=" Configuración"> Configuration</span>
+                <span>AI Coach</span>
+                <span class="text-gradient"> Configuration</span>
             </h1>
-            <p class="section-subtitle reveal" style="animation-delay: 0.2s;" data-en="Connect Chess Coach to an AI provider to unlock intelligent chess coaching. Choose one provider and follow its setup guide." data-es="Conecta Chess Coach a un proveedor de IA para desbloquear el coaching inteligente de ajedrez. Elige un proveedor y sigue su guía de configuración.">Connect Chess Coach to an AI provider to unlock intelligent chess coaching. Choose one provider and follow its setup guide.</p>
+            <p class="section-subtitle reveal" style="animation-delay: 0.2s;">Connect Chess Coach to an AI provider to unlock intelligent chess coaching. Choose one provider and follow its setup guide.</p>
         </div>
     </section>
 
@@ -134,21 +153,21 @@
 
             <div class="card reveal mb-8" style="max-width: 700px; margin-left: auto; margin-right: auto;">
                 <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
-                <h3 class="card-title" data-en="What are API keys?" data-es="¿Qué son las API keys?">What are API keys?</h3>
-                <p class="card-text" data-en="An API key is a unique password that lets Chess Coach connect to an AI service to analyze your chess games. Think of it like a library card &mdash; it identifies you so the AI provider knows who is making the request." data-es="Una API key es una contraseña única que permite a Chess Coach conectarse a un servicio de IA para analizar tus partidas de ajedrez. Piensa en ella como una tarjeta de biblioteca &mdash; te identifica para que el proveedor de IA sepa quién hace la solicitud.">An API key is a unique password that lets Chess Coach connect to an AI service to analyze your chess games. Think of it like a library card &mdash; it identifies you so the AI provider knows who is making the request.</p>
-                <p class="card-text mt-4" data-en="You only need to set up ONE provider. Choose whichever suits you best. Your key is stored encrypted on your device and never shared." data-es="Solo necesitas configurar UN proveedor. Elige el que mejor se adapte a ti. Tu clave se almacena cifrada en tu dispositivo y nunca se comparte.">You only need to set up ONE provider. Choose whichever suits you best. Your key is stored encrypted on your device and never shared.</p>
+                <h3 class="card-title">What are API keys?</h3>
+                <p class="card-text">An API key is a unique password that lets Chess Coach connect to an AI service to analyze your chess games. Think of it like a library card — it identifies you so the AI provider knows who is making the request.</p>
+                <p class="card-text mt-4">You only need to set up ONE provider. Choose whichever suits you best. Your key is stored encrypted on your device and never shared.</p>
                 <div class="alert alert-info mt-4">
                     <span class="alert-icon">&#128161;</span>
-                    <span data-en="Not sure which to pick? Go with <strong>OpenAI</strong> if you already have a ChatGPT account &mdash; for this kind of use it costs less than Gemini. Or go with <strong>DeepSeek</strong>, the best value of the lot: the same quality of explanations for even less. If you would rather not add a card at all, <strong>Gemini</strong> is the only one with a real free tier." data-es="¿No sabes cuál elegir? Ve con <strong>OpenAI</strong> si ya tienes cuenta de ChatGPT: para este uso sale más barato que Gemini. O con <strong>DeepSeek</strong>, la mejor relación calidad-precio: la misma calidad de explicaciones por aun menos. Y si prefieres no poner tarjeta, <strong>Gemini</strong> es el único con plan gratuito de verdad.">Not sure which to pick? Go with <strong>OpenAI</strong> if you already have a ChatGPT account &mdash; for this kind of use it costs less than Gemini. Or go with <strong>DeepSeek</strong>, the best value of the lot: the same quality of explanations for even less. If you would rather not add a card at all, <strong>Gemini</strong> is the only one with a real free tier.</span>
+                    <span>Not sure which to pick? Go with <strong>OpenAI</strong> if you already have a ChatGPT account — for this kind of use it costs less than Gemini. Or go with <strong>DeepSeek</strong>, the best value of the lot: the same quality of explanations for even less. If you would rather not add a card at all, <strong>Gemini</strong> is the only one with a real free tier.</span>
                 </div>
             </div>
 
             <!-- Provider Cards -->
             <div class="section-header reveal">
                 <div class="section-label">
-                    <span data-en="Providers" data-es="Proveedores">Providers</span>
+                    <span>Providers</span>
                 </div>
-                <h2 class="section-title" data-en="Choose your AI provider" data-es="Elige tu proveedor de IA">Choose your AI provider</h2>
+                <h2 class="section-title">Choose your AI provider</h2>
             </div>
 
             <div class="grid grid-2 reveal-stagger">
@@ -165,13 +184,13 @@
                                 <div class="text-xs text-muted">GPT-5.6 Luna</div>
                             </div>
                         </div>
-                        <span class="badge badge-gold" data-en="Recommended" data-es="Recomendado">Recommended</span>
+                        <span class="badge badge-gold">Recommended</span>
                     </div>
-                    <p class="card-text mb-4" data-en="The company behind ChatGPT &mdash; the account most people already have. GPT-5.6 Luna gives excellent chess explanations and, for this kind of use, costs less than Gemini." data-es="La empresa detrás de ChatGPT: la cuenta que casi todo el mundo ya tiene. GPT-5.6 Luna da explicaciones de ajedrez excelentes y, para este uso, cuesta menos que Gemini.">The company behind ChatGPT &mdash; the account most people already have. GPT-5.6 Luna gives excellent chess explanations and, for this kind of use, costs less than Gemini.</p>
+                    <p class="card-text mb-4">The company behind ChatGPT — the account most people already have. GPT-5.6 Luna gives excellent chess explanations and, for this kind of use, costs less than Gemini.</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-muted" data-en="~$0.32 per 1,000 analyses" data-es="~$0.32 por 1000 análisis">~$0.32 per 1,000 analyses</span>
+                        <span class="text-xs text-muted">~$0.32 per 1,000 analyses</span>
                         <a href="openai-setup.html" class="btn btn-sm btn-provider">
-                            <span data-en="View guide" data-es="Ver guía">View guide</span>
+                            <span>View guide</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clip-rule="evenodd"/></svg>
                         </a>
                     </div>
@@ -189,13 +208,13 @@
                                 <div class="text-xs text-muted">DeepSeek Chat</div>
                             </div>
                         </div>
-                        <span class="badge badge-gold" data-en="Best Value" data-es="Mejor precio-calidad">Best Value</span>
+                        <span class="badge badge-gold">Best Value</span>
                     </div>
-                    <p class="card-text mb-4" data-en="The best value of the lot. The same quality of explanations as the big names for a fraction of the price. If you plan to lean on the coach a lot, this is the one." data-es="La mejor relación calidad-precio de la lista. La misma calidad de explicaciones que los grandes por una fracción del precio. Si vas a apoyarte mucho en el coach, este es el tuyo.">The best value of the lot. The same quality of explanations as the big names for a fraction of the price. If you plan to lean on the coach a lot, this is the one.</p>
+                    <p class="card-text mb-4">The best value of the lot. The same quality of explanations as the big names for a fraction of the price. If you plan to lean on the coach a lot, this is the one.</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-muted" data-en="~$0.27 per 1,000 analyses" data-es="~$0.27 por 1000 análisis">~$0.27 per 1,000 analyses</span>
+                        <span class="text-xs text-muted">~$0.27 per 1,000 analyses</span>
                         <a href="deepseek-setup.html" class="btn btn-sm btn-provider">
-                            <span data-en="View guide" data-es="Ver guía">View guide</span>
+                            <span>View guide</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clip-rule="evenodd"/></svg>
                         </a>
                     </div>
@@ -213,13 +232,13 @@
                                 <div class="text-xs text-muted">Gemini 3.5 Flash Lite</div>
                             </div>
                         </div>
-                        <span class="badge badge-success" data-en="Popular" data-es="Popular">Popular</span>
+                        <span class="badge badge-success">Popular</span>
                     </div>
-                    <p class="card-text mb-4" data-en="Google's fast AI model, and the only provider with a real free tier &mdash; the way to try the coach without adding a card. Paid, it costs a little more than OpenAI or DeepSeek." data-es="El modelo rápido de IA de Google, y el único proveedor con plan gratuito de verdad: la forma de probar el coach sin poner tarjeta. Pagando, cuesta algo más que OpenAI o DeepSeek.">Google's fast AI model, and the only provider with a real free tier &mdash; the way to try the coach without adding a card. Paid, it costs a little more than OpenAI or DeepSeek.</p>
+                    <p class="card-text mb-4">Google's fast AI model, and the only provider with a real free tier — the way to try the coach without adding a card. Paid, it costs a little more than OpenAI or DeepSeek.</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-muted" data-en="~$0.56 per 1,000 analyses" data-es="~$0.56 por 1000 análisis">~$0.56 per 1,000 analyses</span>
+                        <span class="text-xs text-muted">~$0.56 per 1,000 analyses</span>
                         <a href="gemini-setup.html" class="btn btn-sm btn-provider">
-                            <span data-en="View guide" data-es="Ver guía">View guide</span>
+                            <span>View guide</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clip-rule="evenodd"/></svg>
                         </a>
                     </div>
@@ -237,13 +256,13 @@
                                 <div class="text-xs text-muted">Claude Haiku 4.5</div>
                             </div>
                         </div>
-                        <span class="badge badge-accent" data-en="Best Quality" data-es="Mejor Calidad">Best Quality</span>
+                        <span class="badge badge-accent">Best Quality</span>
                     </div>
-                    <p class="card-text mb-4" data-en="Anthropic's lightweight yet capable model. Excellent at producing clear, educational chess explanations with nuanced analysis." data-es="El modelo ligero pero capaz de Anthropic. Excelente para producir explicaciones de ajedrez claras y educativas con análisis matizado.">Anthropic's lightweight yet capable model. Excellent at producing clear, educational chess explanations with nuanced analysis.</p>
+                    <p class="card-text mb-4">Anthropic's lightweight yet capable model. Excellent at producing clear, educational chess explanations with nuanced analysis.</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-muted" data-en="~$1.48 per 1,000 analyses" data-es="~$1.48 por 1000 análisis">~$1.48 per 1,000 analyses</span>
+                        <span class="text-xs text-muted">~$1.48 per 1,000 analyses</span>
                         <a href="claude-setup.html" class="btn btn-sm btn-provider">
-                            <span data-en="View guide" data-es="Ver guía">View guide</span>
+                            <span>View guide</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clip-rule="evenodd"/></svg>
                         </a>
                     </div>
@@ -261,13 +280,13 @@
                                 <div class="text-xs text-muted">Qwen 3.7 Flash</div>
                             </div>
                         </div>
-                        <span class="badge badge-warning" data-en="Cheapest" data-es="Más barato">Cheapest</span>
+                        <span class="badge badge-warning">Cheapest</span>
                     </div>
-                    <p class="card-text mb-4" data-en="Alibaba's models, served from Alibaba Cloud Model Studio. Qwen 3.7 Flash is by far the cheapest way to run the AI coach." data-es="Los modelos de Alibaba, servidos desde Alibaba Cloud Model Studio. Qwen 3.7 Flash es con diferencia la forma más barata de usar el coach de IA.">Alibaba's models, served from Alibaba Cloud Model Studio. Qwen 3.7 Flash is by far the cheapest way to run the AI coach.</p>
+                    <p class="card-text mb-4">Alibaba's models, served from Alibaba Cloud Model Studio. Qwen 3.7 Flash is by far the cheapest way to run the AI coach.</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-muted" data-en="~$0.04 per 1,000 analyses" data-es="~$0.04 por 1000 análisis">~$0.04 per 1,000 analyses</span>
+                        <span class="text-xs text-muted">~$0.04 per 1,000 analyses</span>
                         <a href="qwen-setup.html" class="btn btn-sm btn-provider">
-                            <span data-en="View guide" data-es="Ver guía">View guide</span>
+                            <span>View guide</span>
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clip-rule="evenodd"/></svg>
                         </a>
                     </div>
@@ -282,58 +301,58 @@
         <div class="container container-lg">
             <div class="section-header reveal">
                 <div class="section-label">FAQ</div>
-                <h2 class="section-title" data-en="Frequently asked questions" data-es="Preguntas frecuentes">Frequently asked questions</h2>
+                <h2 class="section-title">Frequently asked questions</h2>
             </div>
 
             <div class="faq-card reveal" style="max-width: 800px; margin: 0 auto;">
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                        <span data-en="Which provider should I choose?" data-es="¿Qué proveedor debería elegir?">Which provider should I choose?</span>
+                        <span>Which provider should I choose?</span>
                         <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p data-en="It depends on your priorities:" data-es="Depende de tus prioridades:">It depends on your priorities:</p>
+                            <p>It depends on your priorities:</p>
                             <table class="pricing-table">
                                 <thead>
                                     <tr>
-                                        <th data-en="Provider" data-es="Proveedor">Provider</th>
-                                        <th data-en="Price per 1,000 analyses" data-es="Precio por 1000 análisis">Price per 1,000 analyses</th>
-                                        <th data-en="Quality" data-es="Calidad">Quality</th>
-                                        <th data-en="Best for" data-es="Ideal para">Best for</th>
+                                        <th>Provider</th>
+                                        <th>Price per 1,000 analyses</th>
+                                        <th>Quality</th>
+                                        <th>Best for</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td><strong>OpenAI</strong></td>
-                                        <td data-en="~$0.32 / 1,000" data-es="~$0.32 / 1000">~$0.32 / 1,000</td>
+                                        <td>~$0.32 / 1,000</td>
                                         <td>&#9733;&#9733;&#9733;&#9733;</td>
-                                        <td data-en="Most people &mdash; cheap, and you likely have the account" data-es="La mayoría: barato y ya sueles tener la cuenta">Most people &mdash; cheap, and you likely have the account</td>
+                                        <td>Most people — cheap, and you likely have the account</td>
                                     </tr>
                                     <tr>
                                         <td><strong>DeepSeek</strong></td>
-                                        <td data-en="~$0.27 / 1,000" data-es="~$0.27 / 1000">~$0.27 / 1,000</td>
+                                        <td>~$0.27 / 1,000</td>
                                         <td>&#9733;&#9733;&#9733;&#9734;</td>
-                                        <td data-en="Best value, and heavy usage" data-es="Mejor precio-calidad y uso intensivo">Best value, and heavy usage</td>
+                                        <td>Best value, and heavy usage</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Gemini</strong></td>
-                                        <td data-en="~$0.56 / 1,000 &mdash; free tier" data-es="~$0.56 / 1000 &mdash; con plan gratuito">~$0.56 / 1,000 &mdash; free tier</td>
+                                        <td>~$0.56 / 1,000 — free tier</td>
                                         <td>&#9733;&#9733;&#9733;&#9734;</td>
-                                        <td data-en="Getting started without a card" data-es="Empezar sin tarjeta">Getting started without a card</td>
+                                        <td>Getting started without a card</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Claude</strong></td>
-                                        <td data-en="~$1.48 / 1,000" data-es="~$1.48 / 1000">~$1.48 / 1,000</td>
+                                        <td>~$1.48 / 1,000</td>
                                         <td>&#9733;&#9733;&#9733;&#9733;</td>
-                                        <td data-en="Best explanations" data-es="Mejores explicaciones">Best explanations</td>
+                                        <td>Best explanations</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Qwen</strong></td>
-                                        <td data-en="~$0.04 / 1,000" data-es="~$0.04 / 1000">~$0.04 / 1,000</td>
+                                        <td>~$0.04 / 1,000</td>
                                         <td>&#9733;&#9733;&#9733;&#9734;</td>
-                                        <td data-en="Spending the absolute minimum" data-es="Gastar lo mínimo posible">Spending the absolute minimum</td>
+                                        <td>Spending the absolute minimum</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -343,48 +362,48 @@
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                        <span data-en="Is my API key safe?" data-es="¿Está segura mi API key?">Is my API key safe?</span>
+                        <span>Is my API key safe?</span>
                         <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p data-en="Yes. Chess Coach stores your API key encrypted on your device using Android's EncryptedSharedPreferences (AES-256-GCM). Your key is never sent to our servers &mdash; it goes directly from your device to the AI provider's API." data-es="Sí. Chess Coach almacena tu API key cifrada en tu dispositivo usando EncryptedSharedPreferences de Android (AES-256-GCM). Tu clave nunca se envía a nuestros servidores &mdash; va directamente desde tu dispositivo a la API del proveedor de IA.">Yes. Chess Coach stores your API key encrypted on your device using Android's EncryptedSharedPreferences (AES-256-GCM). Your key is never sent to our servers &mdash; it goes directly from your device to the AI provider's API.</p>
+                            <p>Yes. Chess Coach stores your API key encrypted on your device using Android's EncryptedSharedPreferences (AES-256-GCM). Your key is never sent to our servers — it goes directly from your device to the AI provider's API.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                        <span data-en="How much will it cost me?" data-es="¿Cuánto me costará?">How much will it cost me?</span>
+                        <span>How much will it cost me?</span>
                         <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p data-en="Very little. Measured on real usage, one analysis sends about 900 tokens and gets about 115 back, so 1,000 analyses come to roughly $0.27 with DeepSeek, $0.32 with OpenAI and $0.56 with Gemini. Even Claude, the most expensive, is about $1.48. And Gemini's free tier lets you analyse hundreds of positions a day at no cost at all." data-es="Muy poco. Medido sobre uso real, un análisis envía unos 900 tokens y recibe unos 115, así que 1000 análisis salen por unos $0.27 con DeepSeek, $0.32 con OpenAI y $0.56 con Gemini. Incluso Claude, el más caro, ronda los $1.48. Y el plan gratuito de Gemini te deja analizar cientos de posiciones al día sin coste alguno.">Very little. Measured on real usage, one analysis sends about 900 tokens and gets about 115 back, so 1,000 analyses come to roughly $0.27 with DeepSeek, $0.32 with OpenAI and $0.56 with Gemini. Even Claude, the most expensive, is about $1.48. And Gemini's free tier lets you analyse hundreds of positions a day at no cost at all.</p>
+                            <p>Very little. Measured on real usage, one analysis sends about 900 tokens and gets about 115 back, so 1,000 analyses come to roughly $0.27 with DeepSeek, $0.32 with OpenAI and $0.56 with Gemini. Even Claude, the most expensive, is about $1.48. And Gemini's free tier lets you analyse hundreds of positions a day at no cost at all.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                        <span data-en="Can I switch providers later?" data-es="¿Puedo cambiar de proveedor después?">Can I switch providers later?</span>
+                        <span>Can I switch providers later?</span>
                         <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p data-en="Absolutely! You can change your AI provider at any time in the app's Settings screen. Just enter a new API key for the provider you want to use and select it from the dropdown." data-es="Por supuesto! Puedes cambiar tu proveedor de IA en cualquier momento en la pantalla de Ajustes de la app. Solo ingresa una nueva API key para el proveedor que quieras usar y seleccionalo del menú desplegable.">Absolutely! You can change your AI provider at any time in the app's Settings screen. Just enter a new API key for the provider you want to use and select it from the dropdown.</p>
+                            <p>Absolutely! You can change your AI provider at any time in the app's Settings screen. Just enter a new API key for the provider you want to use and select it from the dropdown.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
-                        <span data-en="Do I need an API key to use Chess Coach?" data-es="¿Necesito una API key para usar Chess Coach?">Do I need an API key to use Chess Coach?</span>
+                        <span>Do I need an API key to use Chess Coach?</span>
                         <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p data-en="Not entirely. You can play against Stockfish, solve puzzles, review games, and play online on Lichess without any API key. The API key is only needed for the AI Coach feature, which provides natural language explanations and educational commentary about your moves." data-es="No del todo. Puedes jugar contra Stockfish, resolver puzzles, revisar partidas y jugar en línea en Lichess sin ninguna API key. La API key solo se necesita para la función de Coach IA, que proporciona explicaciones en lenguaje natural y comentarios educativos sobre tus jugadas.">Not entirely. You can play against Stockfish, solve puzzles, review games, and play online on Lichess without any API key. The API key is only needed for the AI Coach feature, which provides natural language explanations and educational commentary about your moves.</p>
+                            <p>Not entirely. You can play against Stockfish, solve puzzles, review games, and play online on Lichess without any API key. The API key is only needed for the AI Coach feature, which provides natural language explanations and educational commentary about your moves.</p>
                         </div>
                     </div>
                 </div>
@@ -396,7 +415,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-bottom">
-            <span data-en="Chess Coach &mdash; Your AI chess coach" data-es="Chess Coach &mdash; Tu entrenador de ajedrez con IA">Chess Coach &mdash; Your AI chess coach</span>
+            <span>Chess Coach — Your AI chess coach</span>
             <span>&copy; 2026 JuanfranDevs</span>
         </div>
     </footer>
@@ -450,5 +469,6 @@
     })();
     </script>
 
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
 </body>
 </html>

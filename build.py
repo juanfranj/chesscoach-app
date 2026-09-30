@@ -1,0 +1,379 @@
+#!/usr/bin/env python3
+"""Builds the static site in docs/ from the bilingual sources in src/.
+
+The pages in src/ are written once, with every translatable element carrying
+data-en / data-es (and data-en-alt / data-en-label for alt and aria-label).
+Google indexes one language per URL, so instead of swapping text with
+JavaScript this writes two plain HTML pages per source page:
+
+    docs/<page>.html      English (x-default)
+    docs/es/<page>.html   Spanish
+
+Each one gets its own <title>, description, canonical, hreflang alternates
+and Open Graph tags, and the EN/ES toggle becomes a pair of links.
+Standard library only. Run it, then check.py, then commit docs/.
+"""
+import html
+import json
+import os
+import re
+import shutil
+from html.parser import HTMLParser
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(ROOT, 'src')
+OUT = os.path.join(ROOT, 'docs')
+SITE = 'https://chesscoach-app.com'
+DOMAIN = 'chesscoach-app.com'
+LANG_KEY = 'cheescoach-lang'   # the key the old site used; kept so a choice survives
+PLAY_URL = 'https://play.google.com/store/apps/details?id=com.app.cheescoach'
+APP_STORE_URL = 'https://apps.apple.com/app/id6790447113'
+OG_IMAGE = SITE + '/images/og-card.jpg'
+
+# (title, description) per page and language.
+META = {
+    'index': {
+        'en': ('Chess Coach — the AI chess coach that explains your moves',
+               'Play, then find out what went wrong. The engine on your phone does the calculating and an AI '
+               'coach turns it into a sentence you can use. Openings, middlegames, endgames and calculation '
+               'on iPhone, iPad and Android.'),
+        'es': ('Chess Coach — el entrenador de ajedrez con IA que te explica tus jugadas',
+               'Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una '
+               'frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.'),
+    },
+    'api-setup': {
+        'en': ('Set up an AI provider — Chess Coach',
+               'Which AI provider to connect to Chess Coach, what it costs per analysis, and how to get an API key.'),
+        'es': ('Configura un proveedor de IA — Chess Coach',
+               'Qué proveedor de IA conectar a Chess Coach, cuánto cuesta cada análisis y cómo conseguir una API key.'),
+    },
+    'openai-setup': {
+        'en': ('OpenAI API key setup — Chess Coach',
+               'Step-by-step guide to create an OpenAI API key and use it in Chess Coach.'),
+        'es': ('Cómo crear una API key de OpenAI — Chess Coach',
+               'Guía paso a paso para crear una API key de OpenAI y usarla en Chess Coach.'),
+    },
+    'deepseek-setup': {
+        'en': ('DeepSeek API key setup — Chess Coach',
+               'Step-by-step guide to create a DeepSeek API key, add funds and use it in Chess Coach.'),
+        'es': ('Cómo crear una API key de DeepSeek — Chess Coach',
+               'Guía paso a paso para crear una API key de DeepSeek, añadir saldo y usarla en Chess Coach.'),
+    },
+    'gemini-setup': {
+        'en': ('Google Gemini API key setup — Chess Coach',
+               'Step-by-step guide to create a Google Gemini API key and use it in Chess Coach.'),
+        'es': ('Cómo crear una API key de Google Gemini — Chess Coach',
+               'Guía paso a paso para crear una API key de Google Gemini y usarla en Chess Coach.'),
+    },
+    'claude-setup': {
+        'en': ('Anthropic Claude API key setup — Chess Coach',
+               'Step-by-step guide to create an Anthropic Claude API key and use it in Chess Coach.'),
+        'es': ('Cómo crear una API key de Anthropic Claude — Chess Coach',
+               'Guía paso a paso para crear una API key de Anthropic Claude y usarla en Chess Coach.'),
+    },
+    'qwen-setup': {
+        'en': ('Qwen API key setup — Chess Coach',
+               'Step-by-step guide to create a Qwen API key in Alibaba Cloud Model Studio and use it in Chess Coach.'),
+        'es': ('Cómo crear una API key de Qwen — Chess Coach',
+               'Guía paso a paso para crear una API key de Qwen en Alibaba Cloud Model Studio y usarla en Chess Coach.'),
+    },
+    'privacy-policy': {
+        'en': ('Privacy policy — Chess Coach',
+               'How Chess Coach handles your data: what stays on your device, what is sent and why, and how to '
+               'delete your account.'),
+        'es': ('Política de privacidad — Chess Coach',
+               'Cómo trata Chess Coach tus datos: qué se queda en tu dispositivo, qué se envía y por qué, y cómo '
+               'borrar tu cuenta.'),
+    },
+    'open-source': {
+        'en': ('Open source and corresponding source — Chess Coach',
+               'Open-source licences and the GPLv3 corresponding-source offer for the chess engines distributed '
+               'with Chess Coach.'),
+    },
+}
+BILINGUAL = [p for p in META if 'es' in META[p]]
+ENGLISH_ONLY = [p for p in META if 'es' not in META[p]]
+ASSETS = ['css', 'js', 'images', 'app_icon_chesscoach.png']
+VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
+
+
+def page_file(page):
+    return page + '.html'
+
+
+def abs_url(page, lang):
+    path = '' if page == 'index' else page_file(page)
+    return f'{SITE}/{"es/" if lang == "es" else ""}{path}'
+
+
+def rel_link(page, from_lang, to_lang):
+    """Relative link from a page in one language to the same page in another."""
+    name = '' if page == 'index' else page_file(page)
+    if from_lang == to_lang:
+        return name or './'
+    return ('es/' + name) if to_lang == 'es' else ('../' + name or '../')
+
+
+class Translatables(HTMLParser):
+    """Finds the source ranges of every element that carries data-en."""
+
+    def __init__(self, text):
+        super().__init__(convert_charrefs=False)
+        self.text = text
+        self.line_starts = [0]
+        for m in re.finditer('\n', text):
+            self.line_starts.append(m.end())
+        self.stack = []      # (tag, is_translatable, start, start_tag_end, attrs)
+        self.found = []      # (start, start_tag_end, content_end, attrs)
+
+    def abs_pos(self):
+        line, col = self.getpos()
+        return self.line_starts[line - 1] + col
+
+    def handle_starttag(self, tag, attrs):
+        start = self.abs_pos()
+        end = start + len(self.get_starttag_text())
+        a = dict(attrs)
+        if tag in VOID:
+            return
+        self.stack.append((tag, 'data-en' in a, start, end, a))
+
+    def handle_startendtag(self, tag, attrs):
+        pass
+
+    def handle_endtag(self, tag):
+        if tag in VOID:
+            return
+        pos = self.abs_pos()
+        while self.stack:
+            t, translatable, start, end, a = self.stack.pop()
+            if t == tag:
+                if translatable:
+                    self.found.append((start, end, pos, a))
+                return
+        raise ValueError(f'unmatched </{tag}> at offset {pos}')
+
+
+def translate(text, lang, name):
+    """Puts each data-en element's text in `lang`, like the old applyLang did."""
+    parser = Translatables(text)
+    parser.feed(text)
+    parser.close()
+    if parser.stack and any(t[1] for t in parser.stack):
+        raise ValueError(f'{name}: a data-en element is never closed')
+    found = sorted(parser.found)
+    for (s1, _, e1, _), (s2, _, _, _) in zip(found, found[1:]):
+        if s2 < e1:
+            raise ValueError(f'{name}: nested data-en elements at offset {s2}')
+    out, last = [], 0
+    for start, tag_end, content_end, attrs in found:
+        value = attrs.get('data-' + lang)
+        if value is None:
+            raise ValueError(f'{name}: element at {start} has no data-{lang}')
+        out.append(text[last:start])
+        out.append(rebuild_tag(text[start:tag_end], lang))
+        out.append(value)
+        last = content_end
+    out.append(text[last:])
+    text = ''.join(out)
+
+    def fix_tag(m):
+        return rebuild_tag(m.group(0), lang)
+
+    # Tags left with data-*: images (alt) and landmarks (aria-label). Their values hold no < or >.
+    return re.sub(r'<[a-zA-Z][^<>]*\sdata-(?:en|es)[^<>]*>', fix_tag, text)
+
+
+ATTR = re.compile(r'\s+([^\s=>/]+)(?:\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+))?')
+
+
+def rebuild_tag(tag, lang):
+    """Rewrites one start tag: applies data-<lang>-alt/-label and drops every data-en*/data-es*.
+
+    Quote-aware, because data-en values can contain markup such as <strong>."""
+    m = re.match(r'<([a-zA-Z][\w-]*)', tag)
+    name, rest = m.group(1), tag[m.end():]
+    closing = '/>' if rest.rstrip().endswith('/>') else '>'
+    attrs = [(a.group(1), a.group(2)) for a in ATTR.finditer(rest)]
+    values = dict(attrs)
+    swaps = {'alt': values.get(f'data-{lang}-alt'), 'aria-label': values.get(f'data-{lang}-label')}
+    kept, seen = [], set()
+    for key, val in attrs:
+        if re.match(r'data-(?:en|es)(?:-alt|-label)?$', key):
+            continue
+        if key in swaps and swaps[key] is not None:
+            val = swaps[key]
+        seen.add(key)
+        kept.append(key if val is None else f'{key}={val}')
+    for key, val in swaps.items():
+        if val is not None and key not in seen:
+            kept.append(f'{key}={val}')
+    return '<' + name + ''.join(' ' + k for k in kept) + closing
+
+
+def rewrite_relative(text):
+    """In es/, point assets and English-only pages one level up."""
+    same_dir = {page_file(p) for p in BILINGUAL}
+
+    def fix(m):
+        attr, value = m.group(1), m.group(2)
+        if re.match(r'^(?:[a-z]+:|#|/|//)', value):
+            return m.group(0)
+        path = re.split(r'[#?]', value)[0]
+        if path in same_dir:
+            return m.group(0)
+        return f'{attr}="../{value}"'
+
+    return re.sub(r'\b(href|src)="([^"]*)"', fix, text)
+
+
+def head_block(page, lang):
+    title, desc = META[page][lang]
+    e = lambda s: html.escape(s, quote=True)
+    lines = [
+        f'<title>{e(title)}</title>',
+        f'<meta name="description" content="{e(desc)}">',
+        f'<link rel="canonical" href="{abs_url(page, lang)}">',
+    ]
+    if page in BILINGUAL:
+        lines += [
+            f'<link rel="alternate" hreflang="en" href="{abs_url(page, "en")}">',
+            f'<link rel="alternate" hreflang="es" href="{abs_url(page, "es")}">',
+            f'<link rel="alternate" hreflang="x-default" href="{abs_url(page, "en")}">',
+        ]
+    lines += [
+        f'<meta property="og:site_name" content="Chess Coach">',
+        f'<meta property="og:type" content="{"website" if page == "index" else "article"}">',
+        f'<meta property="og:title" content="{e(title)}">',
+        f'<meta property="og:description" content="{e(desc)}">',
+        f'<meta property="og:url" content="{abs_url(page, lang)}">',
+        f'<meta property="og:image" content="{OG_IMAGE}">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        f'<meta property="og:locale" content="{"es_ES" if lang == "es" else "en_GB"}">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{e(title)}">',
+        f'<meta name="twitter:description" content="{e(desc)}">',
+        f'<meta name="twitter:image" content="{OG_IMAGE}">',
+    ]
+    if page in BILINGUAL:
+        lines.append(f'<meta property="og:locale:alternate" content="{"en_GB" if lang == "es" else "es_ES"}">')
+    if lang == 'en' and page in BILINGUAL:
+        # A Spanish reader who arrives on an English URL (an old link, the app) lands on Spanish,
+        # unless they picked English on this site. Googlebot crawls without Accept-Language, so it
+        # stays on the English page and reaches the Spanish one through hreflang.
+        es = rel_link(page, 'en', 'es')
+        lines.append(
+            '<script>(function(){var s=null;try{s=localStorage.getItem("' + LANG_KEY + '")}catch(e){}'
+            'var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;'
+            'if(s==="es"||(s===null&&!own&&/^es\\b/i.test(navigator.language||"")))'
+            '{location.replace("' + es + '"+location.hash)}})();</script>')
+    if page == 'index':
+        lines.append('<script type="application/ld+json">' + json.dumps(structured_data(lang), ensure_ascii=False) + '</script>')
+    return '\n    '.join(lines)
+
+
+def structured_data(lang):
+    title, desc = META['index'][lang]
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'WebSite',
+                'name': 'Chess Coach',
+                'alternateName': ['CheesCoach', 'Chess Coach AI'],
+                'url': SITE + '/',
+                'inLanguage': ['en', 'es'],
+            },
+            {
+                '@type': 'MobileApplication',
+                'name': 'Chess Coach',
+                'alternateName': 'CheesCoach',
+                'description': desc,
+                'operatingSystem': 'ANDROID, IOS',
+                'applicationCategory': 'GameApplication',
+                'applicationSubCategory': 'Board game',
+                'inLanguage': ['en', 'es'],
+                'installUrl': [PLAY_URL, APP_STORE_URL],
+                'sameAs': [PLAY_URL, APP_STORE_URL],
+                'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
+                'author': {'@type': 'Person', 'name': 'JuanfranDevs'},
+                'image': OG_IMAGE,
+                'url': abs_url('index', lang),
+            },
+        ],
+    }
+
+
+def toggle(page, lang):
+    def link(to):
+        cur = ' class="active" aria-current="page"' if to == lang else ''
+        return (f'<a href="{rel_link(page, lang, to)}" hreflang="{to}" lang="{to}" '
+                f'data-lang-link="{to}"{cur}>{to.upper()}</a>')
+    label = 'Idioma' if lang == 'es' else 'Language'
+    return f'<div class="lang-toggle" role="group" aria-label="{label}">{link("en")}{link("es")}</div>'
+
+
+REMEMBER_CHOICE = (
+    '<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){'
+    'a.addEventListener("click",function(){try{localStorage.setItem("' + LANG_KEY + '",'
+    'a.getAttribute("data-lang-link"))}catch(e){}})});</script>')
+
+
+def build_page(page, lang):
+    name = page_file(page)
+    text = open(os.path.join(SRC, name), encoding='utf-8').read()
+    text = translate(text, lang, name) if 'data-en=' in text else text
+    text = re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"', text, count=1)
+    # Drop the old head metadata; head_block writes a complete, consistent set.
+    text = re.sub(r'\s*<title>.*?</title>', '', text, count=1, flags=re.S)
+    text = re.sub(r'\s*<meta\s+(?:name|property)="(?:description|og:[^"]*|twitter:[^"]*)"[^>]*>', '', text)
+    text = re.sub(r'\s*<link rel="(?:canonical|alternate)"[^>]*>', '', text)
+    if lang == 'es':
+        text = rewrite_relative(text)
+    text = re.sub(r'(<meta name="viewport"[^>]*>)', lambda m: m.group(1) + '\n    ' + head_block(page, lang), text, count=1)
+    if '<!--LANG-TOGGLE-->' in text:
+        text = text.replace('<!--LANG-TOGGLE-->', toggle(page, lang))
+        text = text.replace('</body>', REMEMBER_CHOICE + '\n</body>', 1)
+    text = text.replace('https://juanfranj.github.io/cheescoach/', SITE + '/')
+    dest = os.path.join(OUT, 'es', name) if lang == 'es' else os.path.join(OUT, name)
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, 'w', encoding='utf-8').write(text)
+
+
+def sitemap():
+    ns = ('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+          'xmlns:xhtml="http://www.w3.org/1999/xhtml"')
+    rows = []
+    for page in BILINGUAL:
+        alts = ''.join(
+            f'\n    <xhtml:link rel="alternate" hreflang="{h}" href="{abs_url(page, l)}"/>'
+            for h, l in (('en', 'en'), ('es', 'es'), ('x-default', 'en')))
+        for lang in ('en', 'es'):
+            rows.append(f'  <url>\n    <loc>{abs_url(page, lang)}</loc>{alts}\n  </url>')
+    for page in ENGLISH_ONLY:
+        rows.append(f'  <url>\n    <loc>{abs_url(page, "en")}</loc>\n  </url>')
+    return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset {ns}>\n' + '\n'.join(rows) + '\n</urlset>\n'
+
+
+def main():
+    if os.path.isdir(OUT):
+        shutil.rmtree(OUT)
+    os.makedirs(OUT)
+    for page in BILINGUAL:
+        for lang in ('en', 'es'):
+            build_page(page, lang)
+    for page in ENGLISH_ONLY:
+        build_page(page, 'en')
+    for item in ASSETS:
+        s, d = os.path.join(SRC, item), os.path.join(OUT, item)
+        shutil.copytree(s, d, ignore=shutil.ignore_patterns('.DS_Store')) if os.path.isdir(s) else shutil.copy2(s, d)
+    for extra in ('404.html', 'robots.txt', '.nojekyll'):
+        shutil.copy2(os.path.join(SRC, extra), os.path.join(OUT, extra))
+    open(os.path.join(OUT, 'CNAME'), 'w').write(DOMAIN + '\n')
+    open(os.path.join(OUT, 'sitemap.xml'), 'w').write(sitemap())
+    print(f'built {len(BILINGUAL) * 2 + len(ENGLISH_ONLY)} pages into docs/')
+
+
+if __name__ == '__main__':
+    main()
