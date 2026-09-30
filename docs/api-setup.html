@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Which AI provider to connect to Chess Coach, what it costs per analysis, and how to get an API key.">
     <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
     <meta property="og:locale:alternate" content="es_ES">
-    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;if(s==="es"||(s===null&&!own&&/^es\b/i.test(navigator.language||""))){location.replace("es/api-setup.html"+location.hash)}})();</script>
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var es="es/api-setup.html",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;if(s==="es"||(s===null&&!back&&/^es\b/i.test(navigator.language||""))){location.replace(es+location.search+location.hash)}})();</script>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
 
@@ -469,6 +469,6 @@
     })();
     </script>
 
-<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
 </body>
 </html>

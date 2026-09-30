@@ -308,6 +308,6 @@
     })();
     </script>
 
-<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
 </body>
 </html>

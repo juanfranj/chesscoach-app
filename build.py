@@ -25,9 +25,7 @@ SRC = os.path.join(ROOT, 'src')
 OUT = os.path.join(ROOT, 'docs')
 SITE = 'https://chesscoach-app.com'
 DOMAIN = 'chesscoach-app.com'
-LANG_KEY = 'cheescoach-lang'   # the key the old site used; kept so a choice survives
-PLAY_URL = 'https://play.google.com/store/apps/details?id=com.app.cheescoach'
-APP_STORE_URL = 'https://apps.apple.com/app/id6790447113'
+LANG_KEY = 'cheescoach-lang'   # where a visitor's EN/ES choice is kept, per origin
 OG_IMAGE = SITE + '/images/og-card.jpg'
 
 # (title, description) per page and language.
@@ -151,6 +149,9 @@ class Translatables(HTMLParser):
                 if translatable:
                     self.found.append((start, end, pos, a))
                 return
+            if translatable:
+                # Implicitly closed (<li> or <p> without its end tag): its text would stay in English.
+                raise ValueError(f'<{t}> with data-en at offset {start} is never closed')
         raise ValueError(f'unmatched </{tag}> at offset {pos}')
 
 
@@ -262,46 +263,29 @@ def head_block(page, lang):
         # A Spanish reader who arrives on an English URL (an old link, the app) lands on Spanish,
         # unless they picked English on this site. Googlebot crawls without Accept-Language, so it
         # stays on the English page and reaches the Spanish one through hreflang.
+        # The one exception is the visitor who just tapped EN on the Spanish page and could not store
+        # the choice (storage blocked): the referrer tells us, so they are not sent straight back.
         es = rel_link(page, 'en', 'es')
         lines.append(
             '<script>(function(){var s=null;try{s=localStorage.getItem("' + LANG_KEY + '")}catch(e){}'
-            'var r=document.referrer,own=r&&r.indexOf(location.host)!==-1;'
-            'if(s==="es"||(s===null&&!own&&/^es\\b/i.test(navigator.language||"")))'
-            '{location.replace("' + es + '"+location.hash)}})();</script>')
+            'var es="' + es + '",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;'
+            'if(s==="es"||(s===null&&!back&&/^es\\b/i.test(navigator.language||"")))'
+            '{location.replace(es+location.search+location.hash)}})();</script>')
     if page == 'index':
         lines.append('<script type="application/ld+json">' + json.dumps(structured_data(lang), ensure_ascii=False) + '</script>')
     return '\n    '.join(lines)
 
 
 def structured_data(lang):
-    title, desc = META['index'][lang]
+    # WebSite is what gives the result its site name. A MobileApplication block was left out on
+    # purpose: Google only accepts it with store ratings, and those are not on this page.
     return {
         '@context': 'https://schema.org',
-        '@graph': [
-            {
-                '@type': 'WebSite',
-                'name': 'Chess Coach',
-                'alternateName': ['CheesCoach', 'Chess Coach AI'],
-                'url': SITE + '/',
-                'inLanguage': ['en', 'es'],
-            },
-            {
-                '@type': 'MobileApplication',
-                'name': 'Chess Coach',
-                'alternateName': 'CheesCoach',
-                'description': desc,
-                'operatingSystem': 'ANDROID, IOS',
-                'applicationCategory': 'GameApplication',
-                'applicationSubCategory': 'Board game',
-                'inLanguage': ['en', 'es'],
-                'installUrl': [PLAY_URL, APP_STORE_URL],
-                'sameAs': [PLAY_URL, APP_STORE_URL],
-                'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR'},
-                'author': {'@type': 'Person', 'name': 'JuanfranDevs'},
-                'image': OG_IMAGE,
-                'url': abs_url('index', lang),
-            },
-        ],
+        '@type': 'WebSite',
+        'name': 'Chess Coach',
+        'alternateName': ['CheesCoach', 'Chess Coach AI'],
+        'url': SITE + '/',
+        'inLanguage': 'es' if lang == 'es' else 'en',
     }
 
 
@@ -316,8 +300,8 @@ def toggle(page, lang):
 
 REMEMBER_CHOICE = (
     '<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){'
-    'a.addEventListener("click",function(){try{localStorage.setItem("' + LANG_KEY + '",'
-    'a.getAttribute("data-lang-link"))}catch(e){}})});</script>')
+    'var k=function(){try{localStorage.setItem("' + LANG_KEY + '",a.getAttribute("data-lang-link"))}catch(e){}};'
+    'a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>')
 
 
 def build_page(page, lang):

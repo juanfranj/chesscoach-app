@@ -15,9 +15,9 @@ SITE = 'https://chesscoach-app.com'
 BILINGUAL = ['index', 'api-setup', 'openai-setup', 'deepseek-setup', 'gemini-setup',
              'claude-setup', 'qwen-setup', 'privacy-policy']
 ENGLISH_ONLY = ['open-source']
-# The App Store listing is the one place the old spelling is still the real name, and the
-# structured data names it as an alias so search engines tie both spellings together.
-ALLOWED_OLD_BRAND = ('CheesCoach: AI Chess Coach', 'CheesCoach: Ajedrez con IA', '"CheesCoach"')
+# The App Store listing is the one place the old spelling is still the real name. The structured
+# data also names it, as an alias, so search engines tie both spellings together.
+ALLOWED_OLD_BRAND = ('CheesCoach: AI Chess Coach', 'CheesCoach: Ajedrez con IA')
 
 problems = []
 
@@ -55,11 +55,12 @@ def check_page(path, page, lang):
         fail(f'{rel}: missing')
         return
     html = open(path, encoding='utf-8').read()
-    for bad in ('data-en=', 'data-es=', 'data-en-alt', 'data-es-label', 'setLang(', 'applyLang',
+    for bad in ('data-en=', 'data-es=', 'data-en-alt', 'data-es-alt', 'data-en-label', 'data-es-label',
+                'setLang(', 'applyLang',
                 'juanfranj.github.io/cheescoach', '<!--LANG-'):
         if bad in html:
             fail(f'{rel}: still contains {bad!r}')
-    stripped = html
+    stripped = re.sub(r'<script type="application/ld\+json">.*?</script>', '', html, flags=re.S)
     for ok in ALLOWED_OLD_BRAND:
         stripped = stripped.replace(ok, '')
     if 'CheesCoach' in stripped:
@@ -69,9 +70,9 @@ def check_page(path, page, lang):
     p.feed(html)
     if p.lang != lang:
         fail(f'{rel}: <html lang="{p.lang}">, expected "{lang}"')
+    if p.canonical != url_of(page, lang):
+        fail(f'{rel}: canonical {p.canonical}, expected {url_of(page, lang)}')
     if page in BILINGUAL:
-        if p.canonical != url_of(page, lang):
-            fail(f'{rel}: canonical {p.canonical}, expected {url_of(page, lang)}')
         expected = {'en': url_of(page, 'en'), 'es': url_of(page, 'es'), 'x-default': url_of(page, 'en')}
         if p.alternates != expected:
             fail(f'{rel}: hreflang {p.alternates}, expected {expected}')
@@ -107,6 +108,10 @@ def main():
                       [url_of(p, 'en') for p in ENGLISH_ONLY])
         if sorted(locs) != want:
             fail(f'sitemap.xml: {len(locs)} URLs, expected {len(want)}')
+        alts = re.findall(r'<xhtml:link rel="alternate" hreflang="[^"]+" href="([^"]+)"/>',
+                          open(os.path.join(OUT, 'sitemap.xml')).read())
+        if len(alts) != 3 * 2 * len(BILINGUAL) or any(a not in want for a in alts):
+            fail(f'sitemap.xml: {len(alts)} alternates, expected {3 * 2 * len(BILINGUAL)} pointing at listed URLs')
     if problems:
         print('FAIL')
         for p in problems:

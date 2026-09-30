@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.">
     <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
     <meta property="og:locale:alternate" content="en_GB">
-    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "Chess Coach", "alternateName": ["CheesCoach", "Chess Coach AI"], "url": "https://chesscoach-app.com/", "inLanguage": ["en", "es"]}, {"@type": "MobileApplication", "name": "Chess Coach", "alternateName": "CheesCoach", "description": "Juega y descubre qué falló. El motor de tu móvil calcula y un coach con IA lo convierte en una frase que puedes usar. Aperturas, medio juego, finales y cálculo en iPhone, iPad y Android.", "operatingSystem": "ANDROID, IOS", "applicationCategory": "GameApplication", "applicationSubCategory": "Board game", "inLanguage": ["en", "es"], "installUrl": ["https://play.google.com/store/apps/details?id=com.app.cheescoach", "https://apps.apple.com/app/id6790447113"], "sameAs": ["https://play.google.com/store/apps/details?id=com.app.cheescoach", "https://apps.apple.com/app/id6790447113"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "author": {"@type": "Person", "name": "JuanfranDevs"}, "image": "https://chesscoach-app.com/images/og-card.jpg", "url": "https://chesscoach-app.com/es/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Chess Coach", "alternateName": ["CheesCoach", "Chess Coach AI"], "url": "https://chesscoach-app.com/", "inLanguage": "es"}</script>
     <meta name="author" content="JuanfranDevs">
     <meta name="theme-color" content="#080D1A">
 
@@ -720,6 +720,6 @@
 <!-- ========== SCRIPTS ========== -->
 <script src="../js/landing.js"></script>
 
-<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}})});</script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
 </body>
 </html>
