@@ -127,6 +127,24 @@ META = {
                'Aprende ajedrez en el móvil, desde cómo se mueven las piezas hasta más de 2000: cuatro cursos '
                'con teoría, puzzles, aperturas y partidas contra bots. El primero es gratis.'),
     },
+    'chess-pawn-structures': {
+        'slug': {'es': 'estructuras-de-peones'},
+        'en': ('Chess pawn structures: the 25 that decide the middlegame',
+               'The 25 chess pawn structures to know, from the isolated queen pawn to the Carlsbad and the '
+               'Maróczy bind: how to recognise each one and how to practise the plans.'),
+        'es': ('Estructuras de peones en ajedrez: las 25 más importantes',
+               'Las 25 estructuras de peones que hay que conocer, del peón dama aislado a la Carlsbad y el '
+               'ligado de Maróczy: cómo reconocerlas y cómo practicar sus planes.'),
+    },
+    'how-to-calculate-in-chess': {
+        'slug': {'es': 'como-calcular-en-ajedrez'},
+        'en': ('How to calculate in chess: a method and how to train it',
+               'A simple method to calculate in chess (read the position, candidate moves, forcing lines, the '
+               'best reply) and two ways to train it: decisions and the Woodpecker method.'),
+        'es': ('Cómo calcular en ajedrez: un método y cómo entrenarlo',
+               'Un método sencillo para calcular en ajedrez (leer la posición, candidatas, líneas forzadas, la '
+               'mejor respuesta) y dos formas de entrenarlo: decisiones y pájaro carpintero.'),
+    },
     'essential-chess-endgames': {
         'slug': {'es': 'finales-de-ajedrez'},
         'en': ('Essential chess endgames: the 100 to know and how to practise',

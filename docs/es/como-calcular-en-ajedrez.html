@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App para aprender aperturas de ajedrez con repetición espaciada</title>
-    <meta name="description" content="Aprende aperturas con repetición espaciada y juega esas líneas contra Maia, un rival que juega como un jugador de club. La Italiana es gratis.">
-    <link rel="canonical" href="https://chesscoach-app.com/es/entrenador-de-aperturas.html">
-    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-opening-trainer.html">
-    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/entrenador-de-aperturas.html">
-    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-opening-trainer.html">
+    <title>Cómo calcular en ajedrez: un método y cómo entrenarlo</title>
+    <meta name="description" content="Un método sencillo para calcular en ajedrez (leer la posición, candidatas, líneas forzadas, la mejor respuesta) y dos formas de entrenarlo: decisiones y pájaro carpintero.">
+    <link rel="canonical" href="https://chesscoach-app.com/es/como-calcular-en-ajedrez.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/how-to-calculate-in-chess.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/como-calcular-en-ajedrez.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/how-to-calculate-in-chess.html">
     <meta property="og:site_name" content="Chess Coach">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="App para aprender aperturas de ajedrez con repetición espaciada">
-    <meta property="og:description" content="Aprende aperturas con repetición espaciada y juega esas líneas contra Maia, un rival que juega como un jugador de club. La Italiana es gratis.">
-    <meta property="og:url" content="https://chesscoach-app.com/es/entrenador-de-aperturas.html">
+    <meta property="og:title" content="Cómo calcular en ajedrez: un método y cómo entrenarlo">
+    <meta property="og:description" content="Un método sencillo para calcular en ajedrez (leer la posición, candidatas, líneas forzadas, la mejor respuesta) y dos formas de entrenarlo: decisiones y pájaro carpintero.">
+    <meta property="og:url" content="https://chesscoach-app.com/es/como-calcular-en-ajedrez.html">
     <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_ES">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="App para aprender aperturas de ajedrez con repetición espaciada">
-    <meta name="twitter:description" content="Aprende aperturas con repetición espaciada y juega esas líneas contra Maia, un rival que juega como un jugador de club. La Italiana es gratis.">
+    <meta name="twitter:title" content="Cómo calcular en ajedrez: un método y cómo entrenarlo">
+    <meta name="twitter:description" content="Un método sencillo para calcular en ajedrez (leer la posición, candidatas, líneas forzadas, la mejor respuesta) y dos formas de entrenarlo: decisiones y pájaro carpintero.">
     <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
     <meta property="og:locale:alternate" content="en_GB">
     <meta name="author" content="JuanfranDevs">
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="../css/landing.css">
     <link rel="stylesheet" href="../css/guide.css">
 
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuál es la mejor forma de aprender aperturas de ajedrez?", "acceptedAnswer": {"@type": "Answer", "text": "Aprende un repertorio pequeño que vayas a jugar de verdad, entiende los planes que hay detrás, repasa las jugadas con repetición espaciada y después juega las líneas en partidas reales o contra un rival que juegue como una persona. Saber las jugadas sin jugarlas es lo que hace que las líneas se caigan en la jugada ocho."}}, {"@type": "Question", "name": "¿Qué apertura debe aprender un principiante?", "acceptedAnswer": {"@type": "Answer", "text": "La Italiana es una buena primera apertura con blancas: desarrolla rápido y enseña las ideas que comparten todas las aperturas. Por eso es también la apertura gratuita de Chess Coach."}}, {"@type": "Question", "name": "¿Qué es la repetición espaciada en ajedrez?", "acceptedAnswer": {"@type": "Answer", "text": "Una forma de repasar: cada línea vuelve tras un intervalo que crece cuando la recuerdas y se acorta cuando no, así que el tiempo de práctica va a las líneas que estás a punto de olvidar."}}, {"@type": "Question", "name": "¿Funciona en iPhone y en Android?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, en iPhone, iPad y Android, y tu repertorio te sigue entre dispositivos si inicias sesión."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo mejorar el cálculo en ajedrez?", "acceptedAnswer": {"@type": "Answer", "text": "Usa un método fijo en cada jugada importante (primero las candidatas, primero las jugadas forzadas, comprobar la mejor respuesta del rival) y entrena con posiciones en las que tengas que decidir antes de ver la solución."}}, {"@type": "Question", "name": "¿Cuántas jugadas hay que calcular?", "acceptedAnswer": {"@type": "Answer", "text": "Las necesarias para llegar a una posición tranquila, y no más. En líneas forzadas pueden ser muchas; en posiciones tranquilas importa más juzgar bien la posición que la profundidad."}}, {"@type": "Question", "name": "¿Qué son las jugadas candidatas?", "acceptedAnswer": {"@type": "Answer", "text": "La lista corta de jugadas que merece la pena calcular en una posición. Elegirlas bien, y mirar primero las forzadas, te ahorra calcular lo que no toca."}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#content">Saltar al contenido</a>
@@ -58,7 +58,7 @@
             <li><a href="metodo-pajaro-carpintero.html">Pájaro carpintero</a></li>
             <li><a href="index.html#download">Descargar</a></li>
             <li>
-                <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../chess-opening-trainer.html" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="entrenador-de-aperturas.html" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
+                <div class="lang-toggle" role="group" aria-label="Idioma"><a href="../how-to-calculate-in-chess.html" hreflang="en" lang="en" data-lang-link="en">EN</a><a href="como-calcular-en-ajedrez.html" hreflang="es" lang="es" data-lang-link="es" class="active" aria-current="page">ES</a></div>
             </li>
         </ul>
 
@@ -75,14 +75,14 @@
     <div class="container">
         <div class="guide-hero-grid">
             <div>
-                <h1>Una app para aprender aperturas de ajedrez: repetición espaciada y un rival que juega como una persona</h1>
-                <p class="lede">Memorizar líneas es solo la mitad. Chess Coach repasa las jugadas de tu repertorio hasta que se te quedan, te avisa cuando una línea toca repasarla y después te deja jugar esa misma línea contra Maia, una red entrenada con partidas reales de club, que se equivoca como se equivocan las personas.</p>
+                <h1>Cómo calcular en ajedrez: un método y dos formas de entrenarlo</h1>
+                <p class="lede">Calcular no es ver diez jugadas por delante. Es mirar las pocas jugadas correctas, en el orden correcto, y comprobar qué puede hacer tu rival a cambio. Aquí tienes un método sencillo y los dos entrenadores de Chess Coach que lo convierten en costumbre.</p>
 <div class="stores">
-            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_chess_opening_trainer_es%26utm_content%3Dhero" class="store-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_how_to_calculate_in_chess_es%26utm_content%3Dhero" class="store-button" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
                 <span><small>Disponible en</small>Google Play</span>
             </a>
-            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_chess_opening_trainer_es_hero&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_how_to_calculate_in_chess_es_hero&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
                 <span><small>Descárgala en el</small>App Store</span>
             </a>
@@ -90,7 +90,7 @@
 
             </div>
             <div class="guide-hero-shot">
-                <div class="phone"><img src="../images/screens/opening-trainer.webp" alt="El Entrenador de aperturas de Chess Coach: un repertorio de blancas y de negras, cada apertura con sus estrellas y un aviso de repaso pendiente" width="840" height="1708"></div>
+                <div class="phone"><img src="../images/screens/woodpecker-session.webp" alt="Un ejercicio de cálculo en Chess Coach: cuatro jugadas candidatas numeradas dibujadas como flechas sobre el tablero" width="840" height="1708"></div>
             </div>
         </div>
     </div>
@@ -99,54 +99,44 @@
 <section class="guide-body">
     <div class="container">
         <div class="prose">
-            <h2>Por qué se te olvidan las aperturas</h2>
-            <p>Aprendes una línea, pasas tres semanas sin verla en el tablero y, cuando por fin aparece, en la jugada seis ya vas por tu cuenta. Volver a leer la línea no lo arregla. Lo que funciona es recordarla justo cuando estás a punto de olvidarla.</p>
-            <p>Eso es la repetición espaciada: cada línea vuelve tras un intervalo que crece cada vez que la aciertas y se acorta cuando fallas.</p>
-
-            <h2>Cómo funciona el entrenador</h2>
+            <h2>Un método para cada jugada que importa</h2>
             <ol class="steps">
-                <li><strong>Monta tu repertorio.</strong> Elige las aperturas que juegas de verdad, con blancas y con negras.</li>
-                <li><strong>Juega la jugada, no la teoría.</strong> El entrenador monta la posición y tú haces tu jugada en el tablero. Si no la sabes, te la enseña, y la línea vuelve antes.</li>
-                <li><strong>Gana las estrellas.</strong> Cada apertura de tu repertorio tiene tres estrellas y un aviso de cuándo toca repasarla, así que siempre sabes qué practicar hoy.</li>
-                <li><strong>Después, juégala de verdad.</strong> En el Laboratorio de aperturas juegas esa misma línea contra Maia y la llevas hasta el medio juego. Tú eliges el nivel: cada uno juega como una persona de ese rating.</li>
+                <li><strong>Lee primero la posición.</strong> ¿Quién está mejor y qué amenaza tu rival? Muchos errores de club vienen de no haberse hecho esa pregunta.</li>
+                <li><strong>Haz la lista de candidatas.</strong> Primero jaques, capturas y amenazas, porque fuerzan la respuesta y se calculan mejor. Después una o dos jugadas tranquilas que encajen con el plan.</li>
+                <li><strong>Calcula cada una hasta una posición tranquila.</strong> Sigue la línea forzada hasta que no quede nada que comer ni jaque que dar, y juzga la posición ahí, no a medias.</li>
+                <li><strong>Busca la mejor respuesta del rival.</strong> Antes de jugar, pregúntate cuál es la respuesta más fuerte a tu jugada. Si duele, vuelve a la lista.</li>
             </ol>
 
-            <figure class="inline-shot">
-                <div class="phone"><img src="../images/screens/opening-drill.webp" alt="Una posición de entrenamiento en el Giuoco Piano, con una flecha verde señalando la jugada y las candidatas debajo" width="840" height="1708" loading="lazy"></div>
-                <figcaption>Una posición de la Italiana. Haces la jugada en el tablero y el entrenador lleva la cuenta de cuánto la dominas.</figcaption>
-            </figure>
+            <h2>Entrénalo con decisiones</h2>
+            <p>El Entrenador de decisiones de Chess Coach te lleva por esos pasos en posiciones reales. Antes de mover te puede preguntar quién está mejor, qué amenaza tu rival o cuál es el plan. Después eliges tu jugada y, a menudo, juegas también cómo te va a responder. Si tu jugada permite algo fuerte, tienes que encontrarlo tú. Son 149 ejercicios, agrupados por temática.</p>
 
-            <h2>Por qué practicar contra Maia</h2>
-            <p>Un motor normal responde a tu apertura con la mejor jugada siempre, y eso no es lo que pasa en tu club. Maia se entrenó para predecir las jugadas que hacen jugadores reales de un nivel concreto, así que juega las respuestas que te vas a encontrar de verdad, incluidos los errores que deberías saber castigar.</p>
+            <h2>Entrénalo con repetición</h2>
+            <p>La otra mitad del cálculo es no necesitar calcular: ver el patrón de un vistazo. Eso es lo que entrena <a href="metodo-pajaro-carpintero.html">el método del pájaro carpintero</a>: el mismo set de posiciones una y otra vez, cada ciclo más rápido. En Chess Coach cada posición muestra cuatro candidatas como flechas; eliges la mejor y después juegas la línea que sigue.</p>
 
             <h2>Qué es gratis</h2>
-            <p>La Italiana es gratis, completa y con los dos colores, para que pruebes el ciclo entero antes de decidir. Todas las demás aperturas, en el entrenador y en el Laboratorio de aperturas, son Premium.</p>
+            <p>Cinco ejercicios de decisión son gratis, igual que las diez primeras posiciones de cada set del pájaro carpintero. El resto del Laboratorio de cálculo forma parte de Premium.</p>
 
             <h2>Preguntas</h2>
             <div class="faq">
                 <details class="faq-item">
-                    <summary>¿Cuál es la mejor forma de aprender aperturas de ajedrez?</summary>
-                    <div>Aprende un repertorio pequeño que vayas a jugar de verdad, entiende los planes que hay detrás, repasa las jugadas con repetición espaciada y después juega las líneas en partidas reales o contra un rival que juegue como una persona. Saber las jugadas sin jugarlas es lo que hace que las líneas se caigan en la jugada ocho.</div>
+                    <summary>¿Cómo mejorar el cálculo en ajedrez?</summary>
+                    <div>Usa un método fijo en cada jugada importante (primero las candidatas, primero las jugadas forzadas, comprobar la mejor respuesta del rival) y entrena con posiciones en las que tengas que decidir antes de ver la solución.</div>
                 </details>
                 <details class="faq-item">
-                    <summary>¿Qué apertura debe aprender un principiante?</summary>
-                    <div>La Italiana es una buena primera apertura con blancas: desarrolla rápido y enseña las ideas que comparten todas las aperturas. Por eso es también la apertura gratuita de Chess Coach.</div>
+                    <summary>¿Cuántas jugadas hay que calcular?</summary>
+                    <div>Las necesarias para llegar a una posición tranquila, y no más. En líneas forzadas pueden ser muchas; en posiciones tranquilas importa más juzgar bien la posición que la profundidad.</div>
                 </details>
                 <details class="faq-item">
-                    <summary>¿Qué es la repetición espaciada en ajedrez?</summary>
-                    <div>Una forma de repasar: cada línea vuelve tras un intervalo que crece cuando la recuerdas y se acorta cuando no, así que el tiempo de práctica va a las líneas que estás a punto de olvidar.</div>
-                </details>
-                <details class="faq-item">
-                    <summary>¿Funciona en iPhone y en Android?</summary>
-                    <div>Sí, en iPhone, iPad y Android, y tu repertorio te sigue entre dispositivos si inicias sesión.</div>
+                    <summary>¿Qué son las jugadas candidatas?</summary>
+                    <div>La lista corta de jugadas que merece la pena calcular en una posición. Elegirlas bien, y mirar primero las forzadas, te ahorra calcular lo que no toca.</div>
                 </details>
             </div>
 
             <h2>Sigue entrenando</h2>
             <div class="related">
-                <a href="analizar-partidas-de-ajedrez.html"><span>Analizar tus partidas</span><span>Descubre qué falló en tus propias partidas.</span></a>
-                <a href="finales-de-ajedrez.html"><span>Finales que hay que saber</span><span>Los 100 básicos y cómo practicarlos.</span></a>
                 <a href="metodo-pajaro-carpintero.html"><span>El método del pájaro carpintero</span><span>El mismo set, cada ciclo más rápido, hasta verlo de un vistazo.</span></a>
+                <a href="estructuras-de-peones.html"><span>Estructuras de peones</span><span>Las 25 que deciden el medio juego.</span></a>
+                <a href="analizar-partidas-de-ajedrez.html"><span>Analizar tus partidas</span><span>Descubre qué falló en tus propias partidas.</span></a>
             </div>
         </div>
     </div>
@@ -161,11 +151,11 @@
         <p class="lede">Empieza gratis en iPhone, iPad o Android. Sin anuncios, y sin suscripción para jugar, analizar o hacer el primer curso.</p>
 
         <div class="stores">
-            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_chess_opening_trainer_es%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_how_to_calculate_in_chess_es%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
                 <span><small>Disponible en</small>Google Play</span>
             </a>
-            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_chess_opening_trainer_es_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_how_to_calculate_in_chess_es_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
                 <span><small>Descárgala en el</small>App Store</span>
             </a>

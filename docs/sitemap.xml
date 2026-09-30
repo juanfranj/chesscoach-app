@@ -157,6 +157,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/learn-chess.html"/>
   </url>
   <url>
+    <loc>https://chesscoach-app.com/chess-pawn-structures.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-pawn-structures.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/estructuras-de-peones.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-pawn-structures.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/estructuras-de-peones.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-pawn-structures.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/estructuras-de-peones.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-pawn-structures.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/how-to-calculate-in-chess.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/how-to-calculate-in-chess.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/como-calcular-en-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/how-to-calculate-in-chess.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/como-calcular-en-ajedrez.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/how-to-calculate-in-chess.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/como-calcular-en-ajedrez.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/how-to-calculate-in-chess.html"/>
+  </url>
+  <url>
     <loc>https://chesscoach-app.com/essential-chess-endgames.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/finales-de-ajedrez.html"/>
