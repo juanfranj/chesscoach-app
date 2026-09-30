@@ -109,6 +109,24 @@ META = {
                'El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app '
                'que los lleva por ti con dos sets de 150 posiciones.'),
     },
+    'chess-bots': {
+        'slug': {'es': 'jugar-contra-bots-de-ajedrez'},
+        'en': ('Chess bots to play against, beginner to grandmaster | Chess Coach',
+               'Twenty chess bots with a rating and a style, from beginner to grandmaster, including Maia bots '
+               'that play like humans. Free, offline, on iPhone and Android.'),
+        'es': ('Jugar al ajedrez contra bots por niveles | Chess Coach',
+               'Veinte bots de ajedrez con nivel y estilo, de principiante a gran maestro, incluidos bots Maia '
+               'que juegan como personas. Gratis y sin conexión en iPhone y Android.'),
+    },
+    'learn-chess': {
+        'slug': {'es': 'aprender-ajedrez-desde-cero'},
+        'en': ('Learn chess from scratch: a step-by-step course app | Chess Coach',
+               'Learn chess on your phone, from how the pieces move to past 2000: four courses with theory, '
+               'puzzles, openings and games against bots. The first course is free.'),
+        'es': ('Aprender ajedrez desde cero: curso paso a paso | Chess Coach',
+               'Aprende ajedrez en el móvil, desde cómo se mueven las piezas hasta más de 2000: cuatro cursos '
+               'con teoría, puzzles, aperturas y partidas contra bots. El primero es gratis.'),
+    },
     'essential-chess-endgames': {
         'slug': {'es': 'finales-de-ajedrez'},
         'en': ('Essential chess endgames: the 100 to know and how to practise',
