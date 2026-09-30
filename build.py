@@ -304,6 +304,20 @@ REMEMBER_CHOICE = (
     'a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>')
 
 
+PLAY_LINK = 'https://play.google.com/store/apps/details?id=com.app.cheescoach'
+
+
+def tag_play_links(text, page, lang):
+    """Adds the install referrer Play Console reads as a UTM campaign: web_<page>_<lang>.
+
+    Apple links stay bare until there is a provider token (pt): without it App Store Connect
+    ignores the campaign (ct), so a half-built link would only look tracked."""
+    name = 'home' if page == 'index' else page.replace('-', '_')
+    referrer = ('utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite'
+                f'%26utm_campaign%3Dweb_{name}_{lang}%26utm_content%3Dhero')
+    return text.replace(f'href="{PLAY_LINK}"', f'href="{PLAY_LINK}&amp;referrer={referrer}"')
+
+
 def build_page(page, lang):
     name = page_file(page)
     text = open(os.path.join(SRC, name), encoding='utf-8').read()
@@ -320,6 +334,7 @@ def build_page(page, lang):
         text = text.replace('<!--LANG-TOGGLE-->', toggle(page, lang))
         text = text.replace('</body>', REMEMBER_CHOICE + '\n</body>', 1)
     text = text.replace('https://juanfranj.github.io/cheescoach/', SITE + '/')
+    text = tag_play_links(text, page, lang)
     dest = os.path.join(OUT, 'es', name) if lang == 'es' else os.path.join(OUT, name)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     open(dest, 'w', encoding='utf-8').write(text)
