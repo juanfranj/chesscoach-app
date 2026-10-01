@@ -166,7 +166,7 @@
     <div class="policy-container">
 
         <h1>Política de Privacidad</h1>
-        <p class="policy-date">Última actualización: 23 de septiembre de 2026</p>
+        <p class="policy-date">Última actualización: 1 de octubre de 2026</p>
 
         <div class="policy-toc">
             <h3>Contenido</h3>
@@ -261,20 +261,20 @@
         <p>Chess Coach ofrece comentarios de ajedrez generados por IA de forma opcional. Hay dos modos independientes y eliges cuál usar.</p>
 
         <h3>Modo A — Proxy backend (créditos y llamadas gratis)</h3>
-        <p>Por defecto, cada usuario obtiene <strong>5 análisis de IA gratis</strong>. Los análisis adicionales requieren créditos, que se pueden comprar dentro de la app vía Google Play Billing. En este modo las peticiones pasan por nuestro backend alojado en <strong>Supabase (región UE)</strong>, que reenvia los datos de ajedrez al proveedor de IA en tu nombre.</p>
-        <p>Para usar el Modo A debes iniciar sesión con <strong>Google</strong>, porque necesitamos un identificador estable para vincular tu saldo de llamadas gratis y créditos entre reinstalaciones. En el backend almacenamos:</p>
+        <p>Por defecto, cada usuario obtiene <strong>5 análisis de IA gratis</strong>. Los análisis adicionales requieren créditos, que se pueden comprar dentro de la app vía Google Play o la App Store. En este modo las peticiones pasan por nuestro backend alojado en <strong>Supabase (región UE)</strong>, que reenvia los datos de ajedrez al proveedor de IA en tu nombre.</p>
+        <p>Para usar el Modo A debes iniciar sesión con <strong>Google</strong> o <strong>Apple</strong>, porque necesitamos un identificador estable para vincular tu saldo de llamadas gratis y créditos entre reinstalaciones. En el backend almacenamos:</p>
         <ul>
-            <li>El email de tu cuenta de Google (solo como identificador, nunca compartido con terceros)</li>
+            <li>El email de tu cuenta de Google o Apple (solo como identificador, nunca compartido con terceros)</li>
             <li>Saldo de créditos, llamadas gratis consumidas e historial de compras (para prevención de fraude y soporte de reembolsos)</li>
             <li>Un registro de uso (timestamp, tipo de análisis, contadores de tokens, coste) para facturación y detección de abuso — NO contiene la posición de ajedrez en si</li>
             <li>Un hash identificador del dispositivo usado exclusivamente para evitar farmeo de llamadas gratis vía reinstalaciones</li>
         </ul>
-        <p>Los proveedores de IA usados por el backend son <strong>DeepSeek</strong> (primario) y <strong>Google Gemini</strong> (fallback si DeepSeek no está disponible).</p>
+        <p>Los proveedores de IA usados por el backend son <strong>OpenAI</strong> (principal, Estados Unidos), <strong>DeepSeek</strong> (primer respaldo, si OpenAI no está disponible) y <strong>Google Gemini</strong> (segundo respaldo).</p>
 
         <div class="alert alert-info" style="margin-top: var(--space-4); margin-bottom: var(--space-4);">
             <span class="alert-icon">&#9432;</span>
             <div>
-                <p><strong>Aviso de residencia de datos:</strong> DeepSeek es una empresa china y procesa las peticiones en servidores ubicados en la República Popular China. El backend solo envía datos de ajedrez no personales (posición FEN, historial de movimientos en PGN, evaluación de Stockfish, ELO del coach). Tu email de Google NUNCA se incluye en la petición al proveedor de IA — el backend lo usa solo internamente para consultar tu saldo de créditos. Si prefieres evitar DeepSeek por completo, puedes usar el Modo B (tu propia clave API) o contactarnos para pedir que DeepSeek sea deshabilitado para tu cuenta. Tenemos además un kill switch administrativo que nos permite deshabilitar DeepSeek al instante y enrutar todo el tráfico a Gemini (UE) si es necesario.</p>
+                <p><strong>Aviso de residencia de datos:</strong> OpenAI procesa las peticiones en Estados Unidos. DeepSeek, que solo se usa cuando OpenAI no está disponible, es una empresa china y procesa las peticiones en servidores ubicados en la República Popular China. El backend solo envía datos de ajedrez (posición FEN, historial de movimientos en PGN, evaluación de Stockfish, hechos calculados a partir de la posición, ELO del coach) y, si usas el chat del coach, el texto que escribes en él. Tu email NUNCA se incluye en la petición al proveedor de IA — el backend lo usa solo internamente para consultar tu saldo de créditos. Si prefieres evitar DeepSeek por completo, usa el Modo B (tu propia clave API) con cualquier otro proveedor. Tenemos además un interruptor administrativo que nos permite sacar a DeepSeek de la cadena en cualquier momento; en ese caso, lo que OpenAI no pueda atender pasa directamente a Gemini.</p>
             </div>
         </div>
 
@@ -303,6 +303,8 @@
             <li>La posición actual de ajedrez (notación FEN)</li>
             <li>El historial de movimientos de la partida (notación PGN)</li>
             <li>La evaluación del motor Stockfish (puntuación numérica)</li>
+            <li>Hechos que la app calcula a partir de esa posición (material, jaques, piezas atacadas y defendidas)</li>
+            <li>Los mensajes que escribes en el chat del coach, si lo usas (por favor, no escribas datos personales en él)</li>
             <li>Tu nivel ELO configurado (para ajustar la complejidad de la explicación)</li>
         </ul>
         <p><strong>Nunca se envía información personal a los proveedores de IA.</strong> Solo se transmiten posiciones de ajedrez y datos del juego. Tu clave API se envía como cabecera de autenticación pero nunca se comparte con nosotros.</p>
