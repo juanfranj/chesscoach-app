@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HU Chess community rules - Chess Coach</title>
+    <meta name="description" content="The rules for nicknames and behaviour in HU Chess, how to report or block a player, and what happens next.">
+    <link rel="icon" type="image/png" href="app_icon_chesscoach.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+
+    <style>
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: calc(var(--space-24) + var(--space-8)) var(--space-6) var(--space-16);
+        }
+        .policy-container h1 {
+            font-size: var(--text-4xl);
+            margin-bottom: var(--space-4);
+        }
+        .policy-date {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-12);
+        }
+        .policy-container h2 {
+            font-size: var(--text-2xl);
+            margin-top: var(--space-12);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .policy-container h3 {
+            font-size: var(--text-lg);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-3);
+            color: var(--accent-bright);
+        }
+        .policy-container p,
+        .policy-container li {
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-4);
+        }
+        .policy-container ul {
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-4);
+        }
+        .policy-container li {
+            margin-bottom: var(--space-2);
+        }
+        .policy-container strong {
+            color: var(--text-primary);
+        }
+        .policy-container a {
+            color: var(--accent-bright);
+        }
+        .policy-container a:hover {
+            text-decoration: underline;
+        }
+        .policy-toc {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        .policy-toc h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+        .policy-toc ol {
+            padding-left: var(--space-6);
+            margin-bottom: 0;
+        }
+        .policy-toc li {
+            margin-bottom: var(--space-2);
+        }
+        .policy-toc a {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+        }
+        .policy-toc a:hover {
+            color: var(--accent-bright);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-6);
+        }
+        .data-table th,
+        .data-table td {
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            font-size: var(--text-sm);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .data-table th {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        .data-table td {
+            color: var(--text-secondary);
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="chess-pattern-bg">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="Chess Coach" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <ul class="navbar-links" id="nav-links">
+                <li><a href="index.html" data-en="Home" data-es="Inicio">Home</a></li>
+                <li><a href="api-setup.html">API Setup</a></li>
+                <li>
+                    <!--LANG-TOGGLE-->
+                </li>
+            </ul>
+            <button class="navbar-hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="policy-container">
+
+        <h1 data-en="HU Chess community rules" data-es="Normas de la comunidad de HU Chess">HU Chess community rules</h1>
+        <p class="policy-date" data-en="Last updated: October 17, 2026" data-es="Última actualización: 17 de octubre de 2026">Last updated: October 17, 2026</p>
+        <p data-en="HU Chess is the online mode of Chess Coach: you play people from all over the world, and the only thing they see of you is your nickname, your country flag and your rating. There is no chat. These rules are short, and by saving a nickname you accept them." data-es="HU Chess es el modo online de Chess Coach: juegas con personas de todo el mundo y lo único que ven de ti es tu nickname, la bandera de tu país y tu ELO. No hay chat. Estas normas son breves y, al guardar un nickname, las aceptas.">HU Chess is the online mode of Chess Coach: you play people from all over the world, and the only thing they see of you is your nickname, your country flag and your rating. There is no chat. These rules are short, and by saving a nickname you accept them.</p>
+        <h2 id="not-allowed" data-en="1. What is not allowed" data-es="1. Qué no está permitido">1. What is not allowed</h2>
+        <ul>
+        <li data-en="Nicknames that insult, threaten or harass anyone." data-es="Nicknames que insulten, amenacen o acosen a alguien.">Nicknames that insult, threaten or harass anyone.</li>
+        <li data-en="Hate or discrimination: racism, references to nazism or terrorism, slurs against any group." data-es="Odio o discriminación: racismo, referencias al nazismo o al terrorismo, insultos contra cualquier colectivo.">Hate or discrimination: racism, references to nazism or terrorism, slurs against any group.</li>
+        <li data-en="Sexual or obscene nicknames." data-es="Nicknames sexuales u obscenos.">Sexual or obscene nicknames.</li>
+        <li data-en="Pretending to be Chess Coach, its staff or another player." data-es="Hacerse pasar por Chess Coach, su equipo u otro jugador.">Pretending to be Chess Coach, its staff or another player.</li>
+        <li data-en="Cheating: using an engine or another person's help during a game, or abandoning games on purpose." data-es="Hacer trampas: usar un motor o la ayuda de otra persona durante la partida, o abandonar partidas a propósito.">Cheating: using an engine or another person's help during a game, or abandoning games on purpose.</li>
+        </ul>
+        <p data-en="Every new nickname goes through an automatic filter, so the obvious ones never get saved. The rest is what reports are for." data-es="Cada nickname nuevo pasa por un filtro automático, así que los evidentes no llegan a guardarse. Para lo demás están las denuncias.">Every new nickname goes through an automatic filter, so the obvious ones never get saved. The rest is what reports are for.</p>
+        <h2 id="report" data-en="2. How to report or block a player" data-es="2. Cómo denunciar o bloquear a un jugador">2. How to report or block a player</h2>
+        <p data-en="During or after a game, tap your opponent's nickname and choose <strong>Report player</strong> or <strong>Block player</strong>. A report tells us the reason (offensive nickname, cheating, offensive behaviour or other); the other player never learns who reported them." data-es="Durante la partida o al terminar, toca el nickname de tu rival y elige <strong>Denunciar jugador</strong> o <strong>Bloquear jugador</strong>. La denuncia nos dice el motivo (nickname ofensivo, trampas, comportamiento ofensivo u otro); el otro jugador nunca sabe quién le ha denunciado.">During or after a game, tap your opponent's nickname and choose <strong>Report player</strong> or <strong>Block player</strong>. A report tells us the reason (offensive nickname, cheating, offensive behaviour or other); the other player never learns who reported them.</p>
+        <p data-en="When you block someone, you two are never seated together again and neither of you can offer the other a rematch. You can undo it in Settings &rsaquo; Account &rsaquo; Blocked players." data-es="Cuando bloqueas a alguien, no volvéis a sentaros juntos y ninguno puede ofrecer revancha al otro. Puedes deshacerlo en Ajustes &rsaquo; Cuenta &rsaquo; Jugadores bloqueados.">When you block someone, you two are never seated together again and neither of you can offer the other a rematch. You can undo it in Settings &rsaquo; Account &rsaquo; Blocked players.</p>
+        <p data-en="You can also write to us at <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>, with or without an account." data-es="También puedes escribirnos a <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>, tengas cuenta o no.">You can also write to us at <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>, with or without an account.</p>
+        <h2 id="what-happens" data-en="3. What happens after a report" data-es="3. Qué pasa después de una denuncia">3. What happens after a report</h2>
+        <p data-en="We are notified as soon as a report arrives and we review every one within 24 hours." data-es="Recibimos un aviso en cuanto llega una denuncia y revisamos cada una en menos de 24 horas.">We are notified as soon as a report arrives and we review every one within 24 hours.</p>
+        <ul>
+        <li data-en="An offensive nickname is removed: the player has to choose a new one before playing again." data-es="Un nickname ofensivo se elimina: el jugador tiene que elegir otro antes de volver a jugar.">An offensive nickname is removed: the player has to choose a new one before playing again.</li>
+        <li data-en="Serious or repeated breaches mean the account is suspended from HU Chess." data-es="Las faltas graves o repetidas suponen la suspensión de la cuenta en HU Chess.">Serious or repeated breaches mean the account is suspended from HU Chess.</li>
+        <li data-en="Reports that turn out to be false or abusive can also lead to a suspension." data-es="Las denuncias falsas o abusivas también pueden acabar en suspensión.">Reports that turn out to be false or abusive can also lead to a suspension.</li>
+        </ul>
+        <h2 id="contact" data-en="4. Contact" data-es="4. Contacto">4. Contact</h2>
+        <p data-en="Questions about these rules, or about a decision we took: <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>." data-es="Dudas sobre estas normas o sobre una decisión que hayamos tomado: <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>.">Questions about these rules, or about a decision we took: <a href='mailto:juanfrandevs@gmail.com'>juanfrandevs@gmail.com</a>.</p>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <span>Chess Coach by <a href="https://github.com/juanfranj" target="_blank" rel="noopener noreferrer">JuanfranDevs</a></span>
+            <span>&copy; 2026</span>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+
+        // Navbar scroll
+        var nav = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // Hamburger
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', function() {
+                var open = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('open', open);
+                hamburger.setAttribute('aria-expanded', open);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -154,6 +154,14 @@ META = {
                'Los 100 finales básicos de ajedrez por familias: rey y peones, torre, dama, alfil y caballo. '
                'Cuáles ganan, cuáles son tablas y cómo practicarlos.'),
     },
+    'hu-chess-rules': {
+        'en': ('HU Chess community rules — Chess Coach',
+               'The rules for nicknames and behaviour in HU Chess, how to report or block a player, and what '
+               'happens after a report.'),
+        'es': ('Normas de la comunidad de HU Chess — Chess Coach',
+               'Las normas sobre nicknames y comportamiento en HU Chess, cómo denunciar o bloquear a un jugador y '
+               'qué pasa después de una denuncia.'),
+    },
     'open-source': {
         'en': ('Open source and corresponding source — Chess Coach',
                'Open-source licences and the GPLv3 corresponding-source offer for the chess engines distributed '

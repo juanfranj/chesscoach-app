@@ -193,6 +193,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/essential-chess-endgames.html"/>
   </url>
   <url>
+    <loc>https://chesscoach-app.com/hu-chess-rules.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/hu-chess-rules.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/hu-chess-rules.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/hu-chess-rules.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/hu-chess-rules.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/hu-chess-rules.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/hu-chess-rules.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/hu-chess-rules.html"/>
+  </url>
+  <url>
     <loc>https://chesscoach-app.com/open-source.html</loc>
   </url>
 </urlset>
