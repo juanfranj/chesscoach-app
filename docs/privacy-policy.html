@@ -167,7 +167,7 @@
     <div class="policy-container">
 
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: October 1, 2026</p>
+        <p class="policy-date">Last updated: October 18, 2026</p>
 
         <div class="policy-toc">
             <h3>Contents</h3>
@@ -247,6 +247,7 @@
         <h3>Analytics and crash reporting:</h3>
         <p>The app includes <strong>Firebase Analytics</strong>, <strong>Firebase Crashlytics</strong> and <strong>Firebase Remote Config</strong> (Google). They collect usage events (which screens you open, puzzles solved, games played), crash logs and technical diagnostics, tied to a randomly generated Firebase installation identifier — <strong>never to your email address or nickname</strong>. We use this only to fix crashes and to understand which features are actually used. This data is not sold and not shared with anyone else.</p>
         <p><strong>Bot game statistics:</strong> when a game against a bot ends, the app sends our backend a short record (which bot, which engine played it, the result, the number of moves, your colour, the platform and when the game ended). It is tied to a random installation ID created by the app — not your advertising ID, Android ID or Apple vendor ID — and <strong>never to your account</strong>, even if you are signed in. We use it only to measure and tune how hard each bot is; it is not sold or shared. The installation ID is replaced every 13 months and records are deleted after 25 months.</p>
+        <p><strong>Push notifications:</strong> if you allow notifications, the app registers a push notification identifier (a Firebase Cloud Messaging token) with our backend, together with your time zone, language, app version, platform and which kinds of notification you have switched on. If you are signed in it is linked to your account, so the result of your online game reaches you and not someone else using the same phone. We use it only to send the notifications you chose (results of your online games, your monthly ranking position and, only if you opt in, tournaments and news), never ads or offers. It is unlinked from your account when you sign out, and deleted with your account, when Firebase reports it is no longer valid, or after 270 days without the app being opened. You can switch each kind off in the app settings. Google’s Firebase Cloud Messaging only delivers the message.</p>
 
         <h3>Data we do NOT collect:</h3>
         <ul>
@@ -389,14 +390,15 @@
             <li>Your nickname, country flag, ratings and game moves sent to our game server and shown to other players during online multiplayer (optional feature)</li>
             <li>Usage events, crash logs and diagnostics sent to Firebase Analytics and Firebase Crashlytics (Google), never linked to your email or nickname</li>
             <li>Bot game statistics (bot, engine, result, number of moves, colour, platform and when the game ended) sent automatically to our backend with a random installation ID, never linked to your account (section 2)</li>
+            <li>The push notification identifier stored in our backend and handed to Firebase Cloud Messaging (Google) only to deliver the notifications you switched on (section 2)</li>
             <li>Purchase tokens sent to Google Play Developer API for server-side verification (only when you buy credits)</li>
             <li>Game data exchanged with Lichess during <strong>online play</strong> (optional feature, requires your Lichess OAuth login), and the chess position of the exercise sent to the <strong>Lichess tablebase</strong> when you ask for a hint in the Endgame Lab (no account, no identifiers)</li>
         </ul>
-        <p>The app contains <strong>no ads, no advertising identifiers and no cross-app trackers</strong>. The only third-party SDK that collects data is Google's Firebase (Analytics, Crashlytics and Remote Config), described in section 2. <strong>We never sell your data</strong>, and we only transfer it to the providers listed above so they can operate the feature you asked for on our behalf.</p>
+        <p>The app contains <strong>no ads, no advertising identifiers and no cross-app trackers</strong>. The only third-party SDK that collects data is Google's Firebase (Analytics, Crashlytics, Remote Config and Cloud Messaging), described in section 2. <strong>We never sell your data</strong>, and we only transfer it to the providers listed above so they can operate the feature you asked for on our behalf.</p>
 
         <!-- 7. Children -->
         <h2 id="children">7. Children's Privacy</h2>
-        <p>Chess Coach is not directed at children under 13 and we do not knowingly collect personal information from them. The offline part of the app collects no personal data, except the bot game statistics described in section 2, which are never linked to an account. The optional features that do — signing in, AI coaching, online multiplayer and purchases — require an account and are described above; if you are a parent and believe your child created an account, contact us using section 10 and we will delete it.</p>
+        <p>Chess Coach is not directed at children under 13 and we do not knowingly collect personal information from them. The offline part of the app collects no personal data, except the bot game statistics described in section 2, which are never linked to an account, and the push notification identifier if notifications are allowed. The optional features that do — signing in, AI coaching, online multiplayer and purchases — require an account and are described above; if you are a parent and believe your child created an account, contact us using section 10 and we will delete it.</p>
         <p>Parents or guardians should be aware that the AI coaching feature involves third-party AI providers and, in Mode A, in-app purchases via Google Play Billing. We recommend parental supervision and enabling Google Play parental controls for this feature.</p>
 
         <!-- 8. Your Rights -->
@@ -408,6 +410,7 @@
             <li><strong>Sign out:</strong> Settings → Account → Sign out. Your local app data remains untouched; the backend account and credit balance remain available if you sign in again.</li>
             <li><strong>Delete your account and the data linked to it:</strong> see the section below</li>
             <li><strong>Bot game statistics:</strong> they are not linked to your account, so deleting it does not remove them; they are deleted automatically after 25 months</li>
+            <li><strong>Push notifications:</strong> switch each kind off in the app settings, or turn notifications off for the app in your phone settings. The identifier is unlinked from your account when you sign out and deleted with your account</li>
             <li><strong>Revoke Lichess access:</strong> Disconnect from Settings or revoke the token from your Lichess account</li>
             <li><strong>Export your games:</strong> Games can be exported as PGN files at any time</li>
             <li><strong>Disable AI features:</strong> Skip the sign-in step (Mode A stays disabled) and don't configure a BYOK API key — the app works fully offline</li>
@@ -422,7 +425,7 @@
             <li>We delete your account within <strong>30 days</strong> and reply to that same address to confirm it is done.</li>
         </ol>
         <ul>
-            <li><strong>What is deleted:</strong> your user record (email, account ids, nickname, country, ratings and results), your usage log, your cached AI hints, your online games and your device-grant records</li>
+            <li><strong>What is deleted:</strong> your user record (email, account ids, nickname, country, ratings and results), your usage log, your cached AI hints, your online games, your device-grant records and your push notification identifiers</li>
             <li><strong>One detail about online games:</strong> a finished multiplayer game is a single record that belongs to <em>both</em> players, so we cannot destroy your opponent's copy of it. Your side of that record is detached instead — your account id is removed and your nickname is replaced with a placeholder — so the game survives for your opponent but is no longer linked to you.</li>
             <li><strong>What is kept, and for how long:</strong> the accounting record of your purchases (amount, date and transaction id), which Spanish commercial and tax law obliges us to keep for up to <strong>6 years</strong> from the transaction. It is anonymised at deletion time — the email address and account id are stripped, so the record can no longer be traced back to you.</li>
             <li><strong>Analytics and crash data</strong> are not affected: they were never linked to your email or nickname, and Firebase deletes them automatically according to its own retention window</li>
