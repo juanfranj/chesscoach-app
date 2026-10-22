@@ -454,6 +454,8 @@ def build_page(page, lang):
     text = re.sub(r'\s*<link rel="(?:canonical|alternate)"[^>]*>', '', text)
     if lang == 'es':
         text = rewrite_relative(text)
+    # Link the home page by its folder: Google reports /index.html as a duplicate of the canonical /.
+    text = re.sub(r'href="(\.\./)?index\.html', lambda m: f'href="{m.group(1) or "./"}', text)
     text = re.sub(r'(<meta name="viewport"[^>]*>)', lambda m: m.group(1) + '\n    ' + head_block(page, lang), text, count=1)
     if '<!--LANG-TOGGLE-->' in text:
         text = text.replace('<!--LANG-TOGGLE-->', toggle(page, lang))
