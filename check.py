@@ -60,6 +60,9 @@ def check_page(path, page, lang):
                 'juanfranj.github.io/cheescoach', '<!--LANG-'):
         if bad in html:
             fail(f'{rel}: still contains {bad!r}')
+    # Every page here is in the sitemap; a noindex on one makes Search Console flag it.
+    if re.search(r'<meta name="robots" content="[^"]*noindex', html):
+        fail(f'{rel}: is in the sitemap but says noindex')
     stripped = re.sub(r'<script type="application/ld\+json">.*?</script>', '', html, flags=re.S)
     for ok in ALLOWED_OLD_BRAND:
         stripped = stripped.replace(ok, '')
