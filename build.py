@@ -170,7 +170,7 @@ META = {
 }
 BILINGUAL = [p for p in META if 'es' in META[p]]
 ENGLISH_ONLY = [p for p in META if 'es' not in META[p]]
-ASSETS = ['css', 'js', 'images', 'app_icon_chesscoach.png']
+ASSETS = ['media', 'css', 'js', 'images', 'app_icon_chesscoach.png']
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 
 
@@ -270,7 +270,7 @@ ATTR = re.compile(r'\s+([^\s=>/]+)(?:\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+))?')
 
 
 def rebuild_tag(tag, lang):
-    """Rewrites one start tag: applies data-<lang>-alt/-label and drops every data-en*/data-es*.
+    """Rewrites one start tag: applies data-<lang>-alt/-label/-src/-poster and drops every data-en*/data-es*.
 
     Quote-aware, because data-en values can contain markup such as <strong>."""
     m = re.match(r'<([a-zA-Z][\w-]*)', tag)
@@ -278,10 +278,11 @@ def rebuild_tag(tag, lang):
     closing = '/>' if rest.rstrip().endswith('/>') else '>'
     attrs = [(a.group(1), a.group(2)) for a in ATTR.finditer(rest)]
     values = dict(attrs)
-    swaps = {'alt': values.get(f'data-{lang}-alt'), 'aria-label': values.get(f'data-{lang}-label')}
+    swaps = {'alt': values.get(f'data-{lang}-alt'), 'aria-label': values.get(f'data-{lang}-label'),
+             'src': values.get(f'data-{lang}-src'), 'poster': values.get(f'data-{lang}-poster')}
     kept, seen = [], set()
     for key, val in attrs:
-        if re.match(r'data-(?:en|es)(?:-alt|-label)?$', key):
+        if re.match(r'data-(?:en|es)(?:-alt|-label|-src|-poster)?$', key):
             continue
         if key in swaps and swaps[key] is not None:
             val = swaps[key]
@@ -306,7 +307,7 @@ def rewrite_relative(text):
             return f'{attr}="{spanish[path]}{value[len(path):]}"'
         return f'{attr}="../{value}"'
 
-    return re.sub(r'\b(href|src)="([^"]*)"', fix, text)
+    return re.sub(r'\b(href|src|poster)="([^"]*)"', fix, text)
 
 
 def head_block(page, lang):

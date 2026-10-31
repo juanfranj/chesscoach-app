@@ -1,14 +1,14 @@
 /* ============================================================
    CheesCoach — Design tokens
 
-   The palette is lifted from the app's own illustrations, which
-   use two light sources over a near-black board: a lavender one
-   for everything you LEARN (openings, courses) and a cold blue
-   one for everything you CALCULATE (endgames, analysis). Gold
-   appears only where the app says "Premium".
+   2026-11 redesign: royal blue and gold, the colours of the coach
+   (blue blazer, gold crown pin) and of the new app icon, on a deep
+   navy. Gold marks Premium and the moments that matter. Move
+   grades keep the app's own verdict colours.
 
-   Typefaces are the app's: Playfair Display, Lato, JetBrains
-   Mono. Same three families on the phone and on the web.
+   Headlines in Plus Jakarta Sans (heavy, modern, like the big
+   chess sites); body in Lato and notation in JetBrains Mono, the
+   app's own families.
    ============================================================ */
 
 *, *::before, *::after {
@@ -19,20 +19,23 @@
 
 :root {
     /* === Backgrounds === */
-    --bg-deepest: #05080F;
-    --bg-primary: #080D1A;
-    --bg-secondary: #0E1526;
-    --bg-card: #141D33;
-    --bg-card-hover: #1B2645;
-    --bg-glass: rgba(14, 21, 38, 0.74);
-    --bg-glass-hover: rgba(27, 38, 69, 0.84);
+    --bg-deepest: #050A17;
+    --bg-primary: #081022;
+    --bg-secondary: #0D1730;
+    --bg-card: #12203F;
+    --bg-card-hover: #182A52;
+    --bg-glass: rgba(13, 23, 48, 0.76);
+    --bg-glass-hover: rgba(24, 42, 82, 0.86);
 
-    /* === Lavender — what you LEARN === */
-    --accent: #B9A6E8;
-    --accent-bright: #D3C6F4;
-    --accent-dim: #7C68B0;
-    --accent-glow: rgba(185, 166, 232, 0.14);
-    --accent-glow-strong: rgba(185, 166, 232, 0.28);
+    /* === Royal blue — the coach's blazer, the brand === */
+    --accent: #7FA7FF;
+    --accent-bright: #A9C4FF;
+    --accent-dim: #3B6FE0;
+    --accent-glow: rgba(74, 128, 245, 0.16);
+    --accent-glow-strong: rgba(74, 128, 245, 0.32);
+    --brand: #2F6BEA;
+    --brand-deep: #1D4FC0;
+    --brand-lip: #163E99;
 
     /* === Ice blue — what you CALCULATE === */
     --ice: #9FC1EA;
@@ -83,9 +86,9 @@
     --paper-text-muted: #5A5E65;
 
     /* === Borders === */
-    --border: rgba(185, 166, 232, 0.13);
-    --border-hover: rgba(185, 166, 232, 0.26);
-    --border-strong: rgba(185, 166, 232, 0.42);
+    --border: rgba(127, 167, 255, 0.14);
+    --border-hover: rgba(127, 167, 255, 0.28);
+    --border-strong: rgba(127, 167, 255, 0.45);
     --border-subtle: rgba(255, 255, 255, 0.07);
 
     /* === Chess board (the app's default green) === */
@@ -123,7 +126,7 @@
     --shadow-xl: 0 26px 80px rgba(0, 0, 0, 0.58);
     --shadow-glow-blue: 0 0 44px rgba(159, 193, 234, 0.16);
     --shadow-glow-gold: 0 0 44px rgba(227, 181, 76, 0.14);
-    --shadow-glow-blue-strong: 0 0 70px rgba(185, 166, 232, 0.26);
+    --shadow-glow-blue-strong: 0 0 70px rgba(74, 128, 245, 0.30);
 
     /* === Transitions === */
     --transition-fast: 0.15s ease;
@@ -139,7 +142,7 @@
     --z-tooltip: 500;
 
     /* === Typography === */
-    --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+    --font-display: 'Plus Jakarta Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 
@@ -193,16 +196,16 @@ body::before {
     pointer-events: none;
     z-index: -1;
     background:
-        radial-gradient(circle at 14% 4%, rgba(185, 166, 232, 0.10), transparent 34rem),
-        radial-gradient(circle at 86% 30%, rgba(159, 193, 234, 0.07), transparent 30rem);
+        radial-gradient(circle at 14% 4%, rgba(74, 128, 245, 0.12), transparent 34rem),
+        radial-gradient(circle at 86% 30%, rgba(227, 181, 76, 0.05), transparent 30rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 800;
     line-height: var(--leading-tight);
     color: var(--text-primary);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.025em;
 }
 
 h1 { font-size: var(--text-5xl); }
@@ -248,10 +251,10 @@ code, pre { font-family: var(--font-mono); }
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(45deg, rgba(185, 166, 232, 0.022) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(185, 166, 232, 0.022) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(185, 166, 232, 0.022) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(185, 166, 232, 0.022) 75%);
+        linear-gradient(45deg, rgba(74, 128, 245, 0.022) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(74, 128, 245, 0.022) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(74, 128, 245, 0.022) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(74, 128, 245, 0.022) 75%);
     background-size: 64px 64px;
     background-position: 0 0, 0 32px, 32px -32px, -32px 0px;
     pointer-events: none;
@@ -261,14 +264,14 @@ code, pre { font-family: var(--font-mono); }
 /* === Gradient backgrounds === */
 .gradient-hero {
     background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(185, 166, 232, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(74, 128, 245, 0.14) 0%, transparent 60%),
         radial-gradient(ellipse 50% 40% at 82% 22%, rgba(159, 193, 234, 0.08) 0%, transparent 50%),
         var(--bg-primary);
 }
 
 .gradient-section {
     background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(185, 166, 232, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(74, 128, 245, 0.06) 0%, transparent 60%),
         var(--bg-primary);
 }
 
