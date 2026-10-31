@@ -84,9 +84,9 @@ META = {
     },
     'ai-chess-coach': {
         'slug': {'es': 'analizar-partidas-de-ajedrez'},
-        'en': ('AI chess coach app: find out what went wrong | Chess Coach',
-               'Analyse your chess games with the engine on your phone and an AI coach that explains every '
-               'mistake in plain words, for your rating. iPhone, iPad and Android.'),
+        'en': ('AI chess game analysis and review: what went wrong | Chess Coach',
+               'Review your chess games: the engine on your phone grades every move and an AI coach explains '
+               'each mistake in plain words, for your rating. iPhone, iPad and Android.'),
         'es': ('Analizar partidas de ajedrez con IA: qué falló y por qué',
                'Analiza tus partidas con el motor de tu móvil y un coach con IA que te explica cada error en '
                'palabras claras y para tu nivel. iPhone, iPad y Android.'),
