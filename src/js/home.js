@@ -5,6 +5,7 @@
 (function () {
     'use strict';
 
+    window.__homeReady = true;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --- Navbar background once the hero is behind you ---
@@ -123,7 +124,7 @@
         for (var f = 0; f < 8; f++) {
             var name = FILES[f] + r;
             var sq = document.createElement('div');
-            sq.className = 'sq' + ((f + r) % 2 === 0 ? ' d' : '');
+            sq.className = 'sq' + ((f + r) % 2 === 1 ? ' d' : '');
             if (r === 1) { var cf = document.createElement('span'); cf.className = 'coord f'; cf.textContent = FILES[f]; sq.appendChild(cf); }
             if (f === 0) { var cr = document.createElement('span'); cr.className = 'coord r'; cr.textContent = r; sq.appendChild(cr); }
             boardEl.appendChild(sq);
@@ -190,6 +191,13 @@
     var fixEl = document.getElementById('hero-fix');
     var txt = function (id) { var e = document.getElementById(id); return e ? e.textContent.trim() : ''; };
     var SAY = txt('script-say'), FIX = txt('script-fix'), MOVE = txt('script-move');
+    // Reserve the bubble's final height so the page doesn't jump while the coach types.
+    var ghost = document.getElementById('hero-ghost');
+    if (ghost) {
+        var g1 = document.createElement('span'); g1.className = 'say'; g1.textContent = SAY;
+        var g2 = document.createElement('span'); g2.className = 'say fix'; g2.textContent = FIX;
+        ghost.appendChild(g1); ghost.appendChild(g2);
+    }
 
     function showBlunder() {
         squares.d5.classList.remove('hl');

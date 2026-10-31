@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/guide.css">
     <link rel="stylesheet" href="css/home.css">
-    <script>document.documentElement.classList.add("js")</script>
+    <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__homeReady){document.querySelectorAll(".h-reveal").forEach(function(e){e.classList.add("in")})}},2500)</script>
 </head>
 <body>
 
@@ -118,8 +118,10 @@
                 <img class="h-coach-img" src="media/coach/coach-explain.webp" alt="" width="170" height="167">
                 <div class="h-bubble">
                     <span class="who" data-en="Your coach" data-es="Tu coach">Your coach</span>
-                    <span class="say" id="hero-say"></span>
-                    <span class="say fix" id="hero-fix"></span>
+                    <div class="lines">
+                        <div class="ghost" id="hero-ghost"></div>
+                        <div><span class="say" id="hero-say"></span><span class="say fix" id="hero-fix"></span></div>
+                    </div>
                 </div>
             </div>
             <!-- What the coach types, in the page's language (build.py translates it like any text). -->
@@ -425,10 +427,10 @@
         </div>
         <div class="h-providers h-reveal">
             <span>OpenAI <small data-en="recommended" data-es="recomendado">recommended</small></span>
-            <span>DeepSeek <small data-en="cheapest" data-es="el más barato">cheapest</small></span>
+            <span>DeepSeek</span>
             <span>Gemini</span>
             <span>Claude</span>
-            <span>Qwen</span>
+            <span>Qwen <small data-en="cheapest" data-es="el más barato">cheapest</small></span>
             <a class="h-link" href="api-setup.html" style="margin-left:.4rem" data-en="How to set up a key" data-es="Cómo configurar una clave">How to set up a key</a>
         </div>
     </div>

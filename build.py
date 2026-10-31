@@ -121,10 +121,10 @@ META = {
     'learn-chess': {
         'slug': {'es': 'aprender-ajedrez-desde-cero'},
         'en': ('Learn chess from scratch: a step-by-step course app | Chess Coach',
-               'Learn chess on your phone, from how the pieces move to past 2000: four courses with theory, '
+               'Learn chess on your phone, from how the pieces move to past 2000: five courses with theory, '
                'puzzles, openings and games against bots. The first course is free.'),
         'es': ('Aprender ajedrez desde cero: curso paso a paso | Chess Coach',
-               'Aprende ajedrez en el móvil, desde cómo se mueven las piezas hasta más de 2000: cuatro cursos '
+               'Aprende ajedrez en el móvil, desde cómo se mueven las piezas hasta más de 2000: cinco cursos '
                'con teoría, puzzles, aperturas y partidas contra bots. El primero es gratis.'),
     },
     'chess-pawn-structures': {
