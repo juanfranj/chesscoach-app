@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess puzzles: free tactics trainer, no sign-up | Chess Coach</title>
+    <meta name="description" content="Free chess puzzles in your browser, no sign-up: a rating that adapts to you, a puzzle of the day and real games from beginner to master. 35,000 more in the app.">
+    <link rel="canonical" href="https://chesscoach-app.com/chess-puzzles.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-puzzles.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/puzzles-de-ajedrez.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/chess-puzzles.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Chess puzzles: free tactics trainer, no sign-up | Chess Coach">
+    <meta property="og:description" content="Free chess puzzles in your browser, no sign-up: a rating that adapts to you, a puzzle of the day and real games from beginner to master. 35,000 more in the app.">
+    <meta property="og:url" content="https://chesscoach-app.com/chess-puzzles.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chess puzzles: free tactics trainer, no sign-up | Chess Coach">
+    <meta name="twitter:description" content="Free chess puzzles in your browser, no sign-up: a rating that adapts to you, a puzzle of the day and real games from beginner to master. 35,000 more in the app.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var es="es/puzzles-de-ajedrez.html",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;if(s==="es"||(s===null&&!back&&/^es\b/i.test(navigator.language||""))){location.replace(es+location.search+location.hash)}})();</script>
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="images/app/icon.webp">
+    <link rel="apple-touch-icon" href="app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/guide.css">
+
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/play.css">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these chess puzzles free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, free and without an account. Your rating and the puzzles you have done are kept only in this browser."}}, {"@type": "Question", "name": "How is my puzzle rating calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Like a chess rating: every puzzle has its own rating, and you win or lose points against it. Solving a harder puzzle earns more. Using a hint leaves your rating as it is."}}, {"@type": "Question", "name": "Where do the puzzles come from?", "acceptedAnswer": {"@type": "Answer", "text": "From the Lichess puzzle database, which is in the public domain (CC0): positions taken from real games and checked with an engine."}}, {"@type": "Question", "name": "Are there more puzzles in the app?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Chess Coach has over 35,000, plus Streak and Storm modes, and a coach that explains your mistakes in your own games."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+        <a href="./" class="navbar-logo">
+            <img src="images/app/icon.webp" alt="" width="36" height="36">
+            <span>Chess Coach</span>
+        </a>
+
+        <ul class="navbar-links" id="nav-links">
+            <li><a href="chess-puzzles.html">Puzzles</a></li>
+            <li><a href="ai-chess-coach.html">AI coach</a></li>
+            <li><a href="chess-opening-trainer.html">Openings</a></li>
+            <li><a href="essential-chess-endgames.html">Endgames</a></li>
+            <li><a href="woodpecker-method.html">Woodpecker</a></li>
+            <li><a href="./#download">Download</a></li>
+            <li>
+                <div class="lang-toggle" role="group" aria-label="Language"><a href="chess-puzzles.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/puzzles-de-ajedrez.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+            </li>
+        </ul>
+
+        <button class="navbar-hamburger" id="hamburger" aria-controls="nav-links" aria-expanded="false" aria-label="Navigation menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<main id="content">
+
+<section class="pz-stage">
+    <div class="container pz-grid">
+        <div class="pz-main">
+            <h1>Chess puzzles</h1>
+            <div class="pz-tabs" role="tablist" aria-label="Mode">
+                <button type="button" role="tab" id="pz-tab-train" aria-selected="true" aria-controls="pz-panel">Train</button>
+                <button type="button" role="tab" id="pz-tab-daily" aria-selected="false" aria-controls="pz-panel" tabindex="-1">Puzzle of the day</button>
+            </div>
+            <div id="pz-panel" role="tabpanel" aria-labelledby="pz-tab-train" class="pz-panel">
+            <div class="pz-status">
+                <span class="pz-turn">
+                    <svg viewBox="0 0 50 50" aria-hidden="true"><use id="pz-turn-piece" href="/images/pieces/staunty.svg#p-wk"></use></svg>
+                    <span><strong id="pz-turn">&nbsp;</strong><small id="pz-task">&nbsp;</small></span>
+                </span>
+                <span class="pz-rating"><strong id="pz-rating">1200</strong><small>your rating</small></span>
+            </div>
+            <div id="pz-board"></div>
+            <p id="pz-feedback" class="pz-feedback" aria-live="polite"></p>
+            <div class="pz-controls">
+                <button type="button" id="pz-hint" class="pz-btn">Hint</button>
+                <button type="button" id="pz-solution" class="pz-btn">Show solution</button>
+                <button type="button" id="pz-next" class="pz-btn">Next</button>
+            </div>
+            <p class="pz-counts"><span id="pz-today"></span><span id="pz-meta"></span></p>
+            <aside id="pz-cta" class="pz-cta" hidden>
+                <img src="media/coach/coach-bust.webp" alt="" width="64" height="64" loading="lazy">
+                <div>
+                    <strong>Streak, Storm and over 35,000 puzzles in the app</strong>
+                    <span><span>With your coach, on</span> <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_puzzles_en%26utm_content%3Dcta" target="_blank" rel="noopener noreferrer">Google Play</a> · <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_puzzles_en_cta&amp;mt=8" target="_blank" rel="noopener noreferrer">App Store</a></span>
+                </div>
+            </aside>
+            </div>
+        </div>
+
+        <div class="pz-side prose">
+            <p class="lede">Free chess puzzles from real games, right here in your browser. No account: your rating goes up when you solve and down when you miss, and the next puzzle matches it.</p>
+            <h2>How it works</h2>
+            <p>The opponent plays first; then it is your turn. Find the best move, and keep going until the combination is over. A wrong move does not end the puzzle: try again, but it already counts as missed. Any checkmate counts, even one that is not the stored answer.</p>
+        </div>
+    </div>
+</section>
+
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2>What you will train</h2>
+            <p>Forks, pins, skewers, discovered attacks, mates in one and in two, sacrifices and endgame technique. Every puzzle comes from a real game, from beginner level to master, and when you solve it you see which theme it was.</p>
+            <p>Tactics decide most games below 2000: one missed fork or one undefended piece. Solving a few puzzles a day trains your eye to see them in your own games.</p>
+
+            <h2>The puzzle of the day</h2>
+            <p>Everyone gets the same puzzle each day, chosen from positions rated around 1000 to 1600. It does not change your rating: it is a short daily habit.</p>
+
+            <h2>Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>Are these chess puzzles free?</summary>
+                    <div>Yes, free and without an account. Your rating and the puzzles you have done are kept only in this browser.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How is my puzzle rating calculated?</summary>
+                    <div>Like a chess rating: every puzzle has its own rating, and you win or lose points against it. Solving a harder puzzle earns more. Using a hint leaves your rating as it is.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Where do the puzzles come from?</summary>
+                    <div>From the Lichess puzzle database, which is in the public domain (CC0): positions taken from real games and checked with an engine.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Are there more puzzles in the app?</summary>
+                    <div>Yes. Chess Coach has over 35,000, plus Streak and Storm modes, and a coach that explains your mistakes in your own games.</div>
+                </details>
+            </div>
+
+            <h2>Keep training</h2>
+            <div class="related">
+                <a href="woodpecker-method.html"><span>The Woodpecker method</span><span>The same set of puzzles, faster every cycle.</span></a>
+                <a href="how-to-calculate-in-chess.html"><span>How to calculate in chess</span><span>Candidate moves, forcing lines and checking your answer.</span></a>
+                <a href="chess-bots.html"><span>Chess bots</span><span>Twenty rivals in the app, from beginner to grandmaster.</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="band download" id="download">
+    <div class="container">
+      <div class="download-grid">
+        <div class="download-copy">
+        <span class="eyebrow">Your next game</span>
+        <h2>Take the coach with you</h2>
+        <p class="lede">Start free on iPhone, iPad or Android. No ads, and no subscription needed to play, analyse or take the first course.</p>
+
+        <div class="stores">
+            <a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_puzzles_en%26utm_content%3Ddownload" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.03 12l2.668-2.492zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                <span><small>Get it on</small>Google Play</span>
+            </a>
+            <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_puzzles_en_download&amp;mt=8" class="store-button" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M17.05 12.54c-.02-2.16 1.76-3.21 1.84-3.26a3.96 3.96 0 00-3.12-1.69c-1.31-.14-2.59.79-3.26.79-.68 0-1.72-.77-2.83-.75a4.15 4.15 0 00-3.5 2.13c-1.51 2.61-.38 6.45 1.06 8.56.72 1.03 1.56 2.18 2.67 2.14 1.08-.04 1.49-.69 2.8-.69 1.3 0 1.68.69 2.81.66 1.17-.02 1.9-1.04 2.59-2.08a8.5 8.5 0 001.18-2.4 3.75 3.75 0 01-2.24-3.41zM14.91 6.2a3.8 3.8 0 00.87-2.73 3.88 3.88 0 00-2.52 1.3 3.64 3.64 0 00-.9 2.63 3.2 3.2 0 002.55-1.2z"/></svg>
+                <span><small>Download on the</small>App Store</span>
+            </a>
+        </div>
+
+        <p class="download-note">Sign in and your games, ratings and progress follow you to the other device.</p>
+        </div>
+
+        <div class="download-shot">
+            <div class="phone"><img src="images/screens/home.webp" alt="The Chess Coach home screen on an iPhone: puzzle, streak and storm ratings, and the cards for playing, learning and the Practice Lab" width="840" height="1708" loading="lazy"></div>
+            <p class="phone-caption">The home screen, on an iPhone. Same app on Android and iPad.</p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="./" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="" width="36" height="36">
+                <span>Chess Coach</span>
+            </a>
+            <p>A chess coach on your phone: an engine for the truth, AI for the reason.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">The app</h3>
+            <ul class="footer-links">
+                <li><a href="ai-chess-coach.html">AI coach</a></li>
+                <li><a href="chess-opening-trainer.html">Opening trainer</a></li>
+                <li><a href="essential-chess-endgames.html">Essential endgames</a></li>
+                <li><a href="woodpecker-method.html">Woodpecker method</a></li>
+                <li><a href="chess-bots.html">Chess bots</a></li>
+                <li><a href="learn-chess.html">Learn chess</a></li>
+                <li><a href="chess-pawn-structures.html">Pawn structures</a></li>
+                <li><a href="how-to-calculate-in-chess.html">How to calculate</a></li>
+                <li><a href="./#training">Practice Lab</a></li>
+                <li><a href="./#courses">Courses</a></li>
+                <li><a href="./#play">Play</a></li>
+                <li><a href="./#engines">Engines</a></li>
+                <li><a href="./#download">Download</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">AI setup</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Which provider</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Project</h3>
+            <ul class="footer-links">
+                <li><a href="open-source.html">Open source</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Built by</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<script src="js/landing.js"></script>
+<script type="module" src="/js/puzzles/page.js"></script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
+</body>
+</html>
