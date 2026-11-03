@@ -4,8 +4,8 @@
 import { squareAt, indexOf, isPromotion } from './geometry.js';
 
 const SPRITE = '/images/pieces/staunty.svg';
-const NAMES = { en: { w: 'white', b: 'black', p: 'pawn', n: 'knight', b_: 'bishop', r: 'rook', q: 'queen', k: 'king', empty: 'empty' },
-                es: { w: 'blanco', b: 'negro', p: 'peón', n: 'caballo', b_: 'alfil', r: 'torre', q: 'dama', k: 'rey', empty: 'vacía' } };
+const NAMES = { en: { w: 'white', b: 'black', p: 'pawn', n: 'knight', b_: 'bishop', r: 'rook', q: 'queen', k: 'king', empty: 'empty', dest: 'can move here', sel: 'selected', cancel: 'Cancel' },
+                es: { w: 'blanco', b: 'negro', p: 'peón', n: 'caballo', b_: 'alfil', r: 'torre', q: 'dama', k: 'rey', empty: 'vacía', dest: 'se puede mover aquí', sel: 'seleccionada', cancel: 'Cancelar' } };
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 function parseFen(fen) {
@@ -38,7 +38,8 @@ export function createBoard(el, options = {}) {
     const marks = new Map(); // square -> Set(kind)
 
     el.classList.add('cb-board');
-    el.setAttribute('role', 'grid');
+    el.setAttribute('role', 'group');
+    el.setAttribute('aria-label', lang === 'es' ? 'Tablero' : 'Board');
     const cells = [];
     for (let i = 0; i < 64; i++) {
         const b = document.createElement('button');
@@ -79,7 +80,9 @@ export function createBoard(el, options = {}) {
             cell.innerHTML = (piece ? pieceSvg(piece) : '')
                 + (left ? `<span class="cb-coord r" aria-hidden="true">${sq[1]}</span>` : '')
                 + (bottom ? `<span class="cb-coord f" aria-hidden="true">${sq[0]}</span>` : '');
-            cell.setAttribute('aria-label', describe(sq, piece));
+            const isDest = dests.includes(sq);
+            cell.setAttribute('aria-label', describe(sq, piece) + (isDest ? `, ${words.dest}` : ''));
+            cell.setAttribute('aria-pressed', String(sq === selected));
             cell.dataset.square = sq;
         });
     }
@@ -89,8 +92,9 @@ export function createBoard(el, options = {}) {
         selected = null;
         let promotion;
         if (isPromotion(piece, to)) {
-            promotion = await askPromotion(piece.color);
-            if (!promotion) { render(); return; }
+            promotion = await askPromotion(piece.color, to);
+            // cancelled, or the position changed while the picker was open
+            if (!promotion || pieces[from] !== piece) { render(); return; }
         }
         render();
         options.onMove && options.onMove(from, to, promotion);
@@ -172,23 +176,46 @@ export function createBoard(el, options = {}) {
         if (drag) { drag.ghost.remove(); drag = null; el.classList.remove('cb-dragging'); selected = null; render(); }
     });
 
-    function askPromotion(color) {
+    // A modal layer over the board: pick a piece, or tap outside / Escape / Cancel to back out.
+    let closePromotion = null;
+    function askPromotion(color, to) {
+        if (closePromotion) closePromotion(null);
         return new Promise((resolve) => {
+            const layer = document.createElement('div');
+            layer.className = 'cb-promo-layer';
             const box = document.createElement('div');
             box.className = 'cb-promo';
             box.setAttribute('role', 'dialog');
+            box.setAttribute('aria-modal', 'true');
             box.setAttribute('aria-label', lang === 'es' ? 'Elige la pieza de la promoción' : 'Choose the promotion piece');
+            const done = (type) => {
+                closePromotion = null;
+                document.removeEventListener('keydown', onKey);
+                layer.remove();
+                if (to) { const c = cells[indexOf(to, orientation)]; cells[focusIndex].tabIndex = -1; focusIndex = indexOf(to, orientation); c.tabIndex = 0; c.focus(); }
+                resolve(type);
+            };
+            const onKey = (e) => { if (e.key === 'Escape') done(null); };
             for (const type of ['q', 'r', 'b', 'n']) {
                 const b = document.createElement('button');
                 b.type = 'button';
                 b.setAttribute('aria-label', type === 'b' ? words.b_ : words[type]);
                 b.innerHTML = pieceSvg({ color, type });
-                b.addEventListener('click', (e) => { e.stopPropagation(); box.remove(); resolve(type); });
+                b.addEventListener('click', (e) => { e.stopPropagation(); done(type); });
                 box.appendChild(b);
             }
-            const cancel = (e) => { if (e.key === 'Escape') { box.remove(); document.removeEventListener('keydown', cancel); resolve(null); } };
-            document.addEventListener('keydown', cancel);
-            el.appendChild(box);
+            const cancel = document.createElement('button');
+            cancel.type = 'button';
+            cancel.className = 'cb-promo-cancel';
+            cancel.textContent = words.cancel;
+            cancel.addEventListener('click', (e) => { e.stopPropagation(); done(null); });
+            box.appendChild(cancel);
+            layer.addEventListener('click', (e) => { e.stopPropagation(); if (e.target === layer) done(null); });
+            layer.addEventListener('pointerdown', (e) => e.stopPropagation());
+            document.addEventListener('keydown', onKey);
+            layer.appendChild(box);
+            el.appendChild(layer);
+            closePromotion = done;
             box.querySelector('button').focus();
         });
     }
@@ -215,12 +242,13 @@ export function createBoard(el, options = {}) {
 
     render();
     return {
-        setPosition(fen, move) { pieces = parseFen(fen); lastMove = move || null; selected = null; render(); },
+        setPosition(fen, move) { if (closePromotion) closePromotion(null); pieces = parseFen(fen); lastMove = move || null; selected = null; render(); },
         setOrientation(o) { orientation = o; render(); drawArrows(); },
         get orientation() { return orientation; },
-        setInteractive(on) { interactive = on; if (!on) selected = null; render(); },
+        setInteractive(on) { interactive = on; if (!on) { selected = null; if (closePromotion) closePromotion(null); } render(); },
         mark(squares, kind) { for (const s of squares) { if (!marks.has(s)) marks.set(s, new Set()); marks.get(s).add(kind); } render(); },
         clearMarks() { marks.clear(); arrows = []; drawArrows(); render(); },
+        unmark(kind) { for (const set of marks.values()) set.delete(kind); render(); },
         arrow(from, to, kind) { arrows.push({ from, to, kind }); drawArrows(); },
         askPromotion,
     };

@@ -49,7 +49,8 @@ export function hint(state) {
     return next ? { from: next.slice(0, 2), to: next.slice(2, 4) } : null;
 }
 
-export function pickNext(band, rating, seenIds) {
+export function pickNext(band, rating, seenIds, currentId = null) {
     const byDistance = [...band.puzzles].sort((a, b) => Math.abs(a[3] - rating) - Math.abs(b[3] - rating));
-    return byDistance.find((p) => !seenIds.has(p[0])) ?? byDistance[0];
+    return byDistance.find((p) => !seenIds.has(p[0]) && p[0] !== currentId)
+        ?? byDistance.find((p) => p[0] !== currentId) ?? byDistance[0];
 }

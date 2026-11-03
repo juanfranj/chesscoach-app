@@ -56,3 +56,9 @@ test('pickNext: the unseen puzzle closest to the rating, or the closest if all w
     assert.equal(pickNext(band, 1180, new Set(['c']))[0], 'b');
     assert.equal(pickNext(band, 1180, new Set(['a', 'b', 'c']))[0], 'c');
 });
+
+test('pickNext never repeats the current puzzle, even when every puzzle was seen', () => {
+    const band = { band: 1000, puzzles: [['a', '', '', 1010, ''], ['b', '', '', 1150, ''], ['c', '', '', 1190, '']] };
+    assert.equal(pickNext(band, 1180, new Set(), 'c')[0], 'b');
+    assert.notEqual(pickNext(band, 1180, new Set(['a', 'b', 'c']), 'c')[0], 'c');
+});

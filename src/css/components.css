@@ -125,6 +125,11 @@
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Seven links plus the language switch: tighter between the hamburger and wide screens. */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .navbar-links { gap: var(--space-5); }
+}
+
 @media (max-width: 768px) {
     .navbar-hamburger { display: flex; }
 

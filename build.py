@@ -109,6 +109,15 @@ META = {
                'El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app '
                'que los lleva por ti con dos sets de 150 posiciones.'),
     },
+    'puzzles': {
+        'slug': {'en': 'chess-puzzles', 'es': 'puzzles-de-ajedrez'},
+        'en': ('Chess puzzles: free tactics trainer, no sign-up | Chess Coach',
+               'Free chess puzzles in your browser, no sign-up: a rating that adapts to you, a puzzle of the '
+               'day and real games from beginner to master. 35,000 more in the app.'),
+        'es': ('Puzzles de ajedrez gratis, sin registro | Chess Coach',
+               'Puzles de ajedrez gratis en el navegador y sin registro: un rating que se adapta a ti, el puzle '
+               'del día y partidas reales de principiante a maestro.'),
+    },
     'chess-bots': {
         'slug': {'es': 'jugar-contra-bots-de-ajedrez'},
         'en': ('Chess bots to play against, beginner to grandmaster | Chess Coach',

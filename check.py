@@ -83,11 +83,44 @@ def check_page(path, page, lang):
         u = urlparse(ref)
         if u.scheme or ref.startswith(('#', 'mailto:', '//', 'data:')):
             continue
-        target = os.path.normpath(os.path.join(os.path.dirname(path), u.path))
+        if u.path.startswith('/'):  # root-absolute: the play/puzzles scripts and data
+            target = os.path.normpath(os.path.join(OUT, u.path.lstrip('/')))
+        else:
+            target = os.path.normpath(os.path.join(os.path.dirname(path), u.path))
         if u.path.endswith('/') or u.path == '':
             target = os.path.join(target, 'index.html')
         if not os.path.exists(target):
             fail(f'{rel}: broken link {ref}')
+
+
+def check_script_paths():
+    """fetch() and new Worker() in our JS must use root-absolute paths: the same file runs
+    under /es/, where a relative path would point at /es/data/... and 404."""
+    for folder, _, files in os.walk(os.path.join(OUT, 'js')):
+        if 'vendor' in folder or 'engine' in folder:
+            continue
+        for name in files:
+            if not name.endswith('.js'):
+                continue
+            text = open(os.path.join(folder, name), encoding='utf-8').read()
+            for call in re.findall(r'(?:fetch|new Worker)\(\s*[`\'"]([^`\'"]+)', text):
+                if not call.startswith('/'):
+                    fail(f'{os.path.relpath(os.path.join(folder, name), OUT)}: relative path {call!r}; use /...')
+
+
+def check_module_scripts():
+    """The interactive pages exist in both languages and load their modules from the root."""
+    for page in ('puzzles', 'play'):
+        if page not in build.META:
+            continue
+        for lang in ('en', 'es'):
+            path = os.path.join(OUT, 'es', build.page_file(page, 'es')) if lang == 'es' else os.path.join(OUT, build.page_file(page))
+            if not os.path.exists(path):
+                fail(f'{page} ({lang}): missing')
+                continue
+            for src in re.findall(r'<script type="module" src="([^"]+)"', open(path, encoding='utf-8').read()):
+                if not src.startswith('/'):
+                    fail(f'{os.path.relpath(path, OUT)}: module script {src!r} must start with /')
 
 
 def main():
@@ -99,6 +132,8 @@ def main():
         check_page(os.path.join(OUT, 'es', build.page_file(page, 'es')), page, 'es')
     for page in ENGLISH_ONLY:
         check_page(os.path.join(OUT, build.page_file(page)), page, 'en')
+    check_script_paths()
+    check_module_scripts()
     for extra in ('CNAME', 'robots.txt', 'sitemap.xml', '404.html', '.nojekyll'):
         if not os.path.exists(os.path.join(OUT, extra)):
             fail(f'{extra}: missing')
