@@ -61,14 +61,14 @@
     <div class="navbar-inner">
         <a href="index.html" class="navbar-logo">
             <img src="images/app/icon.webp" alt="" width="36" height="36">
-            <span>Chess Coach</span>
+            <span class="brand-name"><span class="brand-chess">Chess</span> <span class="brand-coach">Coach</span></span>
         </a>
 
         <ul class="navbar-links" id="nav-links">
             <li><a href="#coach" data-en="The coach" data-es="Tu coach">The coach</a></li>
             <li><a href="#training" data-en="Training" data-es="Entrenar">Training</a></li>
             <li><a href="#courses" data-en="Courses" data-es="Cursos">Courses</a></li>
-            <li><a href="#play" data-en="Play" data-es="Jugar">Play</a></li>
+            <li><a href="play-chess-against-computer.html" data-en="Play" data-es="Jugar">Play</a></li>
             <li><a href="chess-puzzles.html" data-en="Puzzles" data-es="Puzles">Puzzles</a></li>
             <li><a href="#guides" data-en="Guides" data-es="Guías">Guides</a></li>
             <li><a href="api-setup.html" data-en="AI setup" data-es="Configurar IA">AI setup</a></li>
@@ -96,8 +96,18 @@
                 <h1 data-en="AI chess coach app" data-es="Entrenador de ajedrez con IA">AI chess coach app</h1>
             </div>
             <p class="h-title" data-en="You lost that one for a reason. <em>Here it is.</em>" data-es="Perdiste esa partida por algo. <em>Aquí está el motivo.</em>">You lost that one for a reason. <em>Here it is.</em></p>
-            <p class="h-sub" data-en="Play a game, then find out what actually went wrong. The engine on your phone does the calculating, and your coach turns it into a sentence you can use in the next game." data-es="Juega una partida y descubre qué falló de verdad. El motor de tu móvil hace el cálculo y tu coach lo convierte en una frase que puedes usar en la siguiente partida.">Play a game, then find out what actually went wrong.</p>
-<!--INCLUDE:stores-hero-->
+            <p class="h-sub" data-en="Play a game, here in your browser or in the app, then find out what actually went wrong. The engine does the calculating, and your coach turns it into a sentence you can use in the next game." data-es="Juega una partida, aquí en el navegador o en la app, y descubre qué falló de verdad. El motor hace el cálculo y tu coach lo convierte en una frase que puedes usar en la siguiente partida.">Play a game, here in your browser or in the app, then find out what actually went wrong. The engine does the calculating, and your coach turns it into a sentence you can use in the next game.</p>
+            <div class="h-app-entry">
+                <a href="play-chess-against-computer.html" class="h-entry h-entry--play">
+                    <img src="media/rivals/bot_diego.webp" alt="" width="52" height="52">
+                    <span><strong data-en="Play now" data-es="Jugar ahora">Play now</strong><small data-en="Against the computer · 5 rivals · no sign-up" data-es="Contra la máquina · 5 rivales · sin registro">Against the computer · 5 rivals · no sign-up</small></span>
+                </a>
+                <a href="chess-puzzles.html" class="h-entry">
+                    <svg viewBox="0 0 50 50" width="52" height="52" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-wn"></use></svg>
+                    <span><strong data-en="Puzzles" data-es="Puzles">Puzzles</strong><small data-en="Tactics · puzzle of the day" data-es="Táctica · puzle del día">Tactics · puzzle of the day</small></span>
+                </a>
+            </div>
+            <p class="h-stores-line"><span data-en="Better on your phone?" data-es="¿Mejor en el móvil?">Better on your phone?</span> <a href="{{PLAY:hero}}" target="_blank" rel="noopener noreferrer">Google Play</a> · <a href="{{APPSTORE:hero}}" target="_blank" rel="noopener noreferrer">App Store</a> <span data-en="— no ads" data-es="— sin anuncios">— no ads</span></p>
             <div class="h-hero-actions">
                 <button type="button" class="h-play-tour" id="tour-open" aria-haspopup="dialog">
                     <span class="h-play-ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>

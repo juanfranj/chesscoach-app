@@ -109,6 +109,15 @@ META = {
                'El método del pájaro carpintero explicado: el set, los siete ciclos de 28 días a uno y una app '
                'que los lleva por ti con dos sets de 150 posiciones.'),
     },
+    'play': {
+        'slug': {'en': 'play-chess-against-computer', 'es': 'jugar-al-ajedrez-contra-la-maquina'},
+        'en': ('Play chess against the computer free | Chess Coach',
+               'Play chess against the computer free in your browser, no sign-up. 5 opponents from beginner to '
+               'expert and a quick review of your game at the end.'),
+        'es': ('Jugar al ajedrez contra la máquina gratis | Chess Coach',
+               'Juega al ajedrez contra la máquina gratis en el navegador, sin registro. 5 rivales, de principiante a '
+               'experto, y un repaso rápido de tu partida al terminar.'),
+    },
     'puzzles': {
         'slug': {'en': 'chess-puzzles', 'es': 'puzzles-de-ajedrez'},
         'en': ('Chess puzzles: free tactics trainer, no sign-up | Chess Coach',

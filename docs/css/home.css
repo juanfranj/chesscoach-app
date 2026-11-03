@@ -347,3 +347,26 @@
     .js .h-reveal { opacity: 1; transform: none; }
     .h-piece { transition: none; }
 }
+
+/* --- Play and puzzles in the browser: the two ways in (v2, 2026-11-03) --- */
+.h-app-entry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1.4rem 0 1.2rem; max-width: 600px; }
+.h-entry {
+    display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border-hover); color: var(--text-primary); text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.h-entry:hover { background: var(--bg-card-hover); transform: translateY(-1px); }
+.h-entry:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 2px; }
+.h-entry--play { background: var(--brand); border-color: var(--brand); box-shadow: var(--shadow-glow-blue-strong); }
+.h-entry--play:hover { background: var(--brand-deep); }
+.h-entry img { border-radius: 50%; background: var(--brand-deep); flex-shrink: 0; }
+.h-entry svg { border-radius: 12px; background: var(--board-light); flex-shrink: 0; }
+.h-entry strong { display: block; font: 800 1.15rem var(--font-display); }
+.h-entry small { display: block; font-size: .8rem; opacity: .85; }
+@media (max-width: 520px) { .h-app-entry { grid-template-columns: 1fr; } }
+.h-stores-line { margin: 0 0 .4rem; font-size: .92rem; color: var(--text-secondary); }
+.h-stores-line a { color: var(--accent-bright); font-weight: 700; }
+@media (prefers-reduced-motion: reduce) {
+    .h-entry { transition: none; }
+    .h-entry:hover { transform: none; }
+}

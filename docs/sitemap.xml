@@ -133,6 +133,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/woodpecker-method.html"/>
   </url>
   <url>
+    <loc>https://chesscoach-app.com/play-chess-against-computer.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/play-chess-against-computer.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/jugar-al-ajedrez-contra-la-maquina.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/play-chess-against-computer.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/jugar-al-ajedrez-contra-la-maquina.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/play-chess-against-computer.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/jugar-al-ajedrez-contra-la-maquina.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/play-chess-against-computer.html"/>
+  </url>
+  <url>
     <loc>https://chesscoach-app.com/chess-puzzles.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/chess-puzzles.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/puzzles-de-ajedrez.html"/>

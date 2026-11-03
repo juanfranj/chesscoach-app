@@ -1,75 +1,215 @@
 /* ============================================================
-   Play and puzzles pages (the trainer at the top). Prefixed pz-.
-   Mobile first: the board fills the width; from 900px the text
-   moves beside it.
+   Play and puzzles: app-like pages (v2, approved 2026-11-03).
+   A slim app bar, the board as large as the window allows, a
+   side panel on wide screens and the panel under the board on
+   phones. The indexable text lives below the fold.
    ============================================================ */
 
-.pz-stage { padding: calc(var(--space-12) + 40px) 0 var(--space-12); }
-.pz-grid { display: flex; flex-wrap: wrap; gap: var(--space-10); align-items: flex-start; }
-/* The board column takes the room (up to 600px, as in the approved desktop mockup). */
-.pz-main { flex: 10 1 340px; max-width: 600px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-3); }
-.pz-panel { display: flex; flex-direction: column; gap: var(--space-3); }
-.pz-side { flex: 1 1 300px; min-width: 0; padding-top: var(--space-12); }
-.pz-main h1 { font: 800 clamp(1.8rem, 1.2rem + 2.4vw, 2.6rem)/1.1 var(--font-display); letter-spacing: -.02em; margin: 0; }
-
-.pz-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 4px; background: var(--bg-secondary); border-radius: var(--radius-full); }
-.pz-tabs button {
-    min-height: 44px; border: 0; border-radius: var(--radius-full); background: transparent;
-    color: var(--text-secondary); font: 700 .95rem var(--font-body); cursor: pointer;
+/* --- App bar --- */
+.appbar {
+    position: sticky; top: 0; z-index: var(--z-sticky, 200);
+    height: 56px; display: flex; align-items: center; gap: 24px;
+    padding: 0 20px; background: var(--bg-deepest); border-bottom: 1px solid var(--border-subtle);
 }
-.pz-tabs button[aria-selected="true"] { background: var(--brand); color: #fff; }
-.pz-tabs button:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 2px; }
+.appbar-logo { display: flex; align-items: center; gap: 10px; color: var(--text-primary); font: 800 1.05rem var(--font-display); text-decoration: none; }
+.appbar-logo img { border-radius: 7px; }
+.appbar-nav { display: flex; gap: 4px; }
+.appbar-nav a {
+    padding: 8px 14px; border-radius: var(--radius-md); color: var(--text-secondary);
+    font: 700 .95rem var(--font-body); text-decoration: none;
+}
+.appbar-nav a:hover { color: var(--text-primary); }
+[data-page="play"] .appbar-nav a[data-app="play"],
+[data-page="puzzles"] .appbar-nav a[data-app="puzzles"] { background: var(--bg-card); color: var(--text-primary); }
+.appbar-end { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.appbar-cta { padding: 9px 16px; border-radius: var(--radius-full); background: var(--brand); color: #fff; font: 700 .9rem var(--font-body); text-decoration: none; }
+.appbar-narrow { display: none; }
+.appbar a:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 2px; }
 
-.pz-status { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
-.pz-turn { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.pz-turn svg { width: 36px; height: 36px; flex-shrink: 0; }
-.pz-turn span, .pz-rating { display: flex; flex-direction: column; }
-.pz-turn strong { font: 800 1rem var(--font-display); }
-.pz-turn small, .pz-rating small { font-size: .8rem; color: var(--text-secondary); }
-.pz-rating { align-items: flex-end; }
-.pz-rating strong { font: 700 1.15rem var(--font-mono); color: var(--ice); }
+/* --- Stage: board column + side panel --- */
+.app-stage {
+    --board: min(760px, calc(100svh - 56px - 28px - 52px), calc(100vw - 380px - 88px));
+    display: flex; justify-content: center; align-items: flex-start; gap: 28px;
+    padding: 14px 24px;
+}
+.app-board-col { width: var(--board); display: flex; flex-direction: column; gap: 8px; }
+.app-board-col .cb-board { width: var(--board); }
+.app-strip { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.app-strip img { border-radius: 50%; }
+.app-strip strong { font: 800 1rem var(--font-display); }
+.app-panel {
+    width: 380px; max-height: calc(var(--board) + 52px);
+    display: flex; flex-direction: column; gap: 12px;
+}
+.app-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 14px; }
+.app-title { margin: 0; font: 800 1.35rem var(--font-display); }
 
+/* --- Shared bits --- */
+.pz-btn {
+    min-height: 48px; border-radius: var(--radius-md); border: 1px solid var(--border-hover);
+    background: var(--bg-card); color: var(--text-primary); font: 700 .9rem var(--font-body); cursor: pointer;
+}
+.pz-btn:hover:not(:disabled) { background: var(--bg-card-hover); }
+.pz-btn:disabled { opacity: .45; cursor: default; }
+.pz-btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.pz-btn.hint { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent-bright); }
+.pz-btn:focus-visible, .pl-rival:focus-visible, .pl-color:focus-visible, .pz-tabs button:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 2px; }
 .pz-feedback {
-    min-height: 3.2em; margin: 0; padding: 10px 14px; border-radius: var(--radius-md);
-    background: var(--bg-card); font-size: .95rem; line-height: 1.45; color: var(--text-primary);
+    min-height: 3.2em; margin: 0; padding: 12px 14px; border-radius: var(--radius-md);
+    background: var(--bg-card); font-size: .95rem; line-height: 1.45;
 }
 .pz-feedback:empty { visibility: hidden; }
 .pz-feedback.good strong { color: var(--success); }
 .pz-feedback.bad strong { color: var(--grade-inaccuracy); }
 .pz-feedback .pz-soft, .pz-feedback .pz-theme { color: var(--text-secondary); }
 .pz-feedback .pz-theme { display: block; margin-top: 2px; }
-
-.pz-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.pz-btn {
-    min-height: 48px; border-radius: var(--radius-md); border: 1px solid var(--border-hover);
-    background: var(--bg-card); color: var(--text-primary); font: 700 .95rem var(--font-body); cursor: pointer;
-}
-.pz-btn:hover:not(:disabled) { background: var(--bg-card-hover); }
-.pz-btn:disabled { opacity: .45; cursor: default; }
-.pz-btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
-.pz-btn:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 2px; }
-
-.pz-counts { display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; margin: 0; font-size: .85rem; color: var(--text-secondary); }
-.pz-counts strong { color: var(--text-primary); }
-
-.pz-cta {
-    display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: var(--radius-lg);
-    background: var(--bg-card-hover); border: 1px solid var(--border-hover);
+.pz-cta, .pl-cta-link {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px;
+    background: var(--bg-card-hover); border: 1px solid var(--border-hover); color: var(--ice-bright); font-size: .9rem;
 }
 .pz-cta[hidden] { display: none; }
-.pz-cta img { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; background: var(--bg-card); }
-.pz-cta div { display: flex; flex-direction: column; gap: 4px; }
-.pz-cta strong { font: 800 1rem var(--font-display); }
+.pz-cta img, .pl-cta-link img { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: var(--bg-card); }
+.pz-cta strong { color: var(--text-primary); display: block; font-family: var(--font-display); }
 .pz-cta a { font-weight: 700; color: var(--accent-bright); }
 
+/* --- Puzzles panel --- */
+.pz-head { padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; }
+.pz-rating { display: flex; flex-direction: column; align-items: flex-end; }
+.pz-rating strong { font: 700 1.6rem var(--font-mono); color: var(--ice); }
+.pz-rating small { font-size: .8rem; color: var(--text-secondary); }
+.pz-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 4px; background: var(--bg-secondary); border-radius: var(--radius-full); }
+.pz-tabs button { min-height: 42px; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--text-secondary); font: 700 .9rem var(--font-body); cursor: pointer; }
+.pz-tabs button[aria-selected="true"] { background: var(--brand); color: #fff; }
+.pz-panel { display: flex; flex-direction: column; gap: 12px; }
+.pz-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pz-stats { padding: 12px 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); text-align: center; }
+.pz-stats strong { display: block; font: 700 1.25rem var(--font-mono); }
+.pz-stats small { font-size: .78rem; color: var(--text-secondary); }
+.pz-turn-piece { width: 36px; height: 36px; }
+.pz-task { color: var(--text-secondary); }
+
+/* --- Play panel --- */
+.pl-panel { overflow: hidden; display: flex; flex-direction: column; }
+.pl-panel-head { padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 12px; }
+.pl-panel-head img { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; }
+.pl-bubble { font-size: .88rem; background: #fff; color: #172036; padding: 8px 12px; border-radius: 4px 14px 14px 14px; }
+.pl-bubble:empty { display: none; }
+.pl-intro { margin: 0 16px; }
+.pl-intro h1 { margin: 12px 0 2px; font: 800 1.15rem var(--font-display); }
+.pl-intro p { margin: 0 0 8px; font-size: .85rem; color: var(--text-secondary); }
+.pl-rivals { display: flex; flex-direction: column; gap: 6px; padding: 0 12px; overflow: auto; flex: 1; }
+.pl-rival {
+    display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px 10px; border-radius: 12px;
+    text-align: left; color: var(--text-primary); background: transparent; border: 2px solid transparent; cursor: pointer; font: inherit;
+}
+.pl-rival[aria-checked="true"] { background: var(--bg-card-hover); border-color: var(--accent); }
+.pl-rival img { width: 46px; height: 46px; border-radius: 50%; }
+.pl-rival strong { font: 800 .98rem var(--font-display); }
+.pl-rival em { font-style: normal; font-size: .78rem; font-weight: 700; color: var(--accent-bright); }
+.pl-rival small { display: block; font-size: .8rem; color: var(--text-secondary); }
+.pl-setup-foot { padding: 14px 16px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 10px; }
+.pl-colors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pl-color {
+    height: 48px; border-radius: var(--radius-md); border: 2px solid var(--border); background: var(--bg-card);
+    color: var(--text-primary); font: 800 1.1rem var(--font-body); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.pl-color[aria-checked="true"] { border-color: var(--accent); background: var(--bg-card-hover); }
+.pl-color svg { width: 34px; height: 34px; }
+.pl-start { min-height: 54px; font: 800 1.15rem var(--font-display); }
+.pl-note { margin: 0; font-size: .8rem; color: var(--text-secondary); text-align: center; }
+.pl-game-head { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-weight: 700; }
+.pl-game-head span + span { color: var(--text-secondary); font-weight: 400; font-size: .85rem; }
+.pl-moves {
+    margin: 0; padding: 10px 16px; list-style: none; flex: 1; overflow: auto; min-height: 120px;
+    font: .9rem var(--font-mono); display: grid; grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1fr); row-gap: 6px; align-content: start;
+}
+.pl-moves li { display: contents; }
+.pl-moves .n { color: var(--text-muted); }
+.pl-moves .cur { background: rgba(127, 167, 255, .22); border-radius: 4px; padding: 0 4px; justify-self: start; }
+.pl-controls { padding: 12px 14px; border-top: 1px solid var(--border-subtle); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.pl-controls .pz-btn { min-height: 52px; font-size: .78rem; padding: 0 2px; }
+.pl-danger { color: var(--error); }
+.pl-confirm { margin: 0 14px 14px; padding: 12px; border-radius: 12px; background: var(--bg-card); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pl-confirm[hidden] { display: none; }
+.pl-confirm p { grid-column: 1 / -1; margin: 0; font-weight: 700; }
+.pl-status { font-weight: 700; font-size: .9rem; color: var(--success); }
+.pl-hint-text { margin: 0 14px 10px; font-size: .85rem; color: var(--accent-bright); }
+.pl-hint-text:empty { display: none; }
+.pl-cta-link { margin: 0 14px 14px; text-decoration: none; }
+.pl-cta-link strong { color: var(--text-primary); }
+
+/* End and review: in the panel; the moments are shown on the main board */
+.pl-result { padding: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; border-bottom: 1px solid var(--border-subtle); }
+.pl-result img { width: 64px; height: 64px; border-radius: 50%; }
+.pl-eyebrow { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--success); }
+.pl-result-title { margin: 0; font: 800 1.4rem var(--font-display); }
+.pl-review { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; overflow: auto; flex: 1; }
+.pl-review h2 { margin: 0; font: 800 1rem var(--font-display); }
+.pl-accuracy { margin: 0; display: flex; align-items: baseline; gap: 8px; }
+.pl-accuracy strong { font: 700 1.6rem var(--font-mono); color: var(--ice); }
+.pl-moments { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.pl-moment { width: 100%; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 10px; border-radius: 12px; border: 2px solid transparent; background: var(--bg-card); color: var(--text-primary); text-align: left; font: inherit; cursor: pointer; }
+.pl-moment[aria-pressed="true"] { border-color: var(--accent); background: var(--bg-card-hover); }
+.pl-moment-move { font: 700 .95rem var(--font-mono); min-width: 72px; }
+.pl-moment em { font-style: normal; font-weight: 700; }
+.g-blunder { color: var(--grade-blunder); } .g-mistake { color: var(--grade-mistake); } .g-inaccuracy { color: var(--grade-inaccuracy); }
+.pl-key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.pl-key.played { background: #D99A1E; } .pl-key.best { background: #43A04A; }
+.pl-end-actions { padding: 12px 14px; border-top: 1px solid var(--border-subtle); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pl-end-actions .primary { grid-column: 1 / -1; min-height: 52px; font-size: 1rem; }
+
+/* --- Below the fold: the text for search engines --- */
+.app-about { border-top: 1px solid var(--border-subtle); }
+
+/* --- Phones and narrow windows: the panel goes under an edge-to-edge board --- */
 @media (max-width: 899px) {
-    .pz-side { padding-top: 0; }
+    .appbar { gap: 8px; padding: 0 10px 0 12px; height: 52px; }
+    .appbar-logo span, .appbar-wide { display: none; }
+    .appbar-narrow { display: inline; }
+    .appbar-nav a { padding: 8px 11px; font-size: .9rem; }
+    .appbar-cta { padding: 8px 12px; }
+    .app-stage { --board: min(100vw, 560px); flex-direction: column; align-items: center; gap: 0; padding: 0 0 16px; }
+    .app-board-col { gap: 0; }
+    .app-board-col .cb-board { border-radius: 0; box-shadow: none; }
+    .app-strip { padding: 6px 12px; }
+    .app-panel { width: 100%; max-width: 560px; max-height: none; padding: 12px; box-sizing: border-box; }
+    .pl-panel { padding: 0; border-radius: 0; border-left: 0; border-right: 0; }
+    .pl-panel-head { display: none; }
+    .pl-rivals { flex-direction: row; overflow-x: auto; padding: 12px 12px 4px; flex: none; }
+    .pl-rival { flex: 0 0 auto; width: 84px; flex-direction: column; text-align: center; gap: 4px; padding: 8px 4px; background: var(--bg-card); }
+    .pl-rival small { display: none; }
+    .pl-rival img { width: 44px; height: 44px; }
+    .pl-moves { max-height: 96px; min-height: 0; }
 }
 
-/* On wide screens the board is limited by the window height too, so the
-   controls under it stay in the first screen (1280×800 included). */
-@media (min-width: 900px) {
-    .pz-stage { padding-top: calc(var(--space-8) + 64px); }
-    #pz-board { max-width: max(320px, calc(100svh - 400px)); }
-    .pz-main { max-width: 600px; }
+.pl-level { font-style: normal; font-size: .8rem; font-weight: 700; color: var(--accent-bright); }
+.pl-link { border: 0; background: none; color: var(--accent-bright); font: 700 .85rem var(--font-body); cursor: pointer; padding: 4px; }
+.pl-link:focus-visible { outline: 3px solid var(--accent-bright); }
+
+/* Play has a strip above and below the board (rival, you): the board leaves room for both. */
+[data-page="play"] .app-stage { --board: min(760px, calc(100svh - 56px - 28px - 104px), calc(100vw - 380px - 88px)); }
+.pl-controls .pz-btn { font-size: .74rem; }
+.pl-eyebrow.win { color: var(--success); } .pl-eyebrow.loss { color: var(--error); } .pl-eyebrow.draw { color: var(--text-secondary); }
+@media (max-width: 899px) {
+    [data-page="play"] .app-stage { --board: min(100vw, 560px); }
+    .pl-rival em { display: block; }
 }
+
+/* Play: each view is a column whose middle part scrolls, so the foot (colour + Play, the
+   controls, the end actions) is always on screen inside the panel. */
+.pl-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.pl-view[hidden] { display: none; }
+.pl-rivals, .pl-moves, .pl-review { min-height: 0; }
+
+@media (max-width: 899px) {
+    /* Puzzles on a phone (approved mockup): message and buttons right under the board, then the rest. */
+    [data-page="puzzles"] .app-panel > .pz-panel { order: 1; }
+    [data-page="puzzles"] .app-panel > .pz-tabs { order: 2; }
+    [data-page="puzzles"] .app-panel > .pz-head { order: 3; }
+    .pz-task { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    /* The h1 of Play stays in the page on a phone, small. */
+    .pl-intro { display: block; margin: 10px 12px 0; }
+    .pl-intro h1 { margin: 0; font-size: 1rem; }
+    .pl-intro p { display: none; }
+}
+.app-strip strong { white-space: nowrap; }

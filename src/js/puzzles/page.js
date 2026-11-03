@@ -1,6 +1,7 @@
 // The puzzles page: train (a local rating picks puzzles from the matching band) or the
 // puzzle of the day. No account and no server: the puzzles are static JSON and the
 // progress lives in this browser only.
+import { Chess } from '../vendor/chess.js';
 import { createBoard } from '../board/board.js';
 import { loadJSON, saveJSON } from '../common/store.js';
 import { updateRating, bandFor } from './rating.js';
@@ -31,6 +32,7 @@ let counted = false;
 let hintUsed = false;
 let hintStep = 0;
 let finished = true;
+let lastSquares = null; // the move on the board before the player's try, to restore after a miss
 
 const board = createBoard($('pz-board'), {
     legalDests: (from) => (puzzle && !finished ? puzzle.chess.moves({ square: from, verbose: true }).map((m) => m.to) : []),
@@ -49,7 +51,8 @@ function say(html, tone) {
 
 function renderStatus() {
     $('pz-rating').textContent = String(progress.rating);
-    $('pz-today').innerHTML = t.today(Number(progress.today.solved), Number(progress.today.failed));
+    $('pz-solved').textContent = String(Number(progress.today.solved));
+    $('pz-failed').textContent = String(Number(progress.today.failed));
     $('pz-cta').hidden = progress.today.solved === 0 || progress.today.solved % CTA_EVERY !== 0;
 }
 
@@ -84,16 +87,17 @@ function show(record) {
     board.clearMarks();
     board.setInteractive(false);
     board.setOrientation(puzzle.playerColor);
-    board.setPosition(record[1]);
+    board.setPosition(record[1], null, { animate: false });
     $('pz-turn').textContent = t.toMove[puzzle.playerColor];
     $('pz-turn-piece').setAttribute('href', `/images/pieces/staunty.svg#p-${puzzle.playerColor}k`);
     $('pz-task').textContent = mode === 'daily' ? dailyLabel() : t.find;
-    $('pz-meta').textContent = `#${puzzle.id} · ~${puzzle.rating}`;
+    $('pz-meta').textContent = `~${puzzle.rating}`;
     say('');
     setButtons();
     const opening = puzzle.opponentMove;
     later(500, () => {
-        board.setPosition(puzzle.chess.fen(), uciSquares(opening));
+        lastSquares = uciSquares(opening);
+        board.setPosition(puzzle.chess.fen(), lastSquares);
         board.setInteractive(true);
         say(t.opponentPlayed(sanForSpeech(puzzle.chess.history().at(-1))));
     });
@@ -114,9 +118,19 @@ function onMove(from, to, promotion) {
     board.clearMarks();
     if (res.result === 'wrong') {
         count(false);
-        board.mark([from], 'wrong');
         say(`<strong>${t.wrong}</strong> ${t.tryAgain} <span class="pz-soft">${softHint(puzzle.themes)}</span>`, 'bad');
-        later(900, () => board.unmark('wrong'));
+        // Show the move the player tried, marked wrong, then slide it back.
+        const back = puzzle.chess.fen();
+        const tried = new Chess(back);
+        try { tried.move({ from, to, promotion }); } catch { return; }
+        board.setInteractive(false);
+        board.setPosition(tried.fen(), [from, to]);
+        board.mark([to], 'wrong');
+        later(750, () => {
+            board.unmark('wrong');
+            board.setPosition(back, lastSquares);
+            board.setInteractive(true);
+        });
         return;
     }
     if (res.result === 'solved') {
@@ -135,7 +149,8 @@ function onMove(from, to, promotion) {
     say(`<strong>${t.right}</strong>`, 'good');
     hintStep = 0;
     later(450, () => {
-        board.setPosition(puzzle.chess.fen(), uciSquares(res.reply));
+        lastSquares = uciSquares(res.reply);
+        board.setPosition(puzzle.chess.fen(), lastSquares);
         board.setInteractive(true);
         say(`<strong>${t.right}</strong> ${t.opponentPlayed(sanForSpeech(reply.san))} ${t.findAgain}`, 'good');
     });
@@ -154,7 +169,9 @@ $('pz-hint').addEventListener('click', () => {
 
 $('pz-solution').addEventListener('click', async () => {
     if (!puzzle || finished) return;
-    const g = gen;
+    const g = ++gen; // cancels a pending slide-back of a wrong move
+    board.unmark('wrong');
+    if (lastSquares) board.setPosition(puzzle.chess.fen(), lastSquares, { animate: false });
     const p = puzzle;
     count(false);
     board.setInteractive(false);
@@ -189,7 +206,7 @@ function showDailyDone() {
     board.clearMarks();
     board.setInteractive(false);
     $('pz-task').textContent = dailyLabel();
-    $('pz-meta').textContent = '';
+    $('pz-meta').textContent = '—';
     say(t.dailyDone);
     setButtons();
 }
@@ -227,6 +244,7 @@ function setMode(m) {
         const on = tab.id === (m === 'train' ? 'pz-tab-train' : 'pz-tab-daily');
         tab.setAttribute('aria-selected', String(on));
         tab.tabIndex = on ? 0 : -1;
+        if (on) $('pz-panel').setAttribute('aria-labelledby', tab.id);
     });
     next();
 }

@@ -50,12 +50,10 @@
     border-radius: var(--radius-sm);
 }
 
-.navbar-logo span {
-    background: linear-gradient(135deg, var(--text-primary), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+/* The name in the brand's two colours: Chess in white, Coach in royal blue (the app icon's blue). */
+.brand-name { font-family: var(--font-display); font-weight: 800; letter-spacing: -.01em; }
+.brand-chess { color: var(--text-primary); }
+.brand-coach { color: var(--accent); }
 
 .navbar-links {
     display: flex;

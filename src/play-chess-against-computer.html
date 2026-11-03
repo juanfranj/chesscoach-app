@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+<!--INCLUDE:head-->
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/play.css">
+</head>
+<body data-page="play">
+<!--INCLUDE:appbar-->
+
+<main id="content">
+
+<section class="app-stage">
+    <div class="app-board-col">
+        <div class="app-strip">
+            <img id="pl-rival-avatar" src="media/rivals/bot_diego.webp" alt="" width="36" height="36">
+            <strong id="pl-rival-name">Diego</strong>
+            <em id="pl-rival-level" class="pl-level"></em>
+            <span id="pl-bubble" class="pl-bubble" aria-live="polite"></span>
+        </div>
+        <div id="pl-board"></div>
+        <div class="app-strip">
+            <strong id="pl-you"></strong>
+            <span id="pl-status" class="pl-status" aria-live="polite"></span>
+        </div>
+    </div>
+
+    <aside class="app-panel app-card pl-panel">
+        <!-- 1 · Choose a rival -->
+        <div id="pl-setup" class="pl-view">
+            <div class="pl-panel-head">
+                <img id="pl-setup-avatar" src="media/rivals/bot_diego.webp" alt="" width="56" height="56">
+                <span id="pl-setup-line" class="pl-bubble"></span>
+            </div>
+            <div class="pl-intro">
+                <h1 data-en="Play chess against the computer" data-es="Juega al ajedrez contra la máquina">Play chess against the computer</h1>
+                <p data-en="Free, no sign-up. Choose your rival:" data-es="Gratis y sin registro. Elige rival:">Free, no sign-up. Choose your rival:</p>
+            </div>
+            <div class="pl-rivals" role="radiogroup" aria-label="Rival" data-en-label="Rival" data-es-label="Rival">
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="beto"><img src="media/rivals/bot_beto.webp" alt="" width="56" height="56"><span><strong>Beto</strong> <em data-en="Beginner" data-es="Principiante">Beginner</em><small data-en="Just learned how the pieces move. Attacks everything in sight." data-es="Acaba de aprender cómo se mueven las piezas. Ataca todo lo que ve.">Just learned how the pieces move.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="ana"><img src="media/rivals/bot_ana.webp" alt="" width="56" height="56"><span><strong>Ana</strong> <em data-en="Casual" data-es="Casual">Casual</em><small data-en="Plays on Sundays and knows the basic openings." data-es="Juega los domingos y conoce las aperturas básicas.">Plays on Sundays.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="true" data-rival="diego"><img src="media/rivals/bot_diego.webp" alt="" width="56" height="56"><span><strong>Diego</strong> <em data-en="Club" data-es="Club">Club</em><small data-en="Goes to the club on Thursdays. Punishes careless moves." data-es="Va al club los jueves. Castiga los descuidos.">Goes to the club on Thursdays.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="hugo"><img src="media/rivals/bot_hugo.webp" alt="" width="56" height="56"><span><strong>Hugo</strong> <em data-en="Strong" data-es="Fuerte">Strong</em><small data-en="Calculates well and gives nothing away in the endgame." data-es="Calcula bien y no regala nada en el final.">Calculates well.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="javier"><img src="media/rivals/bot_javier.webp" alt="" width="56" height="56"><span><strong>Javier</strong> <em data-en="Expert" data-es="Experto">Expert</em><small data-en="Plays tournaments. You will have to work to beat him." data-es="Juega torneos. Para ganarle vas a tener que sudar.">Plays tournaments.</small></span></button>
+                </div>
+            <div class="pl-setup-foot">
+                <div class="pl-colors" role="radiogroup" aria-label="Your pieces" data-en-label="Your pieces" data-es-label="Tus piezas">
+                    <button type="button" class="pl-color" role="radio" aria-checked="true" data-color="w"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-wk"></use></svg><span data-en="White" data-es="Blancas">White</span></button>
+                    <button type="button" class="pl-color" role="radio" aria-checked="false" data-color="r"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-wq"></use></svg><span data-en="Random" data-es="Al azar">Random</span></button>
+                    <button type="button" class="pl-color" role="radio" aria-checked="false" data-color="b"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-bk"></use></svg><span data-en="Black" data-es="Negras">Black</span></button>
+                </div>
+                <button type="button" id="pl-start" class="pz-btn primary pl-start" data-en="Play" data-es="Jugar">Play</button>
+                <p class="pl-note" id="pl-note" data-en="The first game downloads the engine (1.8 MB). Everything runs in your browser." data-es="La primera partida descarga el motor (1,8 MB). Todo pasa en tu navegador.">The first game downloads the engine (1.8 MB).</p>
+            </div>
+        </div>
+
+        <!-- 2 · The game -->
+        <div id="pl-game" class="pl-view" hidden>
+            <div class="pl-game-head"><span id="pl-game-title"></span><button type="button" id="pl-new" class="pl-link" data-en="New game" data-es="Nueva partida">New game</button></div>
+            <ol id="pl-moves" class="pl-moves" aria-label="Moves" data-en-label="Moves" data-es-label="Jugadas"></ol>
+            <p id="pl-hint-text" class="pl-hint-text" aria-live="polite"></p>
+            <div class="pl-controls">
+                <button type="button" id="pl-undo" class="pz-btn" data-en="Undo" data-es="Deshacer">Undo</button>
+                <button type="button" id="pl-hint" class="pz-btn hint" data-en="Hint" data-es="Pista">Hint</button>
+                <button type="button" id="pl-flip" class="pz-btn" data-en="Flip" data-es="Girar">Flip</button>
+                <button type="button" id="pl-pgn" class="pz-btn" data-en="PGN" data-es="PGN">PGN</button>
+                <button type="button" id="pl-resign" class="pz-btn pl-danger" data-en="Resign" data-es="Abandonar">Resign</button>
+            </div>
+            <div id="pl-confirm" class="pl-confirm" role="alertdialog" aria-labelledby="pl-confirm-text" hidden>
+                <p id="pl-confirm-text"></p>
+                <button type="button" id="pl-confirm-yes" class="pz-btn pl-danger"></button>
+                <button type="button" id="pl-confirm-no" class="pz-btn"></button>
+            </div>
+            <a class="pl-cta-link" href="index.html#download">
+                <img src="media/coach/coach-bust.webp" alt="" width="44" height="44" loading="lazy">
+                <span><span data-en="At the end you will see your 3 key moments." data-es="Al terminar verás tus 3 momentos clave.">At the end you will see your 3 key moments.</span> <strong data-en="Why, with your coach in the app →" data-es="El porqué, con tu coach en la app →">Why, with your coach in the app →</strong></span>
+            </a>
+        </div>
+
+        <!-- 3 · The end and the review -->
+        <div id="pl-end" class="pl-view" hidden>
+            <div class="pl-result">
+                <img id="pl-end-avatar" src="media/rivals/bot_diego.webp" alt="" width="64" height="64">
+                <p id="pl-result-sub" class="pl-eyebrow"></p>
+                <h2 id="pl-result" class="pl-result-title" tabindex="-1"></h2>
+                <p id="pl-end-bubble" class="pl-bubble"></p>
+            </div>
+            <section class="pl-review" aria-labelledby="pl-review-title">
+                <h2 id="pl-review-title" data-en="Your game in three moments" data-es="Tu partida, en 3 momentos">Your game in three moments</h2>
+                <p id="pl-review-progress" class="pl-note"></p>
+                <div id="pl-review-body" hidden>
+                    <p class="pl-accuracy"><strong id="pl-accuracy"></strong> <span id="pl-accuracy-label"></span></p>
+                    <p class="pl-note" id="pl-legend"></p>
+                    <ol id="pl-moments" class="pl-moments"></ol>
+                </div>
+                <aside class="pz-cta">
+                    <img src="media/coach/coach-bust.webp" alt="" width="44" height="44" loading="lazy">
+                    <div>
+                        <strong data-en="Why each mistake, explained by your coach" data-es="El porqué de cada error, con tu coach">Why each mistake, explained by your coach</strong>
+                        <span><a href="{{PLAY:result}}" target="_blank" rel="noopener noreferrer">Google Play</a> · <a href="{{APPSTORE:result}}" target="_blank" rel="noopener noreferrer">App Store</a></span>
+                    </div>
+                </aside>
+            </section>
+            <div class="pl-end-actions">
+                <button type="button" id="pl-rematch" class="pz-btn primary"></button>
+                <button type="button" id="pl-other" class="pz-btn" data-en="Another rival" data-es="Otro rival">Another rival</button>
+                <button type="button" id="pl-pgn-end" class="pz-btn" data-en="Download PGN" data-es="Descargar PGN">Download PGN</button>
+            </div>
+        </div>
+    </aside>
+</section>
+
+<div class="app-about">
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2 data-en="How the rivals play" data-es="Cómo juegan los rivales">How the rivals play</h2>
+            <p data-en="They do not play perfectly on purpose. Each one slips the way a person of that level does: the beginner leaves pieces hanging, the expert almost never errs. When they have mate, they do not let it go, and when the game is lost they resign instead of throwing pieces at you." data-es="No juegan perfecto a propósito. Cada uno se equivoca como una persona de su nivel: el principiante deja piezas colgadas y el experto casi no falla. Cuando tienen mate no lo dejan escapar, y cuando la partida está perdida abandonan en vez de regalarte piezas.">They do not play perfectly on purpose.</p>
+            <h2 data-en="What you see at the end" data-es="Qué ves al terminar">What you see at the end</h2>
+            <p data-en="Your accuracy and the three moments that decided the game, each with the move that was there. In the app, your coach explains why." data-es="Tu precisión y los tres momentos que decidieron la partida, cada uno con la jugada que había. En la app, tu coach te explica el porqué.">Your accuracy and the three moments.</p>
+        
+            <h2 data-en="Which rival to choose" data-es="Qué rival elegir">Which rival to choose</h2>
+            <p data-en="If you are just learning the moves, start with Beto: he leaves pieces hanging and lets you practise checkmates. Ana and Diego suit players who know the basic openings and want a real game. Hugo and Javier are for club players: they rarely give anything away, so you will have to find a plan. A good rule: play the rival you beat about half the time, and move up when you win three in a row." data-es="Si estás aprendiendo a mover, empieza por Beto: deja piezas colgadas y te deja practicar los mates. Ana y Diego van bien si conoces las aperturas básicas y quieres una partida de verdad. Hugo y Javier son para jugadores de club: casi no regalan nada, así que tendrás que buscar un plan. Una buena regla: juega contra el rival al que ganas más o menos la mitad de las veces, y sube cuando le ganes tres seguidas.">If you are just learning the moves, start with Beto.</p>
+            <h2 data-en="Undo, hints and resigning" data-es="Deshacer, pistas y abandonar">Undo, hints and resigning</h2>
+            <p data-en="This is practice, not a rated game: undo as many moves as you like and ask for a hint when you are stuck. The hint tells you which piece to move; the reason is what your coach explains in the app. When a rival is clearly lost it resigns, so you do not have to chase its king around the board for twenty moves." data-es="Esto es entrenamiento, no una partida con puntuación: deshaz todas las jugadas que quieras y pide una pista cuando te atasques. La pista te dice qué pieza mover; el porqué te lo explica tu coach en la app. Cuando un rival va claramente perdido abandona, así que no tienes que perseguir a su rey por todo el tablero durante veinte jugadas.">This is practice, not a rated game.</p>
+            <h2 data-en="Questions" data-es="Preguntas">Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary data-en="Do I need an account to play?" data-es="¿Hace falta una cuenta para jugar?">Do I need an account to play?</summary>
+                    <div data-en="No. Open the page and play. The game in progress is kept only in this browser." data-es="No. Abres la página y juegas. La partida en curso se guarda solo en este navegador.">No.</div>
+                </details>
+                <details class="faq-item">
+                    <summary data-en="How strong is each rival?" data-es="¿Qué nivel tiene cada rival?">How strong is each rival?</summary>
+                    <div data-en="From Beginner to Expert. If you win most games against one, move up; if you lose most, move down one." data-es="De Principiante a Experto. Si le ganas casi siempre a uno, sube; si pierdes casi siempre, baja uno.">From Beginner to Expert.</div>
+                </details>
+                <details class="faq-item">
+                    <summary data-en="Does it work on my phone?" data-es="¿Funciona en el móvil?">Does it work on my phone?</summary>
+                    <div data-en="Yes, in any current browser. For training every day the app is better: twenty rivals, courses, puzzles and an AI coach." data-es="Sí, en cualquier navegador actual. Para entrenar a diario va mejor la app: veinte rivales, cursos, puzles y un coach con IA.">Yes.</div>
+                </details>
+                <details class="faq-item">
+                    <summary data-en="Can I take back a move?" data-es="¿Puedo deshacer una jugada?">Can I take back a move?</summary>
+                    <div data-en="Yes, as many times as you want. Undo takes back your move and the rival's answer." data-es="Sí, todas las veces que quieras. Deshacer quita tu jugada y la respuesta del rival.">Yes.</div>
+                </details>
+                <details class="faq-item">
+                    <summary data-en="Is my game saved?" data-es="¿Se guarda mi partida?">Is my game saved?</summary>
+                    <div data-en="The game in progress is kept in this browser, so you can reload the page and carry on. You can also download it as PGN. To keep all your games and review them with the coach, use the app." data-es="La partida en curso se guarda en este navegador, así que puedes recargar la página y seguir. También puedes descargarla en PGN. Para guardar todas tus partidas y repasarlas con el coach, usa la app.">The game in progress is kept in this browser.</div>
+                </details>
+                <details class="faq-item">
+                    <summary data-en="Which engine is it?" data-es="¿Qué motor es?">Which engine is it?</summary>
+                    <div data-en="Stockfish, the strongest free chess engine, running inside your browser. Its strength is limited for each rival, with mistakes chosen among the moves it was considering." data-es="Stockfish, el motor de ajedrez libre más fuerte, funcionando dentro de tu navegador. Su fuerza se limita para cada rival, con errores elegidos entre las jugadas que estaba considerando.">Stockfish.</div>
+                </details>
+            </div>
+
+            <h2 data-en="Keep training" data-es="Sigue entrenando">Keep training</h2>
+            <div class="related">
+                <a href="chess-bots.html"><span data-en="All twenty rivals" data-es="Los veinte rivales">All twenty rivals</span><span data-en="From beginner to grandmaster, in the app." data-es="De principiante a gran maestro, en la app.">From beginner to grandmaster, in the app.</span></a>
+                <a href="chess-puzzles.html"><span data-en="Chess puzzles" data-es="Puzles de ajedrez">Chess puzzles</span><span data-en="Free tactics with a rating that adapts to you." data-es="Táctica gratis con un rating que se adapta a ti.">Free tactics.</span></a>
+                <a href="ai-chess-coach.html"><span data-en="Chess game analysis" data-es="Analizar tus partidas">Chess game analysis</span><span data-en="Find out what went wrong in your own games." data-es="Descubre qué falló en tus propias partidas.">Find out what went wrong.</span></a>
+            </div>
+            <p class="pl-engine-note"><span data-en="Engine: Stockfish (GPLv3) ·" data-es="Motor: Stockfish (GPLv3) ·">Engine: Stockfish (GPLv3) ·</span> <a href="engine-source/BUILD.md" data-en="source code" data-es="código fuente">source code</a></p>
+        </div>
+    </div>
+</section>
+
+</div>
+
+</main>
+
+<!--INCLUDE:footer-->
+
+<script src="js/landing.js"></script>
+<script type="module" src="/js/play/page.js"></script>
+</body>
+</html>

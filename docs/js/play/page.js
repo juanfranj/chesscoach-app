@@ -26,13 +26,17 @@ const board = createBoard($('pl-board'), {
         ? game.chess.moves({ square: from, verbose: true }).map((m) => m.to) : []),
     onMove: playerMove,
 });
-let reviewBoard = null;
 
+// Switching views hides the button that had the focus: hand the focus to where the user goes next.
 function show(view) {
     for (const v of ['setup', 'game', 'end']) $('pl-' + v).hidden = v !== view;
+    if (view === 'game') board.focus();
+    else if (view === 'end') $('pl-result').focus();
+    else document.querySelector('.pl-rival[aria-checked="true"]')?.focus();
 }
 
 function getEngine() {
+    if (engine && engine.dead) { engine = null; enginePromise = null; } // a crashed Worker: start a new one
     if (!enginePromise) {
         enginePromise = createEngine().then((e) => (engine = e)).catch((err) => { enginePromise = null; throw err; });
     }
@@ -42,14 +46,47 @@ function getEngine() {
 function rivalOf(id) { return RIVALS.find((r) => r.id === id) || RIVALS[2]; }
 
 // --- setup -------------------------------------------------------------------------------
+function showRival(rival) {
+    $('pl-rival-avatar').src = `/media/rivals/bot_${rival.id}.webp`;
+    $('pl-rival-name').textContent = rival.name;
+    $('pl-rival-level').textContent = t.levels[rival.level];
+}
+
 function selectRival(id) {
     choice.rival = id;
-    document.querySelectorAll('.pl-rival').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.rival === id)));
-    $('pl-start').textContent = t.playAgainst(rivalOf(id).name);
+    const rival = rivalOf(id);
+    document.querySelectorAll('.pl-rival').forEach((b) => {
+        b.setAttribute('aria-checked', String(b.dataset.rival === id));
+        b.tabIndex = b.dataset.rival === id ? 0 : -1; // radio group: one tab stop, arrows inside
+    });
+    $('pl-start').textContent = t.playAgainst(rival.name);
+    $('pl-setup-avatar').src = `/media/rivals/bot_${rival.id}.webp`;
+    $('pl-setup-line').textContent = t.lines[rival.id];
+    showRival(rival);
+    say('');
+}
+
+// The setup screen: the board waits in the starting position, oriented to the chosen colour.
+function showSetup() {
+    show('setup');
+    board.clearMarks();
+    board.setInteractive(true);
+    board.setOrientation(choice.color === 'b' ? 'b' : 'w');
+    board.setPosition(new Chess().fen(), null, { animate: false });
+    $('pl-you').textContent = `${t.you} · ${t.colors[choice.color === 'b' ? 'b' : 'w']}`;
+    $('pl-status').textContent = '';
+    selectRival(choice.rival);
 }
 function selectColor(c) {
     choice.color = c;
-    document.querySelectorAll('.pl-color').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.color === c)));
+    document.querySelectorAll('.pl-color').forEach((b) => {
+        b.setAttribute('aria-checked', String(b.dataset.color === c));
+        b.tabIndex = b.dataset.color === c ? 0 : -1;
+    });
+    if (!game) {
+        board.setOrientation(c === 'b' ? 'b' : 'w');
+        $('pl-you').textContent = `${t.you} · ${t.colors[c === 'b' ? 'b' : 'w']}`;
+    }
 }
 document.querySelectorAll('.pl-rival').forEach((b) => b.addEventListener('click', () => selectRival(b.dataset.rival)));
 document.querySelectorAll('.pl-color').forEach((b) => b.addEventListener('click', () => selectColor(b.dataset.color)));
@@ -96,14 +133,24 @@ function renderMoves() {
     list.innerHTML = '';
     for (let i = 0; i < sans.length; i += 2) {
         const li = document.createElement('li');
-        li.textContent = `${i / 2 + 1}. ${localSan(sans[i])}${sans[i + 1] ? ' ' + localSan(sans[i + 1]) : ''}`;
+        for (const [text, cls] of [[`${i / 2 + 1}.`, 'n'], [sans[i], i === sans.length - 1 ? 'cur' : ''], [sans[i + 1] || '', i + 1 === sans.length - 1 ? 'cur' : '']]) {
+            const span = document.createElement('span');
+            span.className = cls;
+            span.textContent = cls === 'n' ? text : localSan(text);
+            li.appendChild(span);
+        }
         list.appendChild(li);
     }
     list.scrollTop = list.scrollHeight;
 }
 
-function refresh(lastMove) {
-    board.setPosition(game.chess.fen(), lastMove);
+function refresh(lastMove, animate = true) {
+    board.setPosition(game.chess.fen(), lastMove, { animate });
+    updateUi();
+}
+
+// Everything but the board: repainting the board here would cut short a piece that is sliding.
+function updateUi() {
     renderMoves();
     const mine = game.chess.turn() === game.color;
     $('pl-status').textContent = game.over ? '' : mine ? t.yourMove : t.thinking;
@@ -119,19 +166,27 @@ async function startGame(rivalId, color, moves, botEvals = []) {
     for (const lan of moves) {
         try { game.chess.move(lan); } catch { break; }
     }
-    $('pl-rival-avatar').src = `/media/rivals/bot_${rival.id}.webp`;
-    $('pl-rival-name').textContent = rival.name;
-    $('pl-rival-level').textContent = t.levels[rival.level];
+    showRival(rival);
+    $('pl-game-title').textContent = t.gameTitle(rival.name);
     $('pl-you').textContent = `${t.you} · ${t.colors[color]}`;
     $('pl-hint-text').textContent = '';
     $('pl-confirm').hidden = true;
+    const g = gen;
     board.clearMarks();
+    board.setInteractive(false); // until the engine has started the new game
     board.setOrientation(color);
     show('game');
     say(pick(t.say.start));
     const last = game.chess.history({ verbose: true }).at(-1);
-    refresh(last ? [last.from, last.to] : null);
-    if (engine) await engine.newGame();
+    refresh(last ? [last.from, last.to] : null, false);
+    try {
+        if (engine) await engine.newGame();
+    } catch {
+        if (g === gen) $('pl-status').innerHTML = t.engineError;
+        return;
+    }
+    if (g !== gen) return;
+    board.setInteractive(true);
     if (!checkEnd() && game.chess.turn() !== color) botTurn();
 }
 
@@ -148,19 +203,21 @@ function playerMove(from, to, promotion) {
 async function botTurn() {
     const g = gen;
     botThinking = true;
-    refresh(lastSquares());
+    updateUi();
     const started = performance.now();
     let result;
     try {
         result = await botMove(engine, game.chess.fen(), game.recipe);
     } catch {
+        if (g !== gen) return;
         botThinking = false;
-        if (g === gen) $('pl-status').innerHTML = t.engineError;
+        $('pl-status').innerHTML = t.engineError;
         return;
     }
     const wait = MIN_BOT_DELAY - (performance.now() - started);
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
-    if (g !== gen || game.over) { botThinking = false; return; }
+    if (g !== gen) return; // a newer game owns botThinking now
+    if (game.over) { botThinking = false; return; }
     game.botEvals.push(result.eval);
     if (shouldResign(game.botEvals)) {
         botThinking = false;
@@ -173,7 +230,7 @@ async function botTurn() {
     refresh([move.from, move.to]);
     if (move.captured) say(pick(t.say.capture));
     if (game.chess.inCheck()) say(pick(t.say.check));
-    checkEnd();
+    if (!checkEnd()) $('pl-status').textContent = t.botPlayed(game.rival.name, localSan(move.san));
 }
 
 function lastSquares() {
@@ -190,7 +247,7 @@ function checkEnd() {
     } else {
         const why = c.isStalemate() ? t.results.stalemate : c.isThreefoldRepetition() ? t.results.repetition
             : c.isInsufficientMaterial() ? t.results.material : t.results.fifty;
-        finish('draw', why, pick(t.say.won));
+        finish('draw', why, pick(t.say.draw));
     }
     return true;
 }
@@ -209,15 +266,22 @@ $('pl-undo').addEventListener('click', () => {
 $('pl-hint').addEventListener('click', async () => {
     if (!game || botThinking || game.over || game.chess.turn() !== game.color) return;
     const g = gen;
+    const fen = game.chess.fen();
     $('pl-hint').disabled = true;
-    await engine.setOption('Skill Level', 20);
-    const { lines } = await engine.analyse(game.chess.fen(), { depth: 12, movetime: 400, multipv: 1 });
-    if (g !== gen || !lines[0]) return;
-    const from = lines[0].move.slice(0, 2);
-    board.clearMarks();
-    board.mark([from], 'hint');
-    $('pl-hint-text').textContent = t.hintText(from);
-    $('pl-hint').disabled = false;
+    let lines = [];
+    try {
+        await engine.setOption('Skill Level', 20);
+        ({ lines } = await engine.analyse(fen, { depth: 12, movetime: 400, multipv: 1 }));
+    } catch { /* the engine failed: no hint this time */ }
+    // Only if the position is still the one the hint was asked for.
+    const current = g === gen && game && !game.over && !botThinking && game.chess.fen() === fen;
+    if (current && lines[0]) {
+        const from = lines[0].move.slice(0, 2);
+        board.clearMarks();
+        board.mark([from], 'hint');
+        $('pl-hint-text').textContent = t.hintText(from);
+    }
+    if (game && !game.over) updateUi();
 });
 
 $('pl-flip').addEventListener('click', () => board.setOrientation(board.orientation === 'w' ? 'b' : 'w'));
@@ -242,7 +306,7 @@ function downloadPgn() {
 $('pl-pgn').addEventListener('click', downloadPgn);
 $('pl-pgn-end').addEventListener('click', downloadPgn);
 
-$('pl-new').addEventListener('click', () => { gen += 1; game = null; saveJSON('play', null); show('setup'); });
+$('pl-new').addEventListener('click', () => { gen += 1; game = null; botThinking = false; saveJSON('play', null); showSetup(); });
 
 $('pl-resign').addEventListener('click', () => {
     if (!game || game.over) return;
@@ -269,6 +333,8 @@ function finish(outcome, why, line) {
     $('pl-end-avatar').src = `/media/rivals/bot_${game.rival.id}.webp`;
     $('pl-result').textContent = t.results[outcome];
     $('pl-result-sub').textContent = `${why} · ${t.moves(Math.ceil(game.chess.history().length / 2))}`;
+    $('pl-result-sub').className = 'pl-eyebrow ' + outcome;
+    say('');
     $('pl-end-bubble').textContent = `«${line}»`;
     $('pl-rematch').textContent = t.playAgainst(game.rival.name);
     show('end');
@@ -283,7 +349,12 @@ async function review(g) {
     const replay = new Chess();
     const evals = [];   // white POV after each ply
     const best = [];    // engine best move before each ply
-    await engine.setOption('Skill Level', 20);
+    try {
+        await engine.setOption('Skill Level', 20);
+    } catch {
+        $('pl-review-progress').innerHTML = t.engineError;
+        return;
+    }
     for (let i = 0; i <= moves.length; i++) {
         if (g !== gen) return;
         $('pl-review-progress').textContent = t.reviewing(Math.round((i / (moves.length + 1)) * 100));
@@ -291,7 +362,13 @@ async function review(g) {
         if (replay.isCheckmate()) whiteCp = replay.turn() === 'w' ? -MATE_CP : MATE_CP;
         else if (replay.isGameOver()) whiteCp = 0;
         else {
-            const { lines } = await engine.analyse(replay.fen(), { movetime: REVIEW_MS, multipv: 1 });
+            let lines;
+            try {
+                ({ lines } = await engine.analyse(replay.fen(), { movetime: REVIEW_MS, multipv: 1 }));
+            } catch {
+                if (g === gen) $('pl-review-progress').innerHTML = t.engineError;
+                return;
+            }
             const top = lines[0] || { scoreCp: 0, scoreMate: null, move: null };
             const stm = top.scoreMate != null ? Math.sign(top.scoreMate) * MATE_CP : top.scoreCp;
             whiteCp = replay.turn() === 'w' ? stm : -stm;
@@ -308,8 +385,6 @@ async function review(g) {
     const list = $('pl-moments');
     list.innerHTML = '';
     $('pl-review-progress').textContent = moments.length ? '' : t.noMoments;
-    if (!reviewBoard) reviewBoard = createBoard($('pl-review-board'), { interactive: false });
-    reviewBoard.setOrientation(game.color);
     $('pl-legend').innerHTML = `<span class="pl-key played"></span> ${t.legendPlayed} · <span class="pl-key best"></span> ${t.legendBest}`;
     moments.forEach((m, k) => {
         const li = document.createElement('li');
@@ -338,20 +413,21 @@ function showMoment(moves, m, button) {
     document.querySelectorAll('.pl-moment').forEach((x) => x.setAttribute('aria-pressed', String(x === button)));
     const c = new Chess();
     for (let i = 0; i < m.ply; i++) c.move(moves[i].lan);
-    reviewBoard.clearMarks();
-    reviewBoard.setPosition(c.fen());
+    board.clearMarks();
+    board.setPosition(c.fen(), null, { animate: false });
     const played = moves[m.ply];
-    reviewBoard.arrow(played.from, played.to, 'played');
-    if (m.best && m.best.slice(0, 4) !== played.lan.slice(0, 4)) reviewBoard.arrow(m.best.slice(0, 2), m.best.slice(2, 4), 'best');
+    board.arrow(played.from, played.to, 'played');
+    if (m.best && m.best.slice(0, 4) !== played.lan.slice(0, 4)) board.arrow(m.best.slice(0, 2), m.best.slice(2, 4), 'best');
 }
 
 $('pl-rematch').addEventListener('click', () => { if (game) startGame(game.rival.id, game.color, []); });
-$('pl-other').addEventListener('click', () => { gen += 1; show('setup'); });
+$('pl-other').addEventListener('click', () => { gen += 1; game = null; showSetup(); });
 
 // --- start: resume a game in progress, if any ----------------------------------------------
 const saved = loadJSON('play', null);
-selectRival(saved && RIVALS.some((r) => r.id === saved.rival) ? saved.rival : 'diego');
+choice.rival = saved && RIVALS.some((r) => r.id === saved.rival) ? saved.rival : 'diego';
 selectColor('w');
+showSetup();
 if (saved && Array.isArray(saved.moves) && (saved.color === 'w' || saved.color === 'b')) {
     getEngine()
         .then(() => startGame(saved.rival, saved.color, saved.moves.filter((m) => typeof m === 'string'),

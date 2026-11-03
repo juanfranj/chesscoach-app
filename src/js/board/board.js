@@ -36,6 +36,13 @@ export function createBoard(el, options = {}) {
     let selected = null;
     let focusIndex = 0;
     const marks = new Map(); // square -> Set(kind)
+    const hidden = new Set(); // squares whose piece is still sliding in
+    let ghosts = [];
+    let slideTimers = [];
+    let drag = null;
+    let dropped = null;       // the move the user just dragged: it is already where it lands
+    const reduceMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SLIDE_MS = 180;
 
     el.classList.add('cb-board');
     el.setAttribute('role', 'group');
@@ -59,8 +66,52 @@ export function createBoard(el, options = {}) {
     function describe(square, piece) {
         if (!piece) return `${square}, ${words.empty}`;
         const type = piece.type === 'b' ? words.b_ : words[piece.type];
-        return lang === 'es' ? `${square}, ${type} ${piece.color === 'w' ? 'blanco' : 'negro'}`
+        const feminine = piece.type === 'q' || piece.type === 'r'; // dama, torre
+        return lang === 'es' ? `${square}, ${type} ${piece.color === 'w' ? (feminine ? 'blanca' : 'blanco') : (feminine ? 'negra' : 'negro')}`
                              : `${square}, ${words[piece.color]} ${type}`;
+    }
+
+    // Which pieces moved between two positions: each new piece is matched with a vanished piece
+    // of the same colour and type (castling moves two), or a pawn of its colour (promotion).
+    function slides(before, after) {
+        const gone = Object.keys(before).filter((sq) => !after[sq] || after[sq].color !== before[sq].color || after[sq].type !== before[sq].type);
+        const came = Object.keys(after).filter((sq) => !before[sq] || before[sq].color !== after[sq].color || before[sq].type !== after[sq].type);
+        const used = new Set();
+        const pairs = [];
+        const dist = (a, b) => Math.abs(a.charCodeAt(0) - b.charCodeAt(0)) + Math.abs(a[1] - b[1]);
+        for (const to of came) {
+            const p = after[to];
+            const pickFrom = (ok) => gone.filter((g) => !used.has(g) && ok(before[g])).sort((a, b) => dist(a, to) - dist(b, to))[0];
+            const from = pickFrom((q) => q.color === p.color && q.type === p.type) ?? pickFrom((q) => q.color === p.color && q.type === 'p');
+            if (from) { used.add(from); pairs.push({ from, to, piece: before[from] }); }
+        }
+        return pairs;
+    }
+
+    function stopSlides() {
+        slideTimers.forEach(clearTimeout);
+        slideTimers = [];
+        ghosts.forEach((g) => g.remove());
+        ghosts = [];
+        hidden.clear();
+    }
+
+    function slide({ from, to, piece }) {
+        const a = indexOf(from, orientation), b = indexOf(to, orientation);
+        const ghost = document.createElement('div');
+        ghost.className = 'cb-slide';
+        ghost.style.left = (a % 8) * 12.5 + '%';
+        ghost.style.top = Math.floor(a / 8) * 12.5 + '%';
+        ghost.innerHTML = pieceSvg(piece);
+        el.appendChild(ghost);
+        ghosts.push(ghost);
+        const dx = (b % 8) - (a % 8), dy = Math.floor(b / 8) - Math.floor(a / 8);
+        requestAnimationFrame(() => requestAnimationFrame(() => { ghost.style.transform = `translate(${dx * 100}%, ${dy * 100}%)`; }));
+        slideTimers.push(setTimeout(() => {
+            ghost.remove();
+            ghosts = ghosts.filter((g) => g !== ghost);
+            if (hidden.delete(to)) render();
+        }, SLIDE_MS + 30));
     }
 
     function render() {
@@ -71,13 +122,14 @@ export function createBoard(el, options = {}) {
             const kinds = marks.get(sq) || new Set();
             const fileIdx = 'abcdefgh'.indexOf(sq[0]);
             cell.className = 'cb-sq' + ((fileIdx + Number(sq[1])) % 2 === 1 ? ' d' : '')
+                + (drag && drag.moved && drag.from === sq ? ' lifted' : '')
                 + (lastMove && lastMove.includes(sq) ? ' last' : '')
                 + (sq === selected ? ' selected' : '')
                 + [...kinds].map((k) => ' ' + k).join('')
                 + (dests.includes(sq) ? (piece ? ' dest capture' : ' dest') : '');
             const bottom = i >= 56;
             const left = i % 8 === 0;
-            cell.innerHTML = (piece ? pieceSvg(piece) : '')
+            cell.innerHTML = (piece && !hidden.has(sq) ? pieceSvg(piece) : '')
                 + (left ? `<span class="cb-coord r" aria-hidden="true">${sq[1]}</span>` : '')
                 + (bottom ? `<span class="cb-coord f" aria-hidden="true">${sq[0]}</span>` : '');
             const isDest = dests.includes(sq);
@@ -94,7 +146,7 @@ export function createBoard(el, options = {}) {
         if (isPromotion(piece, to)) {
             promotion = await askPromotion(piece.color, to);
             // cancelled, or the position changed while the picker was open
-            if (!promotion || pieces[from] !== piece) { render(); return; }
+            if (!promotion || pieces[from] !== piece) { dropped = null; render(); return; }
         }
         render();
         options.onMove && options.onMove(from, to, promotion);
@@ -128,7 +180,6 @@ export function createBoard(el, options = {}) {
         cells[next].focus();
     });
 
-    let drag = null;
     el.addEventListener('pointerdown', (e) => {
         const cell = e.target.closest('.cb-sq');
         if (!interactive || !cell || e.button !== 0) return;
@@ -169,7 +220,7 @@ export function createBoard(el, options = {}) {
         const target = col >= 0 && col < 8 && row >= 0 && row < 8 ? squareAt(row * 8 + col, orientation) : null;
         const ok = target && options.legalDests(d.from).includes(target);
         setTimeout(() => el.classList.remove('cb-dragging'), 0);
-        if (ok) attempt(d.from, target);
+        if (ok) { dropped = d.from + target; attempt(d.from, target); }
         else { selected = null; render(); }
     });
     el.addEventListener('pointercancel', () => {
@@ -242,8 +293,21 @@ export function createBoard(el, options = {}) {
 
     render();
     return {
-        setPosition(fen, move) { if (closePromotion) closePromotion(null); pieces = parseFen(fen); lastMove = move || null; selected = null; render(); },
-        setOrientation(o) { orientation = o; render(); drawArrows(); },
+        setPosition(fen, move, { animate = true } = {}) {
+            if (closePromotion) closePromotion(null);
+            stopSlides();
+            const next = parseFen(fen);
+            const skip = dropped;
+            dropped = null;
+            const moving = animate && !reduceMotion ? slides(pieces, next).filter((m) => m.from + m.to !== skip) : [];
+            pieces = next;
+            lastMove = move || null;
+            selected = null;
+            moving.forEach((m) => hidden.add(m.to));
+            render();
+            moving.forEach(slide);
+        },
+        setOrientation(o) { stopSlides(); orientation = o; render(); drawArrows(); },
         get orientation() { return orientation; },
         setInteractive(on) { interactive = on; if (!on) { selected = null; if (closePromotion) closePromotion(null); } render(); },
         mark(squares, kind) { for (const s of squares) { if (!marks.has(s)) marks.set(s, new Set()); marks.get(s).add(kind); } render(); },
@@ -251,5 +315,6 @@ export function createBoard(el, options = {}) {
         unmark(kind) { for (const set of marks.values()) set.delete(kind); render(); },
         arrow(from, to, kind) { arrows.push({ from, to, kind }); drawArrows(); },
         askPromotion,
+        focus() { cells[focusIndex].focus(); },
     };
 }

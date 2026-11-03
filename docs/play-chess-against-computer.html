@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play chess against the computer free | Chess Coach</title>
+    <meta name="description" content="Play chess against the computer free in your browser, no sign-up. 5 opponents from beginner to expert and a quick review of your game at the end.">
+    <link rel="canonical" href="https://chesscoach-app.com/play-chess-against-computer.html">
+    <link rel="alternate" hreflang="en" href="https://chesscoach-app.com/play-chess-against-computer.html">
+    <link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/jugar-al-ajedrez-contra-la-maquina.html">
+    <link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/play-chess-against-computer.html">
+    <meta property="og:site_name" content="Chess Coach">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Play chess against the computer free | Chess Coach">
+    <meta property="og:description" content="Play chess against the computer free in your browser, no sign-up. 5 opponents from beginner to expert and a quick review of your game at the end.">
+    <meta property="og:url" content="https://chesscoach-app.com/play-chess-against-computer.html">
+    <meta property="og:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Play chess against the computer free | Chess Coach">
+    <meta name="twitter:description" content="Play chess against the computer free in your browser, no sign-up. 5 opponents from beginner to expert and a quick review of your game at the end.">
+    <meta name="twitter:image" content="https://chesscoach-app.com/images/og-card.jpg">
+    <meta property="og:locale:alternate" content="es_ES">
+    <script>(function(){var s=null;try{s=localStorage.getItem("cheescoach-lang")}catch(e){}var es="es/jugar-al-ajedrez-contra-la-maquina.html",back=(document.referrer||"").split("#")[0]===new URL(es,location.href).href;if(s==="es"||(s===null&&!back&&/^es\b/i.test(navigator.language||""))){location.replace(es+location.search+location.hash)}})();</script>
+    <meta name="author" content="JuanfranDevs">
+    <meta name="theme-color" content="#080D1A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Lato:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/webp" href="images/app/icon.webp">
+    <link rel="apple-touch-icon" href="app_icon_chesscoach.png">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/guide.css">
+
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/play.css">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need an account to play?", "acceptedAnswer": {"@type": "Answer", "text": "No. Open the page and play. The game in progress is kept only in this browser."}}, {"@type": "Question", "name": "How strong is each rival?", "acceptedAnswer": {"@type": "Answer", "text": "From Beginner to Expert. If you win most games against one, move up; if you lose most, move down one."}}, {"@type": "Question", "name": "Does it work on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in any current browser. For training every day the app is better: twenty rivals, courses, puzzles and an AI coach."}}, {"@type": "Question", "name": "Can I take back a move?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as many times as you want. Undo takes back your move and the rival's answer."}}, {"@type": "Question", "name": "Is my game saved?", "acceptedAnswer": {"@type": "Answer", "text": "The game in progress is kept in this browser, so you can reload the page and carry on. You can also download it as PGN. To keep all your games and review them with the coach, use the app."}}, {"@type": "Question", "name": "Which engine is it?", "acceptedAnswer": {"@type": "Answer", "text": "Stockfish, the strongest free chess engine, running inside your browser. Its strength is limited for each rival, with mistakes chosen among the moves it was considering."}}]}</script>
+</head>
+<body data-page="play">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<!-- ========== APP BAR (play and puzzles: the board pages) ========== -->
+<header class="appbar">
+    <a href="./" class="appbar-logo" aria-label="Chess Coach">
+        <img src="images/app/icon.webp" alt="" width="30" height="30">
+        <span class="brand-name"><span class="brand-chess">Chess</span> <span class="brand-coach">Coach</span></span>
+    </a>
+    <nav class="appbar-nav" aria-label="Main navigation">
+        <a href="play-chess-against-computer.html" data-app="play">Play</a>
+        <a href="chess-puzzles.html" data-app="puzzles">Puzzles</a>
+        <a href="learn-chess.html" class="appbar-wide">Learn</a>
+    </nav>
+    <div class="appbar-end">
+        <a href="./#download" class="appbar-cta"><span class="appbar-wide">Get the app</span><span class="appbar-narrow">App</span></a>
+        <div class="lang-toggle" role="group" aria-label="Language"><a href="play-chess-against-computer.html" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">EN</a><a href="es/jugar-al-ajedrez-contra-la-maquina.html" hreflang="es" lang="es" data-lang-link="es">ES</a></div>
+    </div>
+</header>
+
+
+<main id="content">
+
+<section class="app-stage">
+    <div class="app-board-col">
+        <div class="app-strip">
+            <img id="pl-rival-avatar" src="media/rivals/bot_diego.webp" alt="" width="36" height="36">
+            <strong id="pl-rival-name">Diego</strong>
+            <em id="pl-rival-level" class="pl-level"></em>
+            <span id="pl-bubble" class="pl-bubble" aria-live="polite"></span>
+        </div>
+        <div id="pl-board"></div>
+        <div class="app-strip">
+            <strong id="pl-you"></strong>
+            <span id="pl-status" class="pl-status" aria-live="polite"></span>
+        </div>
+    </div>
+
+    <aside class="app-panel app-card pl-panel">
+        <!-- 1 · Choose a rival -->
+        <div id="pl-setup" class="pl-view">
+            <div class="pl-panel-head">
+                <img id="pl-setup-avatar" src="media/rivals/bot_diego.webp" alt="" width="56" height="56">
+                <span id="pl-setup-line" class="pl-bubble"></span>
+            </div>
+            <div class="pl-intro">
+                <h1>Play chess against the computer</h1>
+                <p>Free, no sign-up. Choose your rival:</p>
+            </div>
+            <div class="pl-rivals" role="radiogroup" aria-label="Rival">
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="beto"><img src="media/rivals/bot_beto.webp" alt="" width="56" height="56"><span><strong>Beto</strong> <em>Beginner</em><small>Just learned how the pieces move. Attacks everything in sight.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="ana"><img src="media/rivals/bot_ana.webp" alt="" width="56" height="56"><span><strong>Ana</strong> <em>Casual</em><small>Plays on Sundays and knows the basic openings.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="true" data-rival="diego"><img src="media/rivals/bot_diego.webp" alt="" width="56" height="56"><span><strong>Diego</strong> <em>Club</em><small>Goes to the club on Thursdays. Punishes careless moves.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="hugo"><img src="media/rivals/bot_hugo.webp" alt="" width="56" height="56"><span><strong>Hugo</strong> <em>Strong</em><small>Calculates well and gives nothing away in the endgame.</small></span></button>
+                    <button type="button" class="pl-rival" role="radio" aria-checked="false" data-rival="javier"><img src="media/rivals/bot_javier.webp" alt="" width="56" height="56"><span><strong>Javier</strong> <em>Expert</em><small>Plays tournaments. You will have to work to beat him.</small></span></button>
+                </div>
+            <div class="pl-setup-foot">
+                <div class="pl-colors" role="radiogroup" aria-label="Your pieces">
+                    <button type="button" class="pl-color" role="radio" aria-checked="true" data-color="w"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-wk"></use></svg><span>White</span></button>
+                    <button type="button" class="pl-color" role="radio" aria-checked="false" data-color="r"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-wq"></use></svg><span>Random</span></button>
+                    <button type="button" class="pl-color" role="radio" aria-checked="false" data-color="b"><svg viewBox="0 0 50 50" aria-hidden="true"><use href="/images/pieces/staunty.svg#p-bk"></use></svg><span>Black</span></button>
+                </div>
+                <button type="button" id="pl-start" class="pz-btn primary pl-start">Play</button>
+                <p class="pl-note" id="pl-note">The first game downloads the engine (1.8 MB). Everything runs in your browser.</p>
+            </div>
+        </div>
+
+        <!-- 2 · The game -->
+        <div id="pl-game" class="pl-view" hidden>
+            <div class="pl-game-head"><span id="pl-game-title"></span><button type="button" id="pl-new" class="pl-link">New game</button></div>
+            <ol id="pl-moves" class="pl-moves" aria-label="Moves"></ol>
+            <p id="pl-hint-text" class="pl-hint-text" aria-live="polite"></p>
+            <div class="pl-controls">
+                <button type="button" id="pl-undo" class="pz-btn">Undo</button>
+                <button type="button" id="pl-hint" class="pz-btn hint">Hint</button>
+                <button type="button" id="pl-flip" class="pz-btn">Flip</button>
+                <button type="button" id="pl-pgn" class="pz-btn">PGN</button>
+                <button type="button" id="pl-resign" class="pz-btn pl-danger">Resign</button>
+            </div>
+            <div id="pl-confirm" class="pl-confirm" role="alertdialog" aria-labelledby="pl-confirm-text" hidden>
+                <p id="pl-confirm-text"></p>
+                <button type="button" id="pl-confirm-yes" class="pz-btn pl-danger"></button>
+                <button type="button" id="pl-confirm-no" class="pz-btn"></button>
+            </div>
+            <a class="pl-cta-link" href="./#download">
+                <img src="media/coach/coach-bust.webp" alt="" width="44" height="44" loading="lazy">
+                <span><span>At the end you will see your 3 key moments.</span> <strong>Why, with your coach in the app →</strong></span>
+            </a>
+        </div>
+
+        <!-- 3 · The end and the review -->
+        <div id="pl-end" class="pl-view" hidden>
+            <div class="pl-result">
+                <img id="pl-end-avatar" src="media/rivals/bot_diego.webp" alt="" width="64" height="64">
+                <p id="pl-result-sub" class="pl-eyebrow"></p>
+                <h2 id="pl-result" class="pl-result-title" tabindex="-1"></h2>
+                <p id="pl-end-bubble" class="pl-bubble"></p>
+            </div>
+            <section class="pl-review" aria-labelledby="pl-review-title">
+                <h2 id="pl-review-title">Your game in three moments</h2>
+                <p id="pl-review-progress" class="pl-note"></p>
+                <div id="pl-review-body" hidden>
+                    <p class="pl-accuracy"><strong id="pl-accuracy"></strong> <span id="pl-accuracy-label"></span></p>
+                    <p class="pl-note" id="pl-legend"></p>
+                    <ol id="pl-moments" class="pl-moments"></ol>
+                </div>
+                <aside class="pz-cta">
+                    <img src="media/coach/coach-bust.webp" alt="" width="44" height="44" loading="lazy">
+                    <div>
+                        <strong>Why each mistake, explained by your coach</strong>
+                        <span><a href="https://play.google.com/store/apps/details?id=com.app.cheescoach&amp;referrer=utm_source%3Dchesscoach-app.com%26utm_medium%3Dwebsite%26utm_campaign%3Dweb_play_en%26utm_content%3Dresult" target="_blank" rel="noopener noreferrer">Google Play</a> · <a href="https://apps.apple.com/app/apple-store/id6790447113?pt=129140502&amp;ct=web_play_en_result&amp;mt=8" target="_blank" rel="noopener noreferrer">App Store</a></span>
+                    </div>
+                </aside>
+            </section>
+            <div class="pl-end-actions">
+                <button type="button" id="pl-rematch" class="pz-btn primary"></button>
+                <button type="button" id="pl-other" class="pz-btn">Another rival</button>
+                <button type="button" id="pl-pgn-end" class="pz-btn">Download PGN</button>
+            </div>
+        </div>
+    </aside>
+</section>
+
+<div class="app-about">
+<section class="guide-body">
+    <div class="container">
+        <div class="prose">
+            <h2>How the rivals play</h2>
+            <p>They do not play perfectly on purpose. Each one slips the way a person of that level does: the beginner leaves pieces hanging, the expert almost never errs. When they have mate, they do not let it go, and when the game is lost they resign instead of throwing pieces at you.</p>
+            <h2>What you see at the end</h2>
+            <p>Your accuracy and the three moments that decided the game, each with the move that was there. In the app, your coach explains why.</p>
+        
+            <h2>Which rival to choose</h2>
+            <p>If you are just learning the moves, start with Beto: he leaves pieces hanging and lets you practise checkmates. Ana and Diego suit players who know the basic openings and want a real game. Hugo and Javier are for club players: they rarely give anything away, so you will have to find a plan. A good rule: play the rival you beat about half the time, and move up when you win three in a row.</p>
+            <h2>Undo, hints and resigning</h2>
+            <p>This is practice, not a rated game: undo as many moves as you like and ask for a hint when you are stuck. The hint tells you which piece to move; the reason is what your coach explains in the app. When a rival is clearly lost it resigns, so you do not have to chase its king around the board for twenty moves.</p>
+            <h2>Questions</h2>
+            <div class="faq">
+                <details class="faq-item">
+                    <summary>Do I need an account to play?</summary>
+                    <div>No. Open the page and play. The game in progress is kept only in this browser.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How strong is each rival?</summary>
+                    <div>From Beginner to Expert. If you win most games against one, move up; if you lose most, move down one.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Does it work on my phone?</summary>
+                    <div>Yes, in any current browser. For training every day the app is better: twenty rivals, courses, puzzles and an AI coach.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I take back a move?</summary>
+                    <div>Yes, as many times as you want. Undo takes back your move and the rival's answer.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is my game saved?</summary>
+                    <div>The game in progress is kept in this browser, so you can reload the page and carry on. You can also download it as PGN. To keep all your games and review them with the coach, use the app.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Which engine is it?</summary>
+                    <div>Stockfish, the strongest free chess engine, running inside your browser. Its strength is limited for each rival, with mistakes chosen among the moves it was considering.</div>
+                </details>
+            </div>
+
+            <h2>Keep training</h2>
+            <div class="related">
+                <a href="chess-bots.html"><span>All twenty rivals</span><span>From beginner to grandmaster, in the app.</span></a>
+                <a href="chess-puzzles.html"><span>Chess puzzles</span><span>Free tactics with a rating that adapts to you.</span></a>
+                <a href="ai-chess-coach.html"><span>Chess game analysis</span><span>Find out what went wrong in your own games.</span></a>
+            </div>
+            <p class="pl-engine-note"><span>Engine: Stockfish (GPLv3) ·</span> <a href="engine-source/BUILD.md">source code</a></p>
+        </div>
+    </div>
+</section>
+
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="./" class="navbar-logo">
+                <img src="images/app/icon.webp" alt="" width="36" height="36">
+                <span class="brand-name"><span class="brand-chess">Chess</span> <span class="brand-coach">Coach</span></span>
+            </a>
+            <p>A chess coach on your phone: an engine for the truth, AI for the reason.</p>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">The app</h3>
+            <ul class="footer-links">
+                <li><a href="ai-chess-coach.html">AI coach</a></li>
+                <li><a href="chess-opening-trainer.html">Opening trainer</a></li>
+                <li><a href="essential-chess-endgames.html">Essential endgames</a></li>
+                <li><a href="woodpecker-method.html">Woodpecker method</a></li>
+                <li><a href="chess-bots.html">Chess bots</a></li>
+                <li><a href="learn-chess.html">Learn chess</a></li>
+                <li><a href="chess-pawn-structures.html">Pawn structures</a></li>
+                <li><a href="how-to-calculate-in-chess.html">How to calculate</a></li>
+                <li><a href="./#training">Practice Lab</a></li>
+                <li><a href="./#courses">Courses</a></li>
+                <li><a href="play-chess-against-computer.html">Play in your browser</a></li>
+                <li><a href="chess-puzzles.html">Chess puzzles</a></li>
+                <li><a href="./#engines">Engines</a></li>
+                <li><a href="./#download">Download</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">AI setup</h3>
+            <ul class="footer-links">
+                <li><a href="api-setup.html">Which provider</a></li>
+                <li><a href="openai-setup.html">OpenAI</a></li>
+                <li><a href="deepseek-setup.html">DeepSeek</a></li>
+                <li><a href="gemini-setup.html">Gemini</a></li>
+                <li><a href="claude-setup.html">Claude</a></li>
+                <li><a href="qwen-setup.html">Qwen</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-heading">Project</h3>
+            <ul class="footer-links">
+                <li><a href="open-source.html">Open source</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+                <li><a href="mailto:juanfrandevs@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Chess Coach</p>
+        <p><span>Built by</span> JuanfranDevs</p>
+    </div>
+</footer>
+
+
+<script src="js/landing.js"></script>
+<script type="module" src="/js/play/page.js"></script>
+<script>document.querySelectorAll("[data-lang-link]").forEach(function(a){var k=function(){try{localStorage.setItem("cheescoach-lang",a.getAttribute("data-lang-link"))}catch(e){}};a.addEventListener("click",k);a.addEventListener("auxclick",k)});</script>
+</body>
+</html>

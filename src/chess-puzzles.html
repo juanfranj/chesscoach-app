@@ -9,56 +9,59 @@
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/play.css">
 </head>
-<body>
-<!--INCLUDE:nav-->
+<body data-page="puzzles">
+<!--INCLUDE:appbar-->
 
 <main id="content">
 
-<section class="pz-stage">
-    <div class="container pz-grid">
-        <div class="pz-main">
-            <h1 data-en="Chess puzzles" data-es="Puzles de ajedrez">Chess puzzles</h1>
-            <div class="pz-tabs" role="tablist" aria-label="Mode" data-en-label="Mode" data-es-label="Modo">
-                <button type="button" role="tab" id="pz-tab-train" aria-selected="true" aria-controls="pz-panel" data-en="Train" data-es="Entrenar">Train</button>
-                <button type="button" role="tab" id="pz-tab-daily" aria-selected="false" aria-controls="pz-panel" tabindex="-1" data-en="Puzzle of the day" data-es="Puzle del día">Puzzle of the day</button>
-            </div>
-            <div id="pz-panel" role="tabpanel" aria-labelledby="pz-tab-train" class="pz-panel">
-            <div class="pz-status">
-                <span class="pz-turn">
-                    <svg viewBox="0 0 50 50" aria-hidden="true"><use id="pz-turn-piece" href="/images/pieces/staunty.svg#p-wk"></use></svg>
-                    <span><strong id="pz-turn">&nbsp;</strong><small id="pz-task">&nbsp;</small></span>
-                </span>
-                <span class="pz-rating"><strong id="pz-rating">1200</strong><small data-en="your rating" data-es="tu rating">your rating</small></span>
-            </div>
-            <div id="pz-board"></div>
+<section class="app-stage">
+    <div class="app-board-col">
+        <div class="app-strip">
+            <svg class="pz-turn-piece" viewBox="0 0 50 50" aria-hidden="true"><use id="pz-turn-piece" href="/images/pieces/staunty.svg#p-wk"></use></svg>
+            <strong id="pz-turn">&nbsp;</strong>
+            <span class="pz-task" id="pz-task">&nbsp;</span>
+        </div>
+        <div id="pz-board"></div>
+    </div>
+
+    <aside class="app-panel">
+        <div class="app-card pz-head">
+            <h1 class="app-title" data-en="Chess puzzles" data-es="Puzles de ajedrez">Chess puzzles</h1>
+            <span class="pz-rating"><strong id="pz-rating">1200</strong><small data-en="your rating" data-es="tu rating">your rating</small></span>
+        </div>
+        <div class="pz-tabs" role="tablist" aria-label="Mode" data-en-label="Mode" data-es-label="Modo">
+            <button type="button" role="tab" id="pz-tab-train" aria-selected="true" aria-controls="pz-panel" data-en="Train" data-es="Entrenar">Train</button>
+            <button type="button" role="tab" id="pz-tab-daily" aria-selected="false" aria-controls="pz-panel" tabindex="-1" data-en="Puzzle of the day" data-es="Puzle del día">Puzzle of the day</button>
+        </div>
+        <div id="pz-panel" role="tabpanel" aria-labelledby="pz-tab-train" class="pz-panel">
             <p id="pz-feedback" class="pz-feedback" aria-live="polite"></p>
             <div class="pz-controls">
-                <button type="button" id="pz-hint" class="pz-btn" data-en="Hint" data-es="Pista">Hint</button>
-                <button type="button" id="pz-solution" class="pz-btn" data-en="Show solution" data-es="Ver solución">Show solution</button>
+                <button type="button" id="pz-hint" class="pz-btn hint" data-en="Hint" data-es="Pista">Hint</button>
+                <button type="button" id="pz-solution" class="pz-btn" data-en="Solution" data-es="Solución">Solution</button>
                 <button type="button" id="pz-next" class="pz-btn" data-en="Next" data-es="Siguiente">Next</button>
             </div>
-            <p class="pz-counts"><span id="pz-today"></span><span id="pz-meta"></span></p>
+            <div class="app-card pz-stats">
+                <span><strong id="pz-solved">0</strong><small data-en="solved today" data-es="resueltos hoy">solved today</small></span>
+                <span><strong id="pz-failed">0</strong><small data-en="missed" data-es="fallados">missed</small></span>
+                <span><strong id="pz-meta">&nbsp;</strong><small data-en="this puzzle" data-es="este puzle">this puzzle</small></span>
+            </div>
             <aside id="pz-cta" class="pz-cta" hidden>
-                <img src="media/coach/coach-bust.webp" alt="" width="64" height="64" loading="lazy">
+                <img src="media/coach/coach-bust.webp" alt="" width="44" height="44" loading="lazy">
                 <div>
                     <strong data-en="Streak, Storm and over 35,000 puzzles in the app" data-es="Racha, Tormenta y más de 35.000 puzles en la app">Streak, Storm and over 35,000 puzzles in the app</strong>
                     <span><span data-en="With your coach, on" data-es="Con tu coach, en">With your coach, on</span> <a href="{{PLAY:cta}}" target="_blank" rel="noopener noreferrer">Google Play</a> · <a href="{{APPSTORE:cta}}" target="_blank" rel="noopener noreferrer">App Store</a></span>
                 </div>
             </aside>
-            </div>
         </div>
-
-        <div class="pz-side prose">
-            <p class="lede" data-en="Free chess puzzles from real games, right here in your browser. No account: your rating goes up when you solve and down when you miss, and the next puzzle matches it." data-es="Puzles de ajedrez gratis sacados de partidas reales, aquí mismo en el navegador. Sin cuenta: tu rating sube cuando aciertas y baja cuando fallas, y el siguiente puzle se ajusta a él.">Free chess puzzles from real games, right here in your browser.</p>
-            <h2 data-en="How it works" data-es="Cómo funciona">How it works</h2>
-            <p data-en="The opponent plays first; then it is your turn. Find the best move, and keep going until the combination is over. A wrong move does not end the puzzle: try again, but it already counts as missed. Any checkmate counts, even one that is not the stored answer." data-es="Primero juega el rival y después te toca a ti. Encuentra la mejor jugada y sigue hasta que acabe la combinación. Una jugada mala no termina el puzle: puedes volver a intentarlo, aunque ya cuenta como fallado. Cualquier jaque mate vale, aunque no sea la respuesta guardada.">The opponent plays first; then it is your turn.</p>
-        </div>
-    </div>
+    </aside>
 </section>
 
+<div class="app-about">
 <section class="guide-body">
     <div class="container">
         <div class="prose">
+            <h2 data-en="How it works" data-es="Cómo funciona">How it works</h2>
+            <p data-en="The opponent plays first; then it is your turn. Find the best move, and keep going until the combination is over. A wrong move does not end the puzzle: try again, but it already counts as missed. Any checkmate counts, even one that is not the stored answer. No account: your rating goes up when you solve and down when you miss, and the next puzzle matches it." data-es="Primero juega el rival y después te toca a ti. Encuentra la mejor jugada y sigue hasta que acabe la combinación. Una jugada mala no termina el puzle: puedes volver a intentarlo, aunque ya cuenta como fallado. Cualquier jaque mate vale, aunque no sea la respuesta guardada. Sin cuenta: tu rating sube cuando aciertas y baja cuando fallas, y el siguiente puzle se ajusta a él.">The opponent plays first; then it is your turn.</p>
             <h2 data-en="What you will train" data-es="Qué vas a entrenar">What you will train</h2>
             <p data-en="Forks, pins, skewers, discovered attacks, mates in one and in two, sacrifices and endgame technique. Every puzzle comes from a real game, from beginner level to master, and when you solve it you see which theme it was." data-es="Horquillas, clavadas, enfiladas, ataques a la descubierta, mates en uno y en dos, sacrificios y técnica de finales. Cada puzle sale de una partida real, de principiante a maestro, y al resolverlo ves qué tema era.">Forks, pins, skewers, discovered attacks and mates.</p>
             <p data-en="Tactics decide most games below 2000: one missed fork or one undefended piece. Solving a few puzzles a day trains your eye to see them in your own games." data-es="La táctica decide la mayoría de las partidas por debajo de 2000: una horquilla que no viste o una pieza sin defender. Hacer unos pocos puzles al día entrena el ojo para verlos en tus propias partidas.">Tactics decide most games below 2000.</p>
@@ -88,6 +91,7 @@
 
             <h2 data-en="Keep training" data-es="Sigue entrenando">Keep training</h2>
             <div class="related">
+                <a href="play-chess-against-computer.html"><span data-en="Play against the computer" data-es="Jugar contra la máquina">Play against the computer</span><span data-en="Five rivals in your browser, with a review at the end." data-es="Cinco rivales en el navegador, con repaso al terminar.">Five rivals in your browser.</span></a>
                 <a href="woodpecker-method.html"><span data-en="The Woodpecker method" data-es="El método del pájaro carpintero">The Woodpecker method</span><span data-en="The same set of puzzles, faster every cycle." data-es="El mismo set de puzles, más rápido en cada ciclo.">The same set of puzzles, faster every cycle.</span></a>
                 <a href="how-to-calculate-in-chess.html"><span data-en="How to calculate in chess" data-es="Cómo calcular en ajedrez">How to calculate in chess</span><span data-en="Candidate moves, forcing lines and checking your answer." data-es="Jugadas candidatas, líneas forzadas y comprobar tu respuesta.">Candidate moves and forcing lines.</span></a>
                 <a href="chess-bots.html"><span data-en="Chess bots" data-es="Bots de ajedrez">Chess bots</span><span data-en="Twenty rivals in the app, from beginner to grandmaster." data-es="Veinte rivales en la app, de principiante a gran maestro.">Twenty rivals in the app.</span></a>
@@ -96,7 +100,7 @@
     </div>
 </section>
 
-<!--INCLUDE:download-->
+</div>
 
 </main>
 
