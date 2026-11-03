@@ -39,7 +39,9 @@ export function createEngine() {
             newGame() {
                 return enqueue(async () => { send('ucinewgame'); send('isready'); await waitFor('readyok'); });
             },
-            // Lines sorted best first: [{ move, scoreCp, scoreMate, pv, depth }], scores from the side to move.
+            // { lines, bestMove }: lines sorted best first ({ move, scoreCp, scoreMate, pv, depth }, scores
+            // from the side to move); bestMove is what the engine chose, which with Skill Level < 20
+            // is not always lines[0].move.
             analyse(fen, { depth, movetime, multipv = 1 } = {}) {
                 return enqueue(() => new Promise((ok) => {
                     const lines = new Map();
@@ -51,8 +53,7 @@ export function createEngine() {
                             const best = line.split(' ')[1];
                             const sorted = [...lines.values()].sort((a, b) => a.multipv - b.multipv)
                                 .map((l) => ({ move: l.pv[0], scoreCp: l.scoreCp, scoreMate: l.scoreMate, pv: l.pv, depth: l.depth }));
-                            if (!sorted.length && best && best !== '(none)') sorted.push({ move: best, scoreCp: 0, scoreMate: null, pv: [best], depth: 0 });
-                            ok(sorted);
+                            ok({ lines: sorted, bestMove: best && best !== '(none)' ? best : null });
                         }
                     };
                     send(`setoption name MultiPV value ${multipv}`);
