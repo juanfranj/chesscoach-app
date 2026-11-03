@@ -1,0 +1,95 @@
+/* ============================================================
+   The play / puzzles board (js/board/board.js). Prefixed cb-.
+   Colours are the app's default green board from variables.css.
+   ============================================================ */
+
+.cb-board {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.cb-sq {
+    position: relative;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    background: var(--board-light);
+    cursor: pointer;
+}
+.cb-sq.d { background: var(--board-dark); }
+.cb-sq svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cb-sq.lifted svg { opacity: .35; }
+.cb-sq:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; z-index: 1; }
+
+.cb-sq.last::before, .cb-sq.selected::before, .cb-sq.hint::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--board-highlight);
+}
+.cb-sq.selected::before { background: rgba(255, 255, 0, .55); }
+.cb-sq.hint::before { background: transparent; box-shadow: inset 0 0 0 4px var(--brand); }
+.cb-sq.played::before { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px #D99A1E; }
+.cb-sq.best::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px #43A04A; }
+.cb-sq.wrong::before { content: ''; position: absolute; inset: 0; background: var(--board-incorrect); }
+.cb-sq.right::before { content: ''; position: absolute; inset: 0; background: var(--board-correct); }
+
+.cb-sq.dest::after {
+    content: '';
+    position: absolute;
+    left: 34%; top: 34%; width: 32%; height: 32%;
+    border-radius: 50%;
+    background: rgba(8, 16, 34, .28);
+}
+.cb-sq.dest.capture::after {
+    left: 4%; top: 4%; width: 92%; height: 92%;
+    background: transparent;
+    box-shadow: inset 0 0 0 5px rgba(8, 16, 34, .28);
+}
+
+.cb-coord { position: absolute; font: 700 10px var(--font-mono, monospace); pointer-events: none; color: var(--board-dark); }
+.cb-sq.d .cb-coord { color: var(--board-light); }
+.cb-coord.r { left: 3px; top: 1px; }
+.cb-coord.f { right: 3px; bottom: 1px; }
+
+.cb-ghost { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 5; }
+.cb-ghost svg { width: 100%; height: 100%; transform: scale(1.12); }
+
+.cb-arrows { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.cb-arrow { stroke-width: .16; stroke-linecap: round; opacity: .85; }
+.cb-arrow-head { opacity: .85; stroke: none !important; }
+.cb-arrow.best, .cb-arrow-head.best { stroke: #43A04A; fill: #43A04A; }
+.cb-arrow.played, .cb-arrow-head.played { stroke: #D99A1E; fill: #D99A1E; }
+.cb-arrow.hint, .cb-arrow-head.hint { stroke: var(--brand); fill: var(--brand); }
+
+.cb-promo {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+}
+.cb-promo button {
+    flex: 0 0 56px;
+    width: 56px; height: 56px;
+    padding: 0;
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-md);
+    background: var(--board-light);
+    cursor: pointer;
+}
+.cb-promo button:focus-visible { outline: 3px solid var(--brand); }
+.cb-promo svg { width: 100%; height: 100%; }
