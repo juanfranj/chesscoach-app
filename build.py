@@ -170,7 +170,7 @@ META = {
 }
 BILINGUAL = [p for p in META if 'es' in META[p]]
 ENGLISH_ONLY = [p for p in META if 'es' not in META[p]]
-ASSETS = ['media', 'css', 'js', 'images', 'app_icon_chesscoach.png']
+ASSETS = ['media', 'css', 'js', 'images', 'data', 'app_icon_chesscoach.png']
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 
 
