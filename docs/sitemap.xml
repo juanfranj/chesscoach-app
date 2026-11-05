@@ -85,6 +85,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/qwen-setup.html"/>
   </url>
   <url>
+    <loc>https://chesscoach-app.com/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/terms.html"/>
+  </url>
+  <url>
+    <loc>https://chesscoach-app.com/es/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chesscoach-app.com/terms.html"/>
+  </url>
+  <url>
     <loc>https://chesscoach-app.com/privacy-policy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://chesscoach-app.com/privacy-policy.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://chesscoach-app.com/es/privacy-policy.html"/>

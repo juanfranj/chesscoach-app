@@ -74,6 +74,12 @@ META = {
         'es': ('Cómo crear una API key de Qwen — Chess Coach',
                'Guía paso a paso para crear una API key de Qwen en Alibaba Cloud Model Studio y usarla en Chess Coach.'),
     },
+    'terms': {
+        'en': ('Terms of use — Chess Coach',
+               'The terms for using Chess Coach: purchases, credits, your own API key, online play and your rights.'),
+        'es': ('Términos de uso — Chess Coach',
+               'Las condiciones de uso de Chess Coach: compras, créditos, tu propia clave de API, juego online y tus derechos.'),
+    },
     'privacy-policy': {
         'en': ('Privacy policy — Chess Coach',
                'How Chess Coach handles your data: what stays on your device, what is sent and why, and how to '
