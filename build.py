@@ -26,7 +26,7 @@ OUT = os.path.join(ROOT, 'docs')
 SITE = 'https://chesscoach-app.com'
 DOMAIN = 'chesscoach-app.com'
 LANG_KEY = 'cheescoach-lang'   # where a visitor's EN/ES choice is kept, per origin
-OG_IMAGE = SITE + '/images/og-card.jpg'
+OG_IMAGE = SITE + '/images/og-card-v2.jpg'
 
 # (title, description) per page and language.
 META = {
